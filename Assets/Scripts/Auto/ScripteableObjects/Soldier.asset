@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 129fba88a9226de4f92525ca74aa6dc2, type: 3}
+  m_Name: Soldier
+  m_EditorClassIdentifier: 
+  accelFactor: 0.23
+  maxSpeed: 200
+  trurnFactor: 0.19
+  turnStrength: 80
+  driftStrength: 180
+  pjImg: {fileID: 21300000, guid: b38e493d67538384fbdc55afa6313e89, type: 3}
+  _name: canine
+  Desctiption: ... ?
+  clip: {fileID: 32900000, guid: 1183b4a0b8013e64bb7e265a91fef1c2, type: 3}

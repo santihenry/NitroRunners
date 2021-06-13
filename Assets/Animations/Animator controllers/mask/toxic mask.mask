@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: toxic mask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Box005
+    m_Weight: 0
+  - m_Path: Box006
+    m_Weight: 0
+  - m_Path: Box007
+    m_Weight: 0
+  - m_Path: Capsule001
+    m_Weight: 0
+  - m_Path: Capsule002
+    m_Weight: 0
+  - m_Path: Capsule003
+    m_Weight: 0
+  - m_Path: Capsule003/Capsule003 1
+    m_Weight: 1
+  - m_Path: Cylinder009
+    m_Weight: 0
+  - m_Path: Cylinder010
+    m_Weight: 0
+  - m_Path: Cylinder011
+    m_Weight: 0
+  - m_Path: Cylinder012
+    m_Weight: 0
+  - m_Path: Cylinder014
+    m_Weight: 0
+  - m_Path: Cylinder017
+    m_Weight: 0
+  - m_Path: Cylinder018
+    m_Weight: 0
+  - m_Path: Cylinder020
+    m_Weight: 0
+  - m_Path: Cylinder023
+    m_Weight: 1
+  - m_Path: Cylinder023/Cylinder023 1
+    m_Weight: 1
+  - m_Path: Cylinder024
+    m_Weight: 1
+  - m_Path: Cylinder024/Cylinder024 1
+    m_Weight: 1
+  - m_Path: Cylinder025
+    m_Weight: 1
+  - m_Path: Cylinder025/Cylinder025 1
+    m_Weight: 1
+  - m_Path: Cylinder026
+    m_Weight: 1
+  - m_Path: Cylinder026/Cylinder026 1
+    m_Weight: 1
+  - m_Path: Cylinder027
+    m_Weight: 0
+  - m_Path: Cylinder028
+    m_Weight: 0
+  - m_Path: Cylinder028/Cylinder028 1
+    m_Weight: 1
+  - m_Path: Cylinder029
+    m_Weight: 0
+  - m_Path: Cylinder029/Cylinder029 1
+    m_Weight: 1
+  - m_Path: Cylinder029/Cylinder029 2
+    m_Weight: 1
+  - m_Path: Cylinder030
+    m_Weight: 0
+  - m_Path: Cylinder031
+    m_Weight: 0
+  - m_Path: Line006
+    m_Weight: 0
+  - m_Path: Line007
+    m_Weight: 0
+  - m_Path: Line008
+    m_Weight: 0
+  - m_Path: Line009
+    m_Weight: 0
+  - m_Path: Line010
+    m_Weight: 0
+  - m_Path: Line011
+    m_Weight: 0
+  - m_Path: Line012
+    m_Weight: 0
+  - m_Path: Line013
+    m_Weight: 0
+  - m_Path: Line014
+    m_Weight: 0
+  - m_Path: Line015
+    m_Weight: 0
+  - m_Path: Plane004
+    m_Weight: 0
+  - m_Path: Plane004/Plane004 1
+    m_Weight: 1
+  - m_Path: Plane005
+    m_Weight: 0
