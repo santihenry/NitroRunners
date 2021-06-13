@@ -78,6 +78,7 @@ public class Laps : MonoBehaviourPun
         }
         if (RaceManager.Instance.StartRace)
             photonView.RPC("Clock", RpcTarget.All);
+
         SaveTimes();
         UpdateDistance();
     }

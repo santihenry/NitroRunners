@@ -29,7 +29,7 @@ public class UImanager : MonoBehaviour
 
     private void Update()
     {
-        if (_carModel.GetWrongway)
+        if (_carModel != null && _carModel.GetWrongway)
             wrongwayTxt.text = "Wrong way";
         else
             wrongwayTxt.text = "";

@@ -2827,7 +2827,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7092586641162007289, guid: 4462ffe091d727f4e83e54962bd2a6e3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.5929093
+      value: -4.5929065
       objectReference: {fileID: 0}
     - target: {fileID: 7092586641162007289, guid: 4462ffe091d727f4e83e54962bd2a6e3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13290,7 +13290,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7092586641162007289, guid: 4462ffe091d727f4e83e54962bd2a6e3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -59.148483
+      value: -59.148476
       objectReference: {fileID: 0}
     - target: {fileID: 7092586641162007289, guid: 4462ffe091d727f4e83e54962bd2a6e3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -14228,6 +14228,7 @@ GameObject:
   - component: {fileID: 1395336923}
   - component: {fileID: 1395336922}
   - component: {fileID: 1395336924}
+  - component: {fileID: 1395336925}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -14312,6 +14313,28 @@ MonoBehaviour:
   droneSemaforoA: {fileID: 1172814744}
   pos: {x: 0, y: 0, z: 0}
   offset: {x: 7, y: 2, z: 5}
+--- !u!114 &1395336925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395336921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 2
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1403150093
 GameObject:
   m_ObjectHideFlags: 0
@@ -14389,7 +14412,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7092586641162007289, guid: 4462ffe091d727f4e83e54962bd2a6e3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.7020707
+      value: -7.7020736
       objectReference: {fileID: 0}
     - target: {fileID: 7092586641162007289, guid: 4462ffe091d727f4e83e54962bd2a6e3, type: 3}
       propertyPath: m_LocalPosition.z

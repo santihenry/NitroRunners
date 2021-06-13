@@ -34,9 +34,6 @@ public class NetManager : MonoBehaviourPunCallbacks
     public GameObject joinRoomBtn;
     public TMP_Text debugJoinRoom;
 
-    public GameObject joinRandomRoomBtn;
-
-
     public TMP_Text cantPlayersOnTxt;
 
 
@@ -84,27 +81,20 @@ public class NetManager : MonoBehaviourPunCallbacks
                     exclamationMark.SetActive(true);
                     randomRoomBtn.GetComponent<Button>().interactable=false;
                     joinRoomBtn.GetComponent<Button>().interactable = false;
-                    joinRandomRoomBtn.GetComponent<Button>().interactable = false;
             }
                 else
                 {
                     debugNullNickName.text = "";
                     randomRoomBtn.GetComponent<Button>().interactable = true;
                     exclamationMark.SetActive(false);
-                    if (nameRoomConnect.text != "")
-                        {
+                    if (nameRoomConnect.text != "")                        
                         joinRoomBtn.GetComponent<Button>().interactable = true;
-                        if (PhotonNetwork.CountOfRooms > 0)
-                            joinRandomRoomBtn.GetComponent<Button>().interactable = true;
-                    }
+                    
                 }
 
-                if (username.text != "")
-                {
+                if (username.text != "")                
                     randomRoomBtn.gameObject.SetActive(true);
-                    if (PhotonNetwork.CountOfRooms > 0)
-                        joinRandomRoomBtn.gameObject.SetActive(true);
-                }
+                
 
                 // connect room
                 if (nameRoomConnect.text == "")
