@@ -13,11 +13,6 @@ public class NetManager : MonoBehaviourPunCallbacks
     bool offline = false;
     public static NetManager Instance { get; set; }
 
-
-    public int maxPlayers;
-    public int maxLaps;
-
-
     public TMP_InputField username;
     public TMP_Text debugNullNickName;
     public TMP_Text debugInfo;
@@ -27,17 +22,12 @@ public class NetManager : MonoBehaviourPunCallbacks
 
     [Header("_____CREATE ROOM_____")]
     public TMP_InputField map;
-    //public TMP_InputField cantPlayers;
-    //public TMP_InputField cantLaps;
     public TMP_Dropdown cantPlayerDropDown;
     public TMP_Dropdown cantLapsDropDown;
     public TMP_Dropdown trackDropDown;
     public GameObject randomRoomBtn;
     public TMP_Text debugCreateRoom;
     public Toggle privateToggle;
-
-    public TMP_Text maxPlayerTxt, maxLapTxt;
-
 
     [Header("_____JOIN ROOM_____")]
     public TMP_InputField nameRoomConnect;
@@ -47,7 +37,7 @@ public class NetManager : MonoBehaviourPunCallbacks
     public GameObject joinRandomRoomBtn;
 
 
-    public TMP_Text cantRooms;
+    public TMP_Text cantPlayersOnTxt;
 
 
     public bool Offline
@@ -70,14 +60,6 @@ public class NetManager : MonoBehaviourPunCallbacks
         ConnectToServer();
         exclamationMark.SetActive(false);
         gearLoading.SetActive(false);
-        if (map != null && maxPlayerTxt != null && maxLapTxt)
-        {
-            if (maxLaps > 9) maxLaps = 9;
-            if (maxPlayers > 10) maxPlayers = 10;
-            map.text = "2";
-            maxLapTxt.text = $"(1-{maxLaps})";
-            maxPlayerTxt.text = $"(2-{ maxPlayers})";
-        }
     }
 
 
@@ -89,34 +71,16 @@ public class NetManager : MonoBehaviourPunCallbacks
     private void Update()
     {
 
-        if (cantRooms != null)
-            cantRooms.text = $" Players : {PhotonNetwork.CountOfPlayers} | Rooms : {PhotonNetwork.CountOfRooms}";
+        if (cantPlayersOnTxt != null)
+            cantPlayersOnTxt.text = $"<size=30><color=green>{PhotonNetwork.CountOfPlayers}</color></size><color=white> Players ON</color>";
 
         #region VALIDACION INPUTS
-
-        if (map != null && cantPlayerDropDown != null && cantLapsDropDown != null)
-            {
-                if (map.text != "1" && map.text != "2")
-                    map.text = "1";
-                if (cantLapsDropDown.value  > maxLaps)
-                    cantLapsDropDown.value = 3;
-                if (cantPlayerDropDown.value > maxPlayers) 
-                    cantPlayerDropDown.value = maxPlayers;
-                if (cantLapsDropDown.value < 1 || cantLapsDropDown.value > maxLaps)
-                    cantLapsDropDown.value = 3;
-
-                if (cantPlayerDropDown.value < 2 || cantPlayerDropDown.value > maxPlayers)
-                    cantPlayerDropDown.value = 5;
-            }
 
             if (username != null && debugNullNickName != null && debugInfo != null  && randomRoomBtn != null && debugCreateRoom != null && nameRoomConnect != null && joinRoomBtn != null && debugJoinRoom != null)
             {
                 if (username.text == "")
                 {
                     debugNullNickName.text = $"Enter username";
-                    //randomRoomBtn.gameObject.SetActive(false);
-                    //joinRoomBtn.gameObject.SetActive(false);
-                    //joinRandomRoomBtn.gameObject.SetActive(false);
                     exclamationMark.SetActive(true);
                     randomRoomBtn.GetComponent<Button>().interactable=false;
                     joinRoomBtn.GetComponent<Button>().interactable = false;
@@ -154,14 +118,9 @@ public class NetManager : MonoBehaviourPunCallbacks
                     if (username.text != "")
                     {
                         joinRoomBtn.GetComponent<Button>().interactable =true;
-                        //joinRandomRoomBtn.gameObject.SetActive(true);
                     }
                 }
             }
-
-            /*if(PhotonNetwork.CountOfRooms == 0)
-                joinRandomRoomBtn.gameObject.SetActive(false);*/
-
         #endregion
     
     }
