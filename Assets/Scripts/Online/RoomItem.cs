@@ -10,9 +10,13 @@ using UnityEngine.UI;
 public class RoomItem : MonoBehaviour
 {
 
-    public TMP_Text roomInfoTxt;
-
+    public TMP_Text roomRame;
+    public TMP_Text roomPlayers;
+    public TMP_Text roomLaps;
+    public TMP_Text roomTrack;
     public RoomInfo roomInfo;
+
+
 
     public RoomInfo RoomInfo
     {
@@ -36,7 +40,8 @@ public class RoomItem : MonoBehaviour
     public void SetRoomInfo(RoomInfo roomInfo)
     {
         RoomInfo = roomInfo;
-        roomInfoTxt.text = $"{roomInfo.Name}              {roomInfo.PlayerCount}/{roomInfo.MaxPlayers}";
+        roomRame.text = $"  {roomInfo.Name}";
+        roomPlayers.text = $"   {roomInfo.PlayerCount} / {roomInfo.MaxPlayers}";
     }
 
 

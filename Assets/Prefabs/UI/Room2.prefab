@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.03167015, y: 0.4802966}
   m_AnchorMax: {x: 0.25242743, y: 0.6645342}
-  m_AnchoredPosition: {x: -0.041000366, y: -0.000012397766}
+  m_AnchoredPosition: {x: -0.041015625, y: -0.000012397766}
   m_SizeDelta: {x: -0.08100128, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2200737894573273593
@@ -532,7 +532,7 @@ VideoPlayer:
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 8400000, guid: 227b9937a30f7704e96ffeb6caabf73e, type: 2}
+  m_TargetTexture: {fileID: 0}
   m_TimeReference: 0
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: _MainTex
@@ -593,7 +593,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.41853446, y: 0.27432567}
-  m_AnchoredPosition: {x: -0.21957397, y: 0.23901367}
+  m_AnchoredPosition: {x: -0.21960449, y: 0.23901367}
   m_SizeDelta: {x: -0.43940735, y: 0.478199}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2200737895843571703
@@ -647,10 +647,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomInfoTxt: {fileID: 2200737895614084885}
-  roomName: {fileID: 2200737895614084885}
-  trackName: {fileID: 2200737896555868472}
-  laps: {fileID: 2200737894573273598}
-  players: {fileID: 2200737895190316783}
+  roomRame: {fileID: 2200737895614084885}
+  roomPlayers: {fileID: 2200737895190316783}
+  roomLaps: {fileID: 2200737894573273598}
+  roomTrack: {fileID: 2200737896555868472}
 --- !u!114 &-115322847584767180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -742,7 +742,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.46600002, y: 0.087000005}
   m_AnchorMax: {x: 0.9887155, y: 0.8455472}
-  m_AnchoredPosition: {x: 0.52970123, y: 0.52680206}
+  m_AnchoredPosition: {x: 0.5296936, y: 0.52680206}
   m_SizeDelta: {x: -33.180702, y: 1.0318}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2200737895851325079
@@ -773,7 +773,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 8400000, guid: 227b9937a30f7704e96ffeb6caabf73e, type: 2}
+  m_Texture: {fileID: 0}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -948,7 +948,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.3047938, y: 0.2128301}
   m_AnchorMax: {x: 0.94228977, y: 0.644259}
-  m_AnchoredPosition: {x: 0.0000038146973, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0.000015259, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2200737896555868475
