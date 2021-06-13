@@ -90,16 +90,14 @@ public class RaceManager : MonoBehaviourPun
                 droneSemaforo.SetActive(false);
         }
 
-
-      
-
-        if (timeToStartRace - currentTime < 0)
+        if (timeToStartRace - currentTime < 0 && droneSemaforo != null)
         {
-            StartRace = true;
+            //StartRace = true;          
+            photonView.RPC("StartRaceRPC", RpcTarget.All);
             timerTxt.text = timerTxt.text = "";
             timerTxt.gameObject.SetActive(false);
 
-            if (droneSemaforo.activeSelf)
+            if (droneSemaforo != null)
             {
                 droneSemaforoR.SetActive(false);
                 droneSemaforoA.SetActive(false);
@@ -124,9 +122,7 @@ public class RaceManager : MonoBehaviourPun
             }
         }
         else
-        {
-          
-            //timerTxt.text = (timeToStartRace - currentTime).ToString("N0");
+        {        
             if (timeToStartRace - currentTime > 2)
             {
                 droneSemaforoR.SetActive(true);
@@ -161,6 +157,13 @@ public class RaceManager : MonoBehaviourPun
         }
     }
     
+
+
+    [PunRPC]
+    public void StartRaceRPC()
+    {
+        StartRace = true;
+    }
 
 
     public bool StartRace

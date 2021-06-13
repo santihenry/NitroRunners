@@ -412,7 +412,6 @@ public class GameManager : MonoBehaviourPunCallbacks
                 {
                     foreach (var item in FindObjectsOfType<CarModel>())
                     {
-                        Debug.Log("asrasadadadasdasd");
                         if (!carsCam.Contains(item))
                             carsCam.Add(item);
                     }
