@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public TMP_Text waitHostTxt;
 
 
-
+    public Toggle privateToggle;
 
     public bool Online
     {
@@ -116,9 +116,18 @@ public class GameManager : MonoBehaviourPunCallbacks
             btnJoin.color = offColor;
         }
 
-        // if (startBtn != null) startBtn.SetActive(false);
 
-        
+        if (SceneManager.GetActiveScene().name == "Lobby")
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                if (PhotonNetwork.CurrentRoom.IsVisible)
+                    privateToggle.isOn = false;
+                else
+                    privateToggle.isOn = true;
+            }
+
+        }       
     }
 
 
@@ -158,6 +167,12 @@ public class GameManager : MonoBehaviourPunCallbacks
                         waitHostTxt.text = "Wait  Players";
                     }
                 }
+
+
+                if (privateToggle.isOn)
+                    PhotonNetwork.CurrentRoom.IsVisible = false;
+                else
+                    PhotonNetwork.CurrentRoom.IsVisible = true;
             }
             else
             {
