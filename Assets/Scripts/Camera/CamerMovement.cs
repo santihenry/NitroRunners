@@ -30,6 +30,12 @@ public class CamerMovement : MonoBehaviour
     public bool offline;
     private CarControllerV2 _carOffline;
 
+
+    public List<Transform> waypoints = new List<Transform>();
+
+
+    public GameObject canvas;
+
     public CarModel Car
     {
         get
@@ -96,111 +102,147 @@ public class CamerMovement : MonoBehaviour
     {
         _cam = GetComponent<Camera>();
         img.gameObject.SetActive(false);
+        canvas.SetActive(false);
     }
 
+
+    public int currWay;
+    public float speedPrecentacion;
+
+    [System.Obsolete]
     private void Update()
     {
-        if (!offline)
+        if (!offline && !RaceManager.Instance.startSemaforo)
         {
-            if (_car.Bosting)
+            var dir = waypoints[currWay].position - transform.position;
+            //transform.LookAt(waypoints[currWay + 1]);
+            transform.position += dir.normalized * speedPrecentacion * Time.deltaTime;
+
+            //transform.rotation = Quaternion.Euler(Vector3.Lerp(transform.position,dir,Time.deltaTime));
+            //transform.rotation = Quaternion.Euler(Vector3.Lerp(transform.position, waypoints[currWay + 1].position, Time.deltaTime));
+            //transform.forward = Vector3.Lerp(transform.position,dir,Time.deltaTime);
+            //transform.RotateAround(Vector3.up, Vector3.Angle(transform.position, waypoints[currWay + 1].position));
+
+
+
+            if (currWay < waypoints.Count - 2)
             {
-                if (currentTimeDelay == 0)
-                    currentTimeDelay += Time.deltaTime;
-                else
-                    currentTimeDelay = 0;
-
-                img.gameObject.SetActive(true);
-
-                if (_cam.fieldOfView < 70)
-                    _cam.fieldOfView += 1f;
-
-
-                if (delay - currentTimeDelay <= 0)
+                if (Vector3.Distance(waypoints[currWay].position, transform.position) < 1)
                 {
-                    randSprite = Random.Range(0, sprites.Count);
-                    img.sprite = sprites[randSprite];
-                    currentTimeDelay = 0;
+                    currWay++;
                 }
-
             }
             else
             {
-                if (currentTimeDelay == 0)
-                    currentTimeDelay += Time.deltaTime;
-                else
-                    currentTimeDelay = 0;
-
-                if (_cam.fieldOfView > 60)
-                    _cam.fieldOfView -= 1f;
-                else
-                {
-                    img.gameObject.SetActive(false);
-                    _cam.fieldOfView = 60;
-                }
-
-
-                if (delay - currentTimeDelay <= 0)
-                {
-                    randSprite = Random.Range(0, sprites.Count);
-                    img.sprite = sprites[randSprite];
-                    currentTimeDelay = 0;
-                }
+                currWay = 0;
+                RaceManager.Instance.StartSemafoto();
             }
         }
         else
         {
-            if (_carOffline.boosting)
+            canvas.SetActive(true);
+
+            if (!offline)
             {
-                if (currentTimeDelay == 0)
-                    currentTimeDelay += Time.deltaTime;
-                else
-                    currentTimeDelay = 0;
-
-                img.gameObject.SetActive(true);
-
-                if (_cam.fieldOfView < 70)
-                    _cam.fieldOfView += 1f;
-
-
-                if (delay - currentTimeDelay <= 0)
+                if (_car.Bosting)
                 {
-                    randSprite = Random.Range(0, sprites.Count);
-                    img.sprite = sprites[randSprite];
-                    currentTimeDelay = 0;
-                }
+                    if (currentTimeDelay == 0)
+                        currentTimeDelay += Time.deltaTime;
+                    else
+                        currentTimeDelay = 0;
 
+                    img.gameObject.SetActive(true);
+
+                    if (_cam.fieldOfView < 70)
+                        _cam.fieldOfView += 1f;
+
+
+                    if (delay - currentTimeDelay <= 0)
+                    {
+                        randSprite = Random.Range(0, sprites.Count);
+                        img.sprite = sprites[randSprite];
+                        currentTimeDelay = 0;
+                    }
+
+                }
+                else
+                {
+                    if (currentTimeDelay == 0)
+                        currentTimeDelay += Time.deltaTime;
+                    else
+                        currentTimeDelay = 0;
+
+                    if (_cam.fieldOfView > 60)
+                        _cam.fieldOfView -= 1f;
+                    else
+                    {
+                        img.gameObject.SetActive(false);
+                        _cam.fieldOfView = 60;
+                    }
+
+
+                    if (delay - currentTimeDelay <= 0)
+                    {
+                        randSprite = Random.Range(0, sprites.Count);
+                        img.sprite = sprites[randSprite];
+                        currentTimeDelay = 0;
+                    }
+                }
             }
             else
             {
-                if (currentTimeDelay == 0)
-                    currentTimeDelay += Time.deltaTime;
-                else
-                    currentTimeDelay = 0;
-
-                if (_cam.fieldOfView > 60)
-                    _cam.fieldOfView -= 1f;
-                else
+                if (_carOffline.boosting)
                 {
-                    img.gameObject.SetActive(false);
-                    _cam.fieldOfView = 60;
+                    if (currentTimeDelay == 0)
+                        currentTimeDelay += Time.deltaTime;
+                    else
+                        currentTimeDelay = 0;
+
+                    img.gameObject.SetActive(true);
+
+                    if (_cam.fieldOfView < 70)
+                        _cam.fieldOfView += 1f;
+
+
+                    if (delay - currentTimeDelay <= 0)
+                    {
+                        randSprite = Random.Range(0, sprites.Count);
+                        img.sprite = sprites[randSprite];
+                        currentTimeDelay = 0;
+                    }
+
                 }
-
-
-                if (delay - currentTimeDelay <= 0)
+                else
                 {
-                    randSprite = Random.Range(0, sprites.Count);
-                    img.sprite = sprites[randSprite];
-                    currentTimeDelay = 0;
+                    if (currentTimeDelay == 0)
+                        currentTimeDelay += Time.deltaTime;
+                    else
+                        currentTimeDelay = 0;
+
+                    if (_cam.fieldOfView > 60)
+                        _cam.fieldOfView -= 1f;
+                    else
+                    {
+                        img.gameObject.SetActive(false);
+                        _cam.fieldOfView = 60;
+                    }
+
+
+                    if (delay - currentTimeDelay <= 0)
+                    {
+                        randSprite = Random.Range(0, sprites.Count);
+                        img.sprite = sprites[randSprite];
+                        currentTimeDelay = 0;
+                    }
                 }
             }
         }
-
     }
 
 
     private void FixedUpdate()
     {
-        if (_car == null && !offline) return;
+        if (_car == null && !offline || !RaceManager.Instance.startSemaforo) return;
         speed = smothTime;
 
         if (Input.GetKeyDown(KeyCode.V))

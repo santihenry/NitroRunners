@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     public TMP_Text debugTxt;
     public TMP_Text positionFinales;
     public TMP_Text ViewPlayer;
-    //public GameObject startBtn;
     public GameObject camOne;
     bool triger;
     public bool finishRace;

@@ -34,12 +34,15 @@ public class RaceManager : MonoBehaviourPun
     DroneSemaforo drone;
     bool r, a, v;
 
+
+    public bool startSemaforo;
+
     private void Awake()
     {
         if (Instance == null) Instance = this;
 
         StartRace = false;
-
+        startSemaforo = false;
     }
 
 
@@ -58,6 +61,18 @@ public class RaceManager : MonoBehaviourPun
         drone = droneSemaforo.GetComponent<DroneSemaforo>();
     }
 
+    [PunRPC]
+    public void StartSemaforoRPC()
+    {
+        startSemaforo = true;
+    }
+
+
+    public void StartSemafoto()
+    {
+        photonView.RPC("StartSemaforoRPC", RpcTarget.All);
+    }
+
     private void Update()
     {
 
@@ -70,7 +85,7 @@ public class RaceManager : MonoBehaviourPun
 
  
 
-        if(PhotonNetwork.CurrentRoom.PlayerCount == FindObjectsOfType<CarModel>().Length)
+        if(PhotonNetwork.CurrentRoom.PlayerCount == FindObjectsOfType<CarModel>().Length && startSemaforo)
         {
             currentTime += Time.deltaTime;
             Calentamiento = false;
