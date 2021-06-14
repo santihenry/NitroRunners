@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Realtime;
 using System.Linq;
+using TMPro;
 
 public class CarController : MonoBehaviourPun, IObservable
 {
@@ -23,6 +24,7 @@ public class CarController : MonoBehaviourPun, IObservable
     {
         //if (!_carModel.photonView.IsMine) return;
         _carModel = GetComponent<CarModel>();
+        _carModel.ruleta = FindObjectOfType<Roulete>(true);
         _carModel.keysCommands.Add(KeyCode.W, new FowardCommand());
         _carModel.keysCommands.Add(KeyCode.S, new BackCommand());
         _carModel.keysCommands.Add(KeyCode.A, new LeftCommand());
@@ -34,7 +36,7 @@ public class CarController : MonoBehaviourPun, IObservable
         _carModel.keysCommands.Add(KeyCode.T, new HornCommand());
         _carModel.keysCommands.Add(KeyCode.Space, new HandbrakeCommand());
         _carModel.keysCommands.Add(KeyCode.LeftShift, new AtackCommand());
-        _carModel.keysCommands[KeyCode.LeftShift].Init(FindObjectOfType<Roulete>().gameObject);
+        _carModel.keysCommands[KeyCode.LeftShift].Init(_carModel.ruleta.gameObject);
         _carModel.keysCommands[KeyCode.W].Init(_carModel.gameObject);
         _carModel.keysCommands[KeyCode.S].Init(_carModel.gameObject);
         _carModel.keysCommands[KeyCode.A].Init(_carModel.gameObject);
@@ -43,7 +45,8 @@ public class CarController : MonoBehaviourPun, IObservable
         _carModel.keysCommands[KeyCode.DownArrow].Init(_carModel.gameObject);
         _carModel.keysCommands[KeyCode.LeftArrow].Init(_carModel.gameObject);
         _carModel.keysCommands[KeyCode.RightArrow].Init(_carModel.gameObject);
-        _carModel.ruleta = FindObjectOfType<Roulete>();
+
+
     }
 
 
@@ -69,6 +72,8 @@ public class CarController : MonoBehaviourPun, IObservable
         _carModel.pathDic.Add(6, _carModel.dronePath);
 
         _carModel.StartAccel = _carModel.ForwardAccel;
+
+
     }
 
 
@@ -83,9 +88,8 @@ public class CarController : MonoBehaviourPun, IObservable
     [PunRPC]
     public void Finish()
     {
-        //GameManager.Instance.ganadores.Add(_carModel.nick.text);
         GameManager.Instance.ganadores.Add(_carModel.nickName);
-        GameManager.Instance.ganadoresTime.Add($"{GetComponent<Laps>().h}:{GetComponent<Laps>().m}:{GetComponent<Laps>().s}");
+        GameManager.Instance.ganadoresTime.Add($"{GetComponent<Laps>().h} : {GetComponent<Laps>().m} : {GetComponent<Laps>().s}");
     }
 
 
@@ -144,7 +148,7 @@ public class CarController : MonoBehaviourPun, IObservable
             }
 
 
-            if (GameManager.Instance.Online && _carModel.Lap > int.Parse(PhotonNetwork.CurrentRoom.CustomProperties["Laps"].ToString()))
+            if (GameManager.Instance.Online && _carModel.Lap > int.Parse(PhotonNetwork.CurrentRoom.CustomProperties["Laps"].ToString()) && !GameManager.Instance.finishRace)
             {
                 GameManager.Instance.finishRace = true;
                 _carModel.photonView.RPC("Finish", RpcTarget.AllBuffered);

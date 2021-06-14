@@ -53,12 +53,10 @@ public class Positions : MonoBehaviourPun
 
 
     void UpdateList()
-    {      
+    {
         foreach (CarModel car in cars)
         {
             int distToMeta = 0;
-
-
             distToMeta = car.currentWay == car._waypointsList.Count-1 || car.currentWay == 0 ?  (int)Vector3.Distance(car.transform.position, car._waypointsList[0].position) : 10000;
 
             if (!dicPosition.ContainsKey(car))
@@ -82,8 +80,7 @@ public class Positions : MonoBehaviourPun
 
         var posTxt = "\n";
         foreach (var car in posList)
-        {
-            //posTxt += $"{car.nick.text} | Lap : {car.Lap} Waypoint : {car.currentWay} | Position:{car.Pos} | Dist:{car.DistToMeta} \n";            
+        {           
             posTxt += $"{car.nickName} | Lap : {car.Lap} Waypoint : {car.currentWay} | Position:{car.Pos} | Dist:{car.DistToMeta} \n";            
         }     
         debugPositionsTxt.text = posTxt;
@@ -96,7 +93,6 @@ public class Positions : MonoBehaviourPun
             {
                 primero.gameObject.SetActive(true);
                 primero.sprite = posList[0].statsData.pjImg;
-                //primero.GetComponentInChildren<Text>().text = $"<size=20>1°</size> <size=15>{posList[0].nick.text}</size>";
                 primero.GetComponentInChildren<Text>().text = $"<size=20>1°</size> <size=15>{posList[0].nickName}</size>";
             }
             else
@@ -106,7 +102,6 @@ public class Positions : MonoBehaviourPun
             {
                 segundo.gameObject.SetActive(true);
                 segundo.sprite = posList[1].statsData.pjImg;
-                //segundo.GetComponentInChildren<Text>().text = $"<size=20>2°</size> <size=15>{posList[1].nick.text}</size>";
                 segundo.GetComponentInChildren<Text>().text = $"<size=20>2°</size> <size=15>{posList[1].nickName}</size>";
             }
             else
@@ -116,7 +111,6 @@ public class Positions : MonoBehaviourPun
             {
                 tercero.gameObject.SetActive(true);
                 tercero.sprite = posList[2].statsData.pjImg;
-                //tercero.GetComponentInChildren<Text>().text = $"<size=20>3°</size> <size=15>{posList[2].nick.text}</size>";
                 tercero.GetComponentInChildren<Text>().text = $"<size=20>3°</size> <size=15>{posList[2].nickName}</size>";
             }
             else
@@ -131,8 +125,7 @@ public class Positions : MonoBehaviourPun
 
 
     private IEnumerable<CarModel> SortCars()
-    {
-        //return posList.OrderByDescending(car => car.currentWay).OrderByDescending(car => car.Lap);   
+    { 
         return posList.OrderBy(car => car.DistToMeta).OrderByDescending(car => car.currentWay).OrderByDescending(car => car.Lap);   
     }
 

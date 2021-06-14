@@ -34,7 +34,7 @@ public class CamerMovement : MonoBehaviour
     public List<Transform> waypoints = new List<Transform>();
 
 
-    //public GameObject canvas;
+    public GameObject canvas;
 
     public CarModel Car
     {
@@ -103,13 +103,15 @@ public class CamerMovement : MonoBehaviour
         _cam = GetComponent<Camera>();
         img.gameObject.SetActive(false);
         //canvas.SetActive(false);
+        startCanvasPos = canvas.transform.position;
+        canvas.transform.position += new Vector3(0, 10000, 0);
     }
 
+    Vector3 startCanvasPos;
 
     public int currWay;
     public float speedPrecentacion;
 
-    [System.Obsolete]
     private void Update()
     {
 
@@ -142,6 +144,7 @@ public class CamerMovement : MonoBehaviour
         else
         {
             //canvas.SetActive(true);
+            canvas.transform.position = startCanvasPos;
 
             if (!offline)
             {

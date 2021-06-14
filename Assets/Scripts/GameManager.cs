@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public bool finishRace;
     public string nameWin;
     public GameObject finishRaceMenu;
+    public GameObject miniMap;
     bool online;
     public GameObject MenuButton;
     
@@ -251,49 +252,53 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (finishRace)
         {
             winMsj.text = $"qualifying";
-            finishRaceMenu.SetActive(true);
-            MenuButton.SetActive(true);
+            if(finishRaceMenu != null)
+                finishRaceMenu.SetActive(true);
+            if(MenuButton != null)
+                MenuButton.SetActive(true);
+            if(miniMap != null)
+                miniMap.SetActive(false);
             SpectMode();
             switch (ganadores.Count)
             {
                 case 1:
                     positionFinales.text = 
-                    $"{1}° {ganadores[0]}\n";
+                    $"{1}° {ganadores[0]}   {ganadoresTime[0]}\n";
                     break;
                 case 2:
                     positionFinales.text = 
-                    $"{1}° {ganadores[0]}\n" +
-                    $"{2}° {ganadores[1]}\n";
+                    $"{1}° {ganadores[0]}   {ganadoresTime[0]}\n" +
+                    $"{2}° {ganadores[1]}   {ganadoresTime[1]}\n";
                     break;
                 case 3:
                     positionFinales.text = 
-                    $"{1}° {ganadores[0]}\n" +
-                    $"{2}° {ganadores[1]}\n" +
-                    $"{3}° {ganadores[2]}\n";
+                    $"{1}° {ganadores[0]}   {ganadoresTime[0]}\n" +
+                    $"{2}° {ganadores[1]}   {ganadoresTime[1]}\n" +
+                    $"{3}° {ganadores[2]}   {ganadoresTime[2]}\n";
                     break;
                 case 4:
                     positionFinales.text =
-                    $"{1}° {ganadores[0]}\n" +
-                    $"{2}° {ganadores[1]}\n" +
-                    $"{3}° {ganadores[2]}\n" +
-                    $"{4}° {ganadores[3]}\n";
+                    $"{1}° {ganadores[0]}   {ganadoresTime[0]}\n" +
+                    $"{2}° {ganadores[1]}   {ganadoresTime[1]}\n" +
+                    $"{3}° {ganadores[2]}   {ganadoresTime[2]}\n" +
+                    $"{4}° {ganadores[3]}   {ganadoresTime[3]}\n";
                     break;
                 case 5:
-                    positionFinales.text = 
-                    $"{1}° {ganadores[0]}\n" +
-                    $"{2}° {ganadores[1]}\n" +
-                    $"{3}° {ganadores[2]}\n" +
-                    $"{4}° {ganadores[3]}\n" +
-                    $"{5}° {ganadores[4]}\n";
+                    positionFinales.text =
+                    $"{1}° {ganadores[0]}   {ganadoresTime[0]}\n" +
+                    $"{2}° {ganadores[1]}   {ganadoresTime[1]}\n" +
+                    $"{3}° {ganadores[2]}   {ganadoresTime[2]}\n" +
+                    $"{4}° {ganadores[3]}   {ganadoresTime[3]}\n" +
+                    $"{5}° {ganadores[4]}   {ganadoresTime[4]}\n";
                     break;
                 case 6:
-                    positionFinales.text = 
-                    $"{1}° {ganadores[0]}\n" +
-                    $"{2}° {ganadores[1]}\n" +
-                    $"{3}° {ganadores[2]}\n" +
-                    $"{4}° {ganadores[3]}\n" +
-                    $"{5}° {ganadores[4]}\n" +
-                    $"{6}° {ganadores[5]}\n";
+                    positionFinales.text =
+                    $"{1}° {ganadores[0]}   {ganadoresTime[0]}\n" +
+                    $"{2}° {ganadores[1]}   {ganadoresTime[1]}\n" +
+                    $"{3}° {ganadores[2]}   {ganadoresTime[2]}\n" +
+                    $"{4}° {ganadores[3]}   {ganadoresTime[3]}\n" +
+                    $"{5}° {ganadores[4]}   {ganadoresTime[4]}\n" +
+                    $"{6}° {ganadores[5]}   {ganadoresTime[5]}\n";
                     break;               
                 default:
                     break;

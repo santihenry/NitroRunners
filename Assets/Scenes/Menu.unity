@@ -32572,6 +32572,7 @@ MonoBehaviour:
   finishRace: 0
   nameWin: 
   finishRaceMenu: {fileID: 0}
+  miniMap: {fileID: 0}
   MenuButton: {fileID: 0}
   ganadores: []
   ganadoresTime: []
