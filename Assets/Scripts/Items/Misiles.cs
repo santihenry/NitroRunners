@@ -49,6 +49,13 @@ public class Misiles : MonoBehaviourPun
         transform.position = _initPos;
         Preview.transform.localScale = new Vector3(maxSize/6, maxSize/6, maxSize/6);
         photonView.RPC("SetInitPosRPC", RpcTarget.All,_initPos);
+        photonView.RPC("SetIdRPC", RpcTarget.All, _id);
+    }
+
+    [PunRPC]
+    public void SetIdRPC(int id)
+    {
+        _id = id;
     }
 
 
