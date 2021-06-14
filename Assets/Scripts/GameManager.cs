@@ -66,7 +66,9 @@ public class GameManager : MonoBehaviourPunCallbacks
     public TMP_Text waitHostTxt;
 
 
-    public Toggle privateToggle;
+    Toggle _privateToggle;
+    public GameObject privatePublicObj;
+
 
     public bool Online
     {
@@ -82,6 +84,10 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         if (Instance == null)        
             Instance = this;
+
+        if(SceneManager.GetActiveScene().name == "Lobby")
+         _privateToggle = privatePublicObj.GetComponentInChildren<Toggle>();
+
     }
 
    
@@ -122,9 +128,13 @@ public class GameManager : MonoBehaviourPunCallbacks
             if (PhotonNetwork.IsMasterClient)
             {
                 if (PhotonNetwork.CurrentRoom.IsVisible)
-                    privateToggle.isOn = false;
+                    _privateToggle.isOn = false;
                 else
-                    privateToggle.isOn = true;
+                    _privateToggle.isOn = true;
+            }
+            else
+            {
+                privatePublicObj.SetActive(false);
             }
 
         }       
@@ -169,7 +179,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 }
 
 
-                if (privateToggle.isOn)
+                if (_privateToggle.isOn)
                     PhotonNetwork.CurrentRoom.IsVisible = false;
                 else
                     PhotonNetwork.CurrentRoom.IsVisible = true;

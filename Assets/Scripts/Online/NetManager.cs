@@ -45,6 +45,18 @@ public class NetManager : MonoBehaviourPunCallbacks
         }
     }
 
+
+    public void SaveNick()
+    {
+        SaveManager.SaveNickName(this);
+    }
+
+    public void LoadNick()
+    {
+        NickNameData nickData = SaveManager.LoadNickName();
+        username.text = nickData.Nick;
+    }
+
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -57,6 +69,7 @@ public class NetManager : MonoBehaviourPunCallbacks
         ConnectToServer();
         exclamationMark.SetActive(false);
         gearLoading.SetActive(false);
+        LoadNick();
     }
 
 

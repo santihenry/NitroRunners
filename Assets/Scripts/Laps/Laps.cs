@@ -47,7 +47,7 @@ public class Laps : MonoBehaviourPun
         if (GameManager.Instance.finishRace) return;
         
 
-        if (lap == (int)PhotonNetwork.CurrentRoom.CustomProperties["Laps"])
+        if (lap == (int)PhotonNetwork.CurrentRoom.CustomProperties["Laps"] && (int)PhotonNetwork.CurrentRoom.CustomProperties["Laps"] > 1)
         {
             lasTimeCurrentTime += Time.deltaTime;
             var active = lasTimeCurrentTime < 2 ? true : false;

@@ -160,7 +160,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 
     public void OnPrivateMessage(string sender, object message, string channelName)
     {
-        content.text += $"\n <color=red> private[{sender}] : </color> <color=red> {message} </color>";
+        content.text += $"\n <color=yellow> private  [{sender}] : </color> <color=yellow> {message} </color>";
         cant++;
         AutoScroll();
     }
