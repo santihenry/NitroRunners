@@ -10,8 +10,6 @@ using UnityEngine.UI;
 
 public class ChatManager : MonoBehaviour, IChatClientListener
 {
-
-
     ChatClient _client;
     string _channelRoom;
     public TMP_InputField inputField;
@@ -48,6 +46,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener
         {
             chatContent.SetActive(false);
             notyChat.SetActive(true);
+            cant = 0;
         }
         else if (notyChat.activeSelf)
         {
