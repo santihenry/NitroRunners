@@ -32589,6 +32589,7 @@ MonoBehaviour:
   on: {fileID: 0}
   off: {fileID: 0}
   waitHostTxt: {fileID: 0}
+  privatePublicObj: {fileID: 0}
 --- !u!4 &1076585865
 Transform:
   m_ObjectHideFlags: 0
