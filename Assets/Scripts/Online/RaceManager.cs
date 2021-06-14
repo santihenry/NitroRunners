@@ -90,7 +90,7 @@ public class RaceManager : MonoBehaviourPun
                 droneSemaforo.SetActive(false);
         }
 
-        if (timeToStartRace - currentTime < 0 && droneSemaforo != null)
+        if (timeToStartRace - currentTime < 0)
         {
             //StartRace = true;          
             photonView.RPC("StartRaceRPC", RpcTarget.All);
@@ -104,7 +104,7 @@ public class RaceManager : MonoBehaviourPun
                 droneSemaforoV.SetActive(true);
             }
 
-            if (currentTime > timeToStartRace + .5f)
+            if (currentTime > timeToStartRace + .5f && droneSemaforo != null)
             {
                 fin = true;
                 droneSemaforo.transform.position += Vector3.up * 12 * Time.deltaTime;
@@ -115,7 +115,7 @@ public class RaceManager : MonoBehaviourPun
                     v = true;
                 }
             }
-            if (currentTime > timeToStartRace + 2)
+            if (currentTime > timeToStartRace + 2 && droneSemaforo != null)
             {
                 droneSemaforo.SetActive(false);
                 Destroy(droneSemaforo);
