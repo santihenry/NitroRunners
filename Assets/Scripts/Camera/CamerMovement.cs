@@ -112,6 +112,7 @@ public class CamerMovement : MonoBehaviour
     [System.Obsolete]
     private void Update()
     {
+
         if (!offline && !RaceManager.Instance.startSemaforo)
         {
             var dir = waypoints[currWay].position - transform.position;

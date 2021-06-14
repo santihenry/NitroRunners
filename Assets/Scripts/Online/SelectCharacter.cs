@@ -45,12 +45,19 @@ public class SelectCharacter : MonoBehaviourPun
     public GameObject descriptionObj, videoObj;
 
 
+    public AudioClip sound;
+    private AudioSource source;
+
+
     public static SelectCharacter Instance { get; }
 
 
 
 
-
+    private void Awake()
+    {
+        source = GetComponent<AudioSource>();
+    }
 
     private void Start()
     {
@@ -84,6 +91,7 @@ public class SelectCharacter : MonoBehaviourPun
         }
     }
 
+    bool cantSelect;
 
     void Update()
     {
@@ -121,9 +129,18 @@ public class SelectCharacter : MonoBehaviourPun
         {
             confirmBtn.SetActive(false);
             outline[curr].GetComponent<Image>().color = Color.red;
+
+            if (!source.isPlaying && !cantSelect)
+            {
+                source.clip = sound;
+                source.Play();
+                cantSelect = true;
+            }
         }
         else
         {
+            cantSelect = false;
+            source.Stop();
             confirmBtn.SetActive(true);
             outline[curr].GetComponent<Image>().color = Color.green;
         }
