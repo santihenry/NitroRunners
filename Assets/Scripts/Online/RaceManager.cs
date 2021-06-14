@@ -37,6 +37,9 @@ public class RaceManager : MonoBehaviourPun
 
     public bool startSemaforo;
 
+    public TMP_Text positionTxt;
+
+
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -109,7 +112,7 @@ public class RaceManager : MonoBehaviourPun
         {
             //StartRace = true;          
             photonView.RPC("StartRaceRPC", RpcTarget.All);
-            timerTxt.text = timerTxt.text = "";
+            timerTxt.text = "";
             timerTxt.gameObject.SetActive(false);
 
             if (droneSemaforo != null)

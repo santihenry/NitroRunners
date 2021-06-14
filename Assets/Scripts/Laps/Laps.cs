@@ -76,8 +76,14 @@ public class Laps : MonoBehaviourPun
             check7 = false;
             check8 = false;
         }
+
+
         if (RaceManager.Instance.StartRace)
+        {
             photonView.RPC("Clock", RpcTarget.All);
+            photonView.RPC("SaveClock", RpcTarget.All,h,m,s);
+        }
+
 
         SaveTimes();
         UpdateDistance();
@@ -159,8 +165,19 @@ public class Laps : MonoBehaviourPun
 
 
     [PunRPC]
+    public void SaveClock(int _h,int _m,int _s)
+    {
+        h = _h;
+        m = _m;
+        s = _s;
+    }
+
+
+    [PunRPC]
     private void Clock()
     {
+        if (GameManager.Instance.finishRace) return;
+
         currentTime += Time.deltaTime;
 
         s = (int)currentTime;

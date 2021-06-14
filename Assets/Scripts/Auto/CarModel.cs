@@ -26,6 +26,9 @@ public class CarModel : MonoBehaviourPun
 
 
 
+
+
+
     public int ID
     {
         get
@@ -400,6 +403,19 @@ public class CarModel : MonoBehaviourPun
     }
 
 
+    public WayPoints Waypoints
+    {
+        get
+        {
+            return FindObjectOfType<WayPoints>();
+        }
+        set
+        {
+            _waypoints = value;
+        }
+    }
+
+
     [PunRPC]
     public void BoostingRpc(bool v)
     {
@@ -452,10 +468,10 @@ public class CarModel : MonoBehaviourPun
 
 
 
-
     private void Awake()
     {
-        positionTxt = GameObject.Find("PositionTxt").gameObject.GetComponent<TMP_Text>();
+        //positionTxt = GameObject.Find("PositionTxt").gameObject.GetComponent<TMP_Text>();
+        positionTxt = RaceManager.Instance.positionTxt;
         if (!photonView.IsMine) return;
         cam = GameObject.Find("CameraFront").GetComponent<CamerMovement>();
         ui = FindObjectOfType<UImanager>();
@@ -481,6 +497,8 @@ public class CarModel : MonoBehaviourPun
             _waypointsList = _waypoints.nodes;
         
     }
+
+
 
 }
 
