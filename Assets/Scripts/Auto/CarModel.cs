@@ -24,6 +24,16 @@ public class CarModel : MonoBehaviourPun
 
     bool _inmortal;
 
+
+
+    public int ID
+    {
+        get
+        {
+            return photonView.ViewID;
+        }
+    }
+
     public bool Inmortality
     {
         get

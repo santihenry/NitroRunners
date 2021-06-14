@@ -20,6 +20,14 @@ public class Misiles : MonoBehaviourPun
 
     public GameObject Preview;
 
+    int _id;
+
+
+    public Misiles SetId(int id)
+    {
+        _id = id;
+        return this;
+    }
 
 
     public Misiles SetInitPos(Vector3 pos)
@@ -67,7 +75,8 @@ public class Misiles : MonoBehaviourPun
                 _time += Time.deltaTime;
                 foreach (var car in Physics.OverlapSphere(transform.position, maxSize/2, carLayer))
                 {
-                    car.GetComponent<CarModel>().photonView.RPC("StunedRPC", RpcTarget.All, true);
+                    if(car.GetComponent<CarModel>().ID != _id)
+                        car.GetComponent<CarModel>().photonView.RPC("StunedRPC", RpcTarget.All, true);
                 }
                 if(_time>2)
                     PhotonNetwork.Destroy(gameObject);

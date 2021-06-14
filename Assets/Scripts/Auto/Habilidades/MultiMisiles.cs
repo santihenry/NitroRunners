@@ -114,7 +114,8 @@ public class MultiMisiles : MonoBehaviourPun
             foreach (Vector3 location in _locationes)
             {
                 var backWl = Physics.Raycast(location, Vector3.down, out hitMedio, 100, floorLayer);
-                PhotonNetwork.Instantiate(misilesPath, location, Quaternion.identity).GetComponent<Misiles>().SetInitPos(location + new Vector3(0,200,0));
+                PhotonNetwork.Instantiate(misilesPath, location, Quaternion.identity).GetComponent<Misiles>().SetInitPos(location + new Vector3(0,200,0))
+                                                                                                             .SetId(_car.ID);
             }
 
         }
