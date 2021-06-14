@@ -34,7 +34,7 @@ public class CamerMovement : MonoBehaviour
     public List<Transform> waypoints = new List<Transform>();
 
 
-    public GameObject canvas;
+    //public GameObject canvas;
 
     public CarModel Car
     {
@@ -102,7 +102,7 @@ public class CamerMovement : MonoBehaviour
     {
         _cam = GetComponent<Camera>();
         img.gameObject.SetActive(false);
-        canvas.SetActive(false);
+        //canvas.SetActive(false);
     }
 
 
@@ -141,7 +141,7 @@ public class CamerMovement : MonoBehaviour
         }
         else
         {
-            canvas.SetActive(true);
+            //canvas.SetActive(true);
 
             if (!offline)
             {
