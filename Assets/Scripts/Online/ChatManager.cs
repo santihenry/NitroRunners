@@ -120,6 +120,8 @@ public class ChatManager : MonoBehaviour, IChatClientListener
 
     public void OnGetMessages(string channelName, string[] senders, object[] messages)
     {
+        Debug.Log("ENTRO MENSAJE");
+
         for (int i = 0; i < senders.Length; i++)
         {
             var user = senders[i];
@@ -137,7 +139,7 @@ public class ChatManager : MonoBehaviour, IChatClientListener
                 tagColor = "green";
                 messColor = "white";
             }
-            content.text += $"\n <color={tagColor}> [{user}] : </color> <color={messColor}> {mess} </color>";
+            content.text += $"\n<color={tagColor}> [{user}] : </color> <color={messColor}> {mess}</color>";
             cant++;
         }
 
