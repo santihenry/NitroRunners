@@ -20,23 +20,19 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _TextureSample0:
-        m_Texture: {fileID: -6595549176261024947, guid: 6d30db27c2a6e774784dbace8c4767ee,
-          type: 3}
+        m_Texture: {fileID: -6595549176261024947, guid: 6d30db27c2a6e774784dbace8c4767ee, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample1:
-        m_Texture: {fileID: -2236240517264867178, guid: 6d30db27c2a6e774784dbace8c4767ee,
-          type: 3}
+        m_Texture: {fileID: -2236240517264867178, guid: 6d30db27c2a6e774784dbace8c4767ee, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample2:
-        m_Texture: {fileID: 2357950990738727171, guid: 6d30db27c2a6e774784dbace8c4767ee,
-          type: 3}
+        m_Texture: {fileID: 2357950990738727171, guid: 6d30db27c2a6e774784dbace8c4767ee, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample3:
-        m_Texture: {fileID: -2608701014841140373, guid: 6d30db27c2a6e774784dbace8c4767ee,
-          type: 3}
+        m_Texture: {fileID: -2608701014841140373, guid: 6d30db27c2a6e774784dbace8c4767ee, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample4:
@@ -57,3 +53,4 @@ Material:
     m_Colors:
     - _emission: {r: 3.031433, g: 3.031433, b: 3.031433, a: 0}
     - _offset: {r: 0, g: -0.633, b: 0, a: 0}
+  m_BuildTextureStacks: []
