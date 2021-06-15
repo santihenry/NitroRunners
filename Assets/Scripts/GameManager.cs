@@ -14,7 +14,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public TMP_Text waitPlayerTxt;
     public TMP_Text winMsj;
     public TMP_Text debugTxt;
-    public TMP_Text positionFinales;
+    public TMP_Text positionFinalesNames;
+    public TMP_Text positionFinalesTimes;
     public TMP_Text ViewPlayer;
     public GameObject camOne;
     bool triger;
@@ -262,43 +263,76 @@ public class GameManager : MonoBehaviourPunCallbacks
             switch (ganadores.Count)
             {
                 case 1:
-                    positionFinales.text = 
-                    $"{1}° {ganadores[0]}   {ganadoresTime[0]}\n";
+                    positionFinalesNames.text = 
+                    $"{1}° {ganadores[0]}\n";
+                    //  /////////////
+                    positionFinalesTimes.text =
+                   $"{ganadoresTime[0]}\n";
                     break;
                 case 2:
-                    positionFinales.text = 
-                    $"{1}° {ganadores[0]}   {ganadoresTime[0]}\n" +
-                    $"{2}° {ganadores[1]}   {ganadoresTime[1]}\n";
+                    positionFinalesNames.text = 
+                    $"{1}° {ganadores[0]}\n" +
+                    $"{2}° {ganadores[1]}\n";
+                    //  /////////////
+                    positionFinalesTimes.text =
+                    $"{ganadoresTime[0]}\n" +
+                    $"{ganadoresTime[1]}\n";
                     break;
                 case 3:
-                    positionFinales.text = 
-                    $"{1}° {ganadores[0]}   {ganadoresTime[0]}\n" +
-                    $"{2}° {ganadores[1]}   {ganadoresTime[1]}\n" +
-                    $"{3}° {ganadores[2]}   {ganadoresTime[2]}\n";
+                    positionFinalesNames.text = 
+                    $"{1}° {ganadores[0]}\n" +
+                    $"{2}° {ganadores[1]}\n" +
+                    $"{3}° {ganadores[2]}\n";
+                    //  /////////////
+                    positionFinalesTimes.text = 
+                    $"{ganadoresTime[0]}\n" +
+                    $"{ganadoresTime[1]}\n" +
+                    $"{ganadoresTime[2]}\n";
                     break;
                 case 4:
-                    positionFinales.text =
-                    $"{1}° {ganadores[0]}   {ganadoresTime[0]}\n" +
-                    $"{2}° {ganadores[1]}   {ganadoresTime[1]}\n" +
-                    $"{3}° {ganadores[2]}   {ganadoresTime[2]}\n" +
-                    $"{4}° {ganadores[3]}   {ganadoresTime[3]}\n";
+                    positionFinalesNames.text =
+                    $"{1}° {ganadores[0]}\n" +
+                    $"{2}° {ganadores[1]}\n" +
+                    $"{3}° {ganadores[2]}\n" +
+                    $"{4}° {ganadores[3]}\n";
+                    //  /////////////
+                    positionFinalesTimes.text =
+                    $"{ganadoresTime[0]}\n" +
+                    $"{ganadoresTime[1]}\n" +
+                    $"{ganadoresTime[2]}\n" +
+                    $"{ganadoresTime[3]}\n";
                     break;
                 case 5:
-                    positionFinales.text =
-                    $"{1}° {ganadores[0]}   {ganadoresTime[0]}\n" +
-                    $"{2}° {ganadores[1]}   {ganadoresTime[1]}\n" +
-                    $"{3}° {ganadores[2]}   {ganadoresTime[2]}\n" +
-                    $"{4}° {ganadores[3]}   {ganadoresTime[3]}\n" +
-                    $"{5}° {ganadores[4]}   {ganadoresTime[4]}\n";
+                    positionFinalesNames.text =
+                    $"{1}° {ganadores[0]}\n" +
+                    $"{2}° {ganadores[1]}\n" +
+                    $"{3}° {ganadores[2]}\n" +
+                    $"{4}° {ganadores[3]}\n" +
+                    $"{5}° {ganadores[4]}\n";
+                    //  /////////////
+                    positionFinalesTimes.text =
+                    $"{ganadoresTime[0]}\n" +
+                    $"{ganadoresTime[1]}\n" +
+                    $"{ganadoresTime[2]}\n" +
+                    $"{ganadoresTime[3]}\n" +
+                    $"{ganadoresTime[4]}\n";
                     break;
                 case 6:
-                    positionFinales.text =
-                    $"{1}° {ganadores[0]}   {ganadoresTime[0]}\n" +
-                    $"{2}° {ganadores[1]}   {ganadoresTime[1]}\n" +
-                    $"{3}° {ganadores[2]}   {ganadoresTime[2]}\n" +
-                    $"{4}° {ganadores[3]}   {ganadoresTime[3]}\n" +
-                    $"{5}° {ganadores[4]}   {ganadoresTime[4]}\n" +
-                    $"{6}° {ganadores[5]}   {ganadoresTime[5]}\n";
+                    positionFinalesNames.text =
+                    $"{1}° {ganadores[0]}\n" +
+                    $"{2}° {ganadores[1]}\n" +
+                    $"{3}° {ganadores[2]}\n" +
+                    $"{4}° {ganadores[3]}\n" +
+                    $"{5}° {ganadores[4]}\n" +
+                    $"{6}° {ganadores[5]}\n";
+                    //  /////////////
+                    positionFinalesTimes.text =
+                    $"{ganadoresTime[0]}\n" +
+                    $"{ganadoresTime[1]}\n" +
+                    $"{ganadoresTime[2]}\n" +
+                    $"{ganadoresTime[3]}\n" +
+                    $"{ganadoresTime[4]}\n" +
+                    $"{ganadoresTime[5]}\n";
                     break;               
                 default:
                     break;

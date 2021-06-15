@@ -35,6 +35,7 @@ public class CamerMovement : MonoBehaviour
 
 
     public GameObject firtThreePositions;
+    public GameObject laps;
 
     public CarModel Car
     {
@@ -99,8 +100,11 @@ public class CamerMovement : MonoBehaviour
 
 
     Vector3 startPosfirtThreePositions;
+    Vector3 startPosLaps;
     public int currWay;
     public float speedPrecentacion;
+
+
 
     private void Start()
     {
@@ -108,7 +112,9 @@ public class CamerMovement : MonoBehaviour
         img.gameObject.SetActive(false);
         GameManager.Instance.miniMap.SetActive(false);
         startPosfirtThreePositions = firtThreePositions.transform.position;
+        startPosLaps = laps.transform.position;
         firtThreePositions.transform.position -= new Vector3(1000, 0, 0);
+        laps.transform.position += new Vector3(0, 200, 0);
     }
 
     private void Update()
@@ -144,6 +150,7 @@ public class CamerMovement : MonoBehaviour
         {
             GameManager.Instance.miniMap.SetActive(true);
             firtThreePositions.transform.position = startPosfirtThreePositions;
+            laps.transform.position = startPosLaps;
 
             if (!offline)
             {
