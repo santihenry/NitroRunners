@@ -34,7 +34,7 @@ public class CamerMovement : MonoBehaviour
     public List<Transform> waypoints = new List<Transform>();
 
 
-    public GameObject canvas;
+    public GameObject firtThreePositions;
 
     public CarModel Car
     {
@@ -98,19 +98,18 @@ public class CamerMovement : MonoBehaviour
     }
 
 
+    Vector3 startPosfirtThreePositions;
+    public int currWay;
+    public float speedPrecentacion;
+
     private void Start()
     {
         _cam = GetComponent<Camera>();
         img.gameObject.SetActive(false);
-        //canvas.SetActive(false);
-        startCanvasPos = canvas.transform.position;
-        canvas.transform.position += new Vector3(0, 10000, 0);
+        GameManager.Instance.miniMap.SetActive(false);
+        startPosfirtThreePositions = firtThreePositions.transform.position;
+        firtThreePositions.transform.position -= new Vector3(1000, 0, 0);
     }
-
-    Vector3 startCanvasPos;
-
-    public int currWay;
-    public float speedPrecentacion;
 
     private void Update()
     {
@@ -143,8 +142,8 @@ public class CamerMovement : MonoBehaviour
         }
         else
         {
-            //canvas.SetActive(true);
-            canvas.transform.position = startCanvasPos;
+            GameManager.Instance.miniMap.SetActive(true);
+            firtThreePositions.transform.position = startPosfirtThreePositions;
 
             if (!offline)
             {
