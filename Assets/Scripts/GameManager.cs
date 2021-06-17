@@ -107,6 +107,8 @@ public class GameManager : MonoBehaviourPunCallbacks
             finishRaceMenu.SetActive(false);
         if (MenuButton != null)
             MenuButton.SetActive(false);
+        if (miniMap != null)
+            miniMap.SetActive(false);
 
         if (SceneManager.GetActiveScene().buildIndex != 0  && SceneManager.GetActiveScene().buildIndex != 1  && SceneManager.GetActiveScene().buildIndex != 2 && SceneManager.GetActiveScene().buildIndex != 3)
         {

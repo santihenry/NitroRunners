@@ -110,7 +110,6 @@ public class CamerMovement : MonoBehaviour
     {
         _cam = GetComponent<Camera>();
         img.gameObject.SetActive(false);
-        GameManager.Instance.miniMap.SetActive(false);
         startPosfirtThreePositions = firtThreePositions.transform.position;
         startPosLaps = laps.transform.position;
         firtThreePositions.transform.position -= new Vector3(1000, 0, 0);
@@ -144,11 +143,11 @@ public class CamerMovement : MonoBehaviour
             {
                 currWay = 0;
                 RaceManager.Instance.StartSemafoto();
+                GameManager.Instance.miniMap.SetActive(true);
             }
         }
         else
         {
-            GameManager.Instance.miniMap.SetActive(true);
             firtThreePositions.transform.position = startPosfirtThreePositions;
             laps.transform.position = startPosLaps;
 

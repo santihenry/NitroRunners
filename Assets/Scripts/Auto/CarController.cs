@@ -7,6 +7,7 @@ using Photon.Realtime;
 using System.Linq;
 using TMPro;
 
+
 public class CarController : MonoBehaviourPun, IObservable
 {
     private CarModel _carModel;
@@ -521,7 +522,7 @@ public class CarController : MonoBehaviourPun, IObservable
     private void OnTriggerEnter(Collider other)
     {
 
-        if (other.GetComponent<ArrowNitro>())
+        if (other.GetComponent<ArrowNitro>() && !GameManager.Instance.finishRace)
         {
             _carModel.Bosting = true;
             _carModel.currentTimeBoost = 0;
@@ -536,13 +537,6 @@ public class CarController : MonoBehaviourPun, IObservable
             _carModel.cantItem++;
         }
 
-        /*
-        if (other.GetComponent<Rocket>())
-        {
-            if (other.GetComponent<Rocket>().ID == photonView.ViewID) return;
-            _carModel.Stuned = true;
-        }*/
-
         if(other.gameObject.layer == 14)
         {
             _carModel.invert = true;
@@ -550,24 +544,11 @@ public class CarController : MonoBehaviourPun, IObservable
     }
 
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.layer == 15) // AIRZONE
-        {
-           //_carModel.Rigidbody.AddForce(transform.forward * _carModel.SpeedInput);
-        }
-    }
-
 
     private void OnCollisionEnter(Collision collision)
     {
         if (GameManager.Instance.finishRace) return;
-        /*
-        if (collision.gameObject.GetComponent<Rocket>())
-        {
-            if (collision.gameObject.GetComponent<Rocket>().ID == photonView.ViewID) return;
-                photonView.RPC("StunedRPC", RpcTarget.All, true);
-        }*/
+
         if (collision.gameObject.layer == 9)
         {
             Notify("Hit");
