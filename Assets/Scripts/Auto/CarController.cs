@@ -54,6 +54,8 @@ public class CarController : MonoBehaviourPun, IObservable
     public Image driftImg;
     public Image marcoDriftImg;
 
+
+
     private void Start()
     {
         //_carModel.nick.gameObject.SetActive(false);
@@ -80,8 +82,8 @@ public class CarController : MonoBehaviourPun, IObservable
 
         driftImg = GameObject.Find("FuegoNitro").GetComponent<Image>();
         marcoDriftImg = GameObject.Find("Nitro").GetComponent<Image>();
-        calificacionDriftTxt = GameObject.Find("CalificacionDrift").GetComponent<TMP_Text>();
-        multipliDriftTxt = GameObject.Find("MultipliDriftTxt").GetComponent<TMP_Text>();
+        _carModel.CalificacionDriftTxt = GameObject.Find("CalificacionDrift").GetComponent<TMP_Text>();
+        _carModel.MultipliDriftTxt = GameObject.Find("MultipliDriftTxt").GetComponent<TMP_Text>();
 
     }
 
@@ -171,10 +173,21 @@ public class CarController : MonoBehaviourPun, IObservable
 
             if (RaceManager.Instance.StartRace && !GameManager.Instance.finishRace)
             {
-                _carModel.positionTxt.text = $"{_carModel.Pos}<size=55>°.</size>"; 
+                _carModel.positionTxt.text = $"{_carModel.Pos}<size=55>°.</size>";
                 _carModel.Lap = GetComponent<Laps>().lap;
                 _carModel.ui.SetCarTgt(_carModel);
-                _carModel.photonView.RPC("UpdateLape", RpcTarget.All,_carModel.Lap);
+                _carModel.photonView.RPC("UpdateLape", RpcTarget.All, _carModel.Lap);
+                _carModel.DeleyToUlti += .01f * Time.deltaTime;
+
+                if (_carModel.timeToUlti < 100)
+                {
+                    _carModel.timeToUlti += _carModel.DeleyToUlti;
+                }
+                else
+                {
+                    _carModel.timeToUlti = 100;
+                    _carModel.Ulti = true;
+                }
             }
             else
             {
@@ -260,11 +273,13 @@ public class CarController : MonoBehaviourPun, IObservable
                 item.GetPhotonView().RPC("ChangeId", RpcTarget.AllBuffered, _carModel.photonView.ViewID);
             }
 
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Q) && _carModel.Ulti)
             {
                 if (GetComponent<MultiMisiles>() != null)
                     GetComponent<MultiMisiles>().Shoot();
+
                 Notify("Special");
+                _carModel.Ulti = false;
             }
         }
     }
@@ -275,6 +290,9 @@ public class CarController : MonoBehaviourPun, IObservable
     {
         if (_carModel.Bosting)
         {
+            var timeBost = _carModel.timeBoost;
+            _carModel.timeBoost = driftBoost ? _carModel.TimeDriftBoost : timeBost;
+
             _carModel.currentTimeBoost += Time.deltaTime;
             if(_carModel.timeBoost - _carModel.currentTimeBoost <= 0 || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow) || !_carModel.OnGround)
             {
@@ -359,32 +377,42 @@ public class CarController : MonoBehaviourPun, IObservable
     }
 
 
-    public float driftValue;
-    public float multipler = 1;
-    public TMP_Text calificacionDriftTxt;
-    public TMP_Text multipliDriftTxt;
 
+    float clearCalificationTxt;
+    bool driftBoost;
 
     public void Drift()
     {
+        if(_carModel.CalificacionDriftTxt.text != "")
+        {
+            clearCalificationTxt += Time.deltaTime;
+            if (clearCalificationTxt >= .5f)
+            {
+                _carModel.CalificacionDriftTxt.text = "";
+                clearCalificationTxt = 0;
+            }
+        }
+
         if (Input.GetKey(KeyCode.Space) && !_carModel.Stuned)
         {
             _carModel.Drift = true;
-            multipler += .04f;
-            if(driftValue < 1)
+            _carModel.MultiplerVelue += _carModel.multipler * Time.deltaTime; 
+            if(_carModel.DriftValue < 1)
             {
-                driftValue += Time.deltaTime * multipler;
-                driftImg.material.SetFloat("_driftBar", driftValue);
+                _carModel.DriftValue += Time.deltaTime * _carModel.MultiplerVelue;
+                driftImg.material.SetFloat("_driftBar", _carModel.DriftValue);
             }
             else
             {
                 Debug.Log("FAIL DRIFT !!");
-                calificacionDriftTxt.text = $"fail";
+                _carModel.CalificacionDriftTxt.text = $"fail";
                 _carModel.photonView.RPC("StunedRPC", RpcTarget.All, true);
                 _carModel.Drift = false;
-                driftValue = 0;
-                multipler = 0;
-                driftImg.material.SetFloat("_driftBar", driftValue);
+                _carModel.DriftValue = 0;
+                _carModel.MultiplerVelue = 1;
+                _carModel.TimeDriftBoost = 0;
+                driftImg.material.SetFloat("_driftBar", _carModel.DriftValue);
+
             }
 
             if (_carModel.Drift)
@@ -426,25 +454,36 @@ public class CarController : MonoBehaviourPun, IObservable
 
             _carModel.Drift = false;
             _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
-            if (driftValue < .70f)
+            if (_carModel.DriftValue < .70f)
             {
                 _carModel.photonView.RPC("StunedRPC", RpcTarget.All, true);
-                Debug.Log("FAIL DRIFT !!  " + driftValue);
-                calificacionDriftTxt.text = $"fail";
+                Debug.Log("FAIL DRIFT !!  " + _carModel.DriftValue);
+                _carModel.CalificacionDriftTxt.text = $"fail";
+                driftBoost = false;
+                _carModel.TimeDriftBoost = 0;
+      
             }
-            else if(driftValue > .70f && driftValue < .9f)
+            else if(_carModel.DriftValue > .70f && _carModel.DriftValue < .9f)
             {
-                Debug.Log("GOOD DRIF !!  " + driftValue);
-                calificacionDriftTxt.text = $"good";
+                Debug.Log("GOOD DRIF !!  " + _carModel.DriftValue);
+                _carModel.CalificacionDriftTxt.text = $"good";
+                driftBoost = true;
+                _carModel.Bosting = true;
+                _carModel.TimeDriftBoost = .2f;
+                _carModel.timeToUlti += 2;
             }
-            else if(driftValue > .9f && driftValue < 1)
+            else if(_carModel.DriftValue > .9f && _carModel.DriftValue < 1)
             {
-                Debug.Log("PERFECT DRIF !!   " + driftValue);
-                calificacionDriftTxt.text = $"perfect";
+                Debug.Log("PERFECT DRIF !!   " + _carModel.DriftValue);
+                _carModel.CalificacionDriftTxt.text = $"perfect";
+                driftBoost = true;
+                _carModel.Bosting = true;
+                _carModel.TimeDriftBoost = .5f;
+                _carModel.timeToUlti += 8;
             }
-            driftValue = 0;
-            multipler = 0;
-            driftImg.material.SetFloat("_driftBar", driftValue);
+            _carModel.DriftValue = 0;
+            _carModel.MultiplerVelue = 1;
+            driftImg.material.SetFloat("_driftBar", _carModel.DriftValue);
 
         }
     }

@@ -116,7 +116,7 @@ public class CarModel : MonoBehaviourPun
     public Dictionary<int, string> pathDic = new Dictionary<int, string>();
     public int maxItms = 1;
     private bool _Wall, _misile, _oil, _bomb;
-    public string wallPath, rocketPath, bombPath, fieldPath,zapPath,scanPath,dronePath;
+    public string wallPath, rocketPath, bombPath, fieldPath, zapPath, scanPath, dronePath;
     public Transform sapwnPoint;
     public Transform sapwnPointZap;
     public Stack<string> weaponStack = new Stack<string>();
@@ -148,7 +148,7 @@ public class CarModel : MonoBehaviourPun
     public GameObject camLookAt;
     public GameObject cameraBackPos;
 
-    
+
     public Rigidbody _rb;
     private bool boosting;
     public GameObject model;
@@ -192,15 +192,116 @@ public class CarModel : MonoBehaviourPun
     private bool stuned;
     public float stunedTime;
     public float currentTimeStuned;
-    public float StunedRotationSpeed=1000;
-
+    public float StunedRotationSpeed = 1000;
     public float timeBoost;
     private bool _handBrake;
-
-
     public float currentTimeBoost;
-
     private bool _drift;
+
+    [Header("DRIFT CONFIG")]
+    [Range(0.001f,0.5f)]public float multipler;
+    float multiplerVelue = 1;
+    float driftValue;
+    float timeDriftBoost;
+    TMP_Text calificacionDriftTxt;
+    TMP_Text multipliDriftTxt;
+
+
+    [Header("ULTI")]
+    public float timeToUlti;
+    bool canDropUlti;
+    float deleyToUlti;
+
+    public bool Ulti
+    {
+        get
+        {
+            return canDropUlti;
+        }
+        set
+        {
+            canDropUlti = value;
+        }
+    }
+
+    public float DeleyToUlti
+    {
+        get
+        {
+            return deleyToUlti;
+        }
+        set
+        {
+            deleyToUlti = value;
+        }
+
+    }
+
+    public float MultiplerVelue
+    {
+        get
+        {
+            return multiplerVelue;
+        }
+        set
+        {
+            multiplerVelue = value;
+        }
+
+    }
+
+
+    public float TimeDriftBoost
+    {
+        get
+        {
+            return timeDriftBoost;
+        }
+        set
+        {
+            timeDriftBoost = value;
+        }
+
+    }
+
+
+    public float DriftValue
+    {
+        get 
+        { 
+            return driftValue;
+        }
+        set
+        {
+            driftValue = value;
+        }
+
+    }
+
+
+    public TMP_Text CalificacionDriftTxt
+    {
+        get
+        {
+            return calificacionDriftTxt;
+        }
+        set
+        {
+            calificacionDriftTxt = value;
+        }
+    }
+
+    public TMP_Text MultipliDriftTxt
+    {
+        get
+        {
+            return multipliDriftTxt;
+        }
+        set
+        {
+            multipliDriftTxt = value;
+        }
+    }
 
 
     public bool Drift

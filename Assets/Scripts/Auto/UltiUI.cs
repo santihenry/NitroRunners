@@ -3,30 +3,56 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Realtime;
 using Photon.Pun;
+using UnityEngine.UI;
+
 public class UltiUI : MonoBehaviour
 {
-    // Start is called before the first frame update
+    
     public Texture2D img;
-    void Start()
-    {
 
-        
+    Image imagen;
+
+
+    CarModel _car;
+
+    private void Awake()
+    {
+        imagen = GetComponent<Image>();    
     }
 
-    // Update is called once per frame
+
+    void Start()
+    {
+        imagen.material.SetFloat("_specialAmount", 0);
+    }
+
+    
     void Update()
     {
         if (img == null)
         {
-
             foreach (var item in FindObjectsOfType<CarModel>())
             {
                 if (item.nickName == PhotonNetwork.NickName)
                 {
-                    img = item.statsData.UltiTex;
+                    _car = item;
+                    if (_car.statsData._name != "rayer")
+                        img = item.statsData.UltiTex;
+                    else
+                        imagen.gameObject.SetActive(false);
                 }
             }
-            Shader.SetGlobalTexture("_specialTex", img);
+
+            if (_car.statsData._name != "rayer")
+                Shader.SetGlobalTexture("_specialTex", img);
         }
+
+        if (_car.statsData._name != "rayer")
+            imagen.material.SetFloat("_specialAmount", _car.timeToUlti/100);
+
     }
+
+
+
+
 }

@@ -31265,6 +31265,8 @@ MonoBehaviour:
   StunedRotationSpeed: 1000
   timeBoost: 3
   currentTimeBoost: 0
+  multipler: 0.08
+  timeToUlti: 0
 --- !u!114 &5069719265753066934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31277,6 +31279,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c8fdec204b521e4bbb85a2f3f267b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  driftImg: {fileID: 0}
+  marcoDriftImg: {fileID: 0}
   hideNick: 0
 --- !u!114 &3994347978612809049
 MonoBehaviour:

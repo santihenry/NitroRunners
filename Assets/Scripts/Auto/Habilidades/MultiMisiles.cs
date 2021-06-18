@@ -84,8 +84,12 @@ public class MultiMisiles : MonoBehaviourPun
 
     public void Shoot()
     {
-        if (!canShoot) return;
+        if (!canShoot || !_car.Ulti) return;
+       
         currentTime = 0;
+        _car.Ulti = false;
+        _car.DeleyToUlti = 0;
+        _car.timeToUlti = 0;
 
         _waypointsList = _car._waypointsList;
         _orderList = _waypointsList;

@@ -22,10 +22,13 @@ public class Grap : MonoBehaviourPun
     public float timeCountdown;
     float currentTime;
 
+    CarModel _car;
+
     private void Start()
     {
        
         pulling = false;
+        _car = GetComponentInParent<CarModel>();
     }
 
     private void Update()
@@ -65,6 +68,12 @@ public class Grap : MonoBehaviourPun
     public void StartPull()
     {
         pulling = true;
+        if (_car != null)
+        {
+            _car.Ulti = false;
+            _car.DeleyToUlti = 0;
+            _car.timeToUlti = 0;
+        }
     }
 
     private void DestroyHook()
