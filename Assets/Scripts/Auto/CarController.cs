@@ -34,7 +34,6 @@ public class CarController : MonoBehaviourPun, IObservable
         _carModel.keysCommands.Add(KeyCode.DownArrow, new BackCommand());
         _carModel.keysCommands.Add(KeyCode.LeftArrow, new LeftCommand());
         _carModel.keysCommands.Add(KeyCode.RightArrow, new RigthCommand());
-        _carModel.keysCommands.Add(KeyCode.T, new HornCommand());
         _carModel.keysCommands.Add(KeyCode.Space, new HandbrakeCommand());
         _carModel.keysCommands.Add(KeyCode.LeftShift, new AtackCommand());
         _carModel.keysCommands[KeyCode.LeftShift].Init(_carModel.ruleta.gameObject);
@@ -50,6 +49,10 @@ public class CarController : MonoBehaviourPun, IObservable
 
     }
 
+
+
+    public Image driftImg;
+    public Image marcoDriftImg;
 
     private void Start()
     {
@@ -74,6 +77,11 @@ public class CarController : MonoBehaviourPun, IObservable
 
         _carModel.StartAccel = _carModel.ForwardAccel;
 
+
+        driftImg = GameObject.Find("FuegoNitro").GetComponent<Image>();
+        marcoDriftImg = GameObject.Find("Nitro").GetComponent<Image>();
+        calificacionDriftTxt = GameObject.Find("CalificacionDrift").GetComponent<TMP_Text>();
+        multipliDriftTxt = GameObject.Find("MultipliDriftTxt").GetComponent<TMP_Text>();
 
     }
 
@@ -182,6 +190,7 @@ public class CarController : MonoBehaviourPun, IObservable
             if (Input.GetKeyDown(KeyCode.T))
             {
                 _carModel.Stuned = !_carModel.Stuned;
+                _carModel.Rigidbody.velocity = _carModel.Rigidbody.transform.forward * 100;
             }
 
             if (_carModel.Stuned && !_carModel.Inmortality)
@@ -207,11 +216,11 @@ public class CarController : MonoBehaviourPun, IObservable
                 Engine();
                 Streting();
                 Drift();
-                DistanceOfWaypoints();
                 CheckInvert();
                 Wrongway();
             }
 
+            DistanceOfWaypoints();
             Boosting();
 
 
@@ -253,14 +262,11 @@ public class CarController : MonoBehaviourPun, IObservable
 
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                //if(GetComponentInChildren<SecuencialLandMines>() != null)
-                //    GetComponentInChildren<SecuencialLandMines>().Shoot();
                 if (GetComponent<MultiMisiles>() != null)
                     GetComponent<MultiMisiles>().Shoot();
                 Notify("Special");
             }
         }
-
     }
 
     
@@ -353,47 +359,93 @@ public class CarController : MonoBehaviourPun, IObservable
     }
 
 
+    public float driftValue;
+    public float multipler = 1;
+    public TMP_Text calificacionDriftTxt;
+    public TMP_Text multipliDriftTxt;
+
+
     public void Drift()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) && !_carModel.Stuned)
         {
-
             _carModel.Drift = true;
-
-            if (!_carModel.isMotorcycle)
+            multipler += .04f;
+            if(driftValue < 1)
             {
-                if (_carModel.Horizontal == -1 && _carModel.Vertical != 0)
-                {
-                    _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, -25, 0));
-                    if(!_carModel._4wheelsVehicle ) _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -25));
-                }
-                if (_carModel.Horizontal == 1 && _carModel.Vertical != 0)
-                {
-                    _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, 25, 0));
-
-                    if (!_carModel._4wheelsVehicle ) _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 25));
-                }
+                driftValue += Time.deltaTime * multipler;
+                driftImg.material.SetFloat("_driftBar", driftValue);
             }
             else
             {
-                if (_carModel.Horizontal == -1 && _carModel.Vertical != 0)
-                {
-                    _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, 25, 0));
-                    if (!_carModel._4wheelsVehicle) _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 25));
-                }
-                if (_carModel.Horizontal == 1 && _carModel.Vertical != 0)
-                {
-                    _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, -25, 0));
-
-                    if (!_carModel._4wheelsVehicle) _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -25));
-                }
+                Debug.Log("FAIL DRIFT !!");
+                calificacionDriftTxt.text = $"fail";
+                _carModel.photonView.RPC("StunedRPC", RpcTarget.All, true);
+                _carModel.Drift = false;
+                driftValue = 0;
+                multipler = 0;
+                driftImg.material.SetFloat("_driftBar", driftValue);
             }
-            Notify("HandBrake");
+
+            if (_carModel.Drift)
+            {
+                if (!_carModel.isMotorcycle)
+                {
+                    if (_carModel.Horizontal == -1 && _carModel.Vertical != 0)
+                    {
+                        _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, -25, 0));
+                        if(!_carModel._4wheelsVehicle ) _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -25));
+                    }
+                    if (_carModel.Horizontal == 1 && _carModel.Vertical != 0)
+                    {
+                        _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, 25, 0));
+
+                        if (!_carModel._4wheelsVehicle ) _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 25));
+                    }
+                }
+                else
+                {
+                    if (_carModel.Horizontal == -1 && _carModel.Vertical != 0)
+                    {
+                        _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, 25, 0));
+                        if (!_carModel._4wheelsVehicle) _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 25));
+                    }
+                    if (_carModel.Horizontal == 1 && _carModel.Vertical != 0)
+                    {
+                        _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, -25, 0));
+
+                        if (!_carModel._4wheelsVehicle) _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -25));
+                    }
+                }
+                Notify("HandBrake");
+            }
         }
-        if (Input.GetKeyUp(KeyCode.Space))
+
+        if(Input.GetKeyUp(KeyCode.Space))
         {
-            _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
+
             _carModel.Drift = false;
+            _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            if (driftValue < .70f)
+            {
+                _carModel.photonView.RPC("StunedRPC", RpcTarget.All, true);
+                Debug.Log("FAIL DRIFT !!  " + driftValue);
+                calificacionDriftTxt.text = $"fail";
+            }
+            else if(driftValue > .70f && driftValue < .9f)
+            {
+                Debug.Log("GOOD DRIF !!  " + driftValue);
+                calificacionDriftTxt.text = $"good";
+            }
+            else if(driftValue > .9f && driftValue < 1)
+            {
+                Debug.Log("PERFECT DRIF !!   " + driftValue);
+                calificacionDriftTxt.text = $"perfect";
+            }
+            driftValue = 0;
+            multipler = 0;
+            driftImg.material.SetFloat("_driftBar", driftValue);
+
         }
     }
 
