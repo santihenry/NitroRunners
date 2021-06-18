@@ -117,21 +117,18 @@ public class CamerMovement : MonoBehaviour
         startPosDrift = drift.transform.position;
         firtThreePositions.transform.position -= new Vector3(1000, 0, 0);
         laps.transform.position += new Vector3(0, 200, 0);
-        drift.transform.position += new Vector3(400, 0, 0);
+        drift.transform.position += new Vector3(800, 0, 0);
     }
 
     private void Update()
     {
         if (!offline && !RaceManager.Instance.startSemaforo)
         {
-           /*
-            if (Input.GetKey(KeyCode.UpArrow)) 
+            if (Input.GetKeyDown(KeyCode.DownArrow))
             {
                 currWay = 0;
                 RaceManager.Instance.StartSemafoto();
-                GameManager.Instance.miniMap.SetActive(true);
             }
-            */
 
             var dir = waypoints[currWay].position - transform.position;
             transform.position += dir.normalized * speedPrecentacion * Time.deltaTime;
@@ -147,14 +144,18 @@ public class CamerMovement : MonoBehaviour
             {
                 currWay = 0;
                 RaceManager.Instance.StartSemafoto();
-                GameManager.Instance.miniMap.SetActive(true);
             }
         }
         else
         {
+
             firtThreePositions.transform.position = startPosfirtThreePositions;
             laps.transform.position = startPosLaps;
-            drift.transform.position = startPosDrift;
+            if(!GameManager.Instance.finishRace)
+                drift.transform.position = startPosDrift;
+            else
+                drift.transform.position = new Vector3(800,0,0);
+
 
             if (!offline)
             {

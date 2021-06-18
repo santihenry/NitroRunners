@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             MenuButton.SetActive(false);
         if (miniMap != null)
             miniMap.SetActive(false);
-
+        
         if (SceneManager.GetActiveScene().buildIndex != 0  && SceneManager.GetActiveScene().buildIndex != 1  && SceneManager.GetActiveScene().buildIndex != 2 && SceneManager.GetActiveScene().buildIndex != 3)
         {
             NetManager.Instance.SetLaps();
@@ -261,6 +261,9 @@ public class GameManager : MonoBehaviourPunCallbacks
                 MenuButton.SetActive(true);
             if(miniMap != null)
                 miniMap.SetActive(false);
+
+
+
             SpectMode();
             switch (ganadores.Count)
             {

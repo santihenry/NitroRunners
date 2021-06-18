@@ -48,7 +48,7 @@ public class UltiUI : MonoBehaviour
         }
 
         if (_car.statsData._name != "rayer")
-            imagen.material.SetFloat("_specialAmount", _car.timeToUlti/100);
+            imagen.material.SetFloat("_specialAmount", _car.timeToUlti/200);
 
     }
 

@@ -68,12 +68,14 @@ public class RaceManager : MonoBehaviourPun
     public void StartSemaforoRPC()
     {
         startSemaforo = true;
+        GameManager.Instance.miniMap.SetActive(true);
     }
 
 
     public void StartSemafoto()
     {
         photonView.RPC("StartSemaforoRPC", RpcTarget.All);
+        //GameManager.Instance.miniMap.SetActive(true);
     }
 
     private void Update()

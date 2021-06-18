@@ -15,7 +15,7 @@ MonoBehaviour:
   accelFactor: 0.23
   maxSpeed: 200
   trurnFactor: 0.19
-  turnStrength: 80
+  turnStrength: 150
   driftStrength: 180
   pjImg: {fileID: 21300000, guid: b38e493d67538384fbdc55afa6313e89, type: 3}
   _name: canine
