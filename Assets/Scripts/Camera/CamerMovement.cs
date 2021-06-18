@@ -36,6 +36,7 @@ public class CamerMovement : MonoBehaviour
 
     public GameObject firtThreePositions;
     public GameObject laps;
+    public GameObject drift;
 
     public CarModel Car
     {
@@ -101,6 +102,7 @@ public class CamerMovement : MonoBehaviour
 
     Vector3 startPosfirtThreePositions;
     Vector3 startPosLaps;
+    Vector3 startPosDrift;
     public int currWay;
     public float speedPrecentacion;
 
@@ -112,8 +114,10 @@ public class CamerMovement : MonoBehaviour
         img.gameObject.SetActive(false);
         startPosfirtThreePositions = firtThreePositions.transform.position;
         startPosLaps = laps.transform.position;
+        startPosDrift = drift.transform.position;
         firtThreePositions.transform.position -= new Vector3(1000, 0, 0);
         laps.transform.position += new Vector3(0, 200, 0);
+        drift.transform.position += new Vector3(400, 0, 0);
     }
 
     private void Update()
@@ -122,15 +126,7 @@ public class CamerMovement : MonoBehaviour
         if (!offline && !RaceManager.Instance.startSemaforo)
         {
             var dir = waypoints[currWay].position - transform.position;
-            //transform.LookAt(waypoints[currWay + 1]);
             transform.position += dir.normalized * speedPrecentacion * Time.deltaTime;
-
-            //transform.rotation = Quaternion.Euler(Vector3.Lerp(transform.position,dir,Time.deltaTime));
-            //transform.rotation = Quaternion.Euler(Vector3.Lerp(transform.position, waypoints[currWay + 1].position, Time.deltaTime));
-            //transform.forward = Vector3.Lerp(transform.position,dir,Time.deltaTime);
-            //transform.RotateAround(Vector3.up, Vector3.Angle(transform.position, waypoints[currWay + 1].position));
-
-
 
             if (currWay < waypoints.Count - 2)
             {
@@ -150,6 +146,7 @@ public class CamerMovement : MonoBehaviour
         {
             firtThreePositions.transform.position = startPosfirtThreePositions;
             laps.transform.position = startPosLaps;
+            drift.transform.position = startPosDrift;
 
             if (!offline)
             {
