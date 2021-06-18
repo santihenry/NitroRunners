@@ -179,13 +179,13 @@ public class CarController : MonoBehaviourPun, IObservable
                 _carModel.photonView.RPC("UpdateLape", RpcTarget.All, _carModel.Lap);
                 _carModel.DeleyToUlti += .01f * Time.deltaTime;
 
-                if (_carModel.timeToUlti < 100)
+                if (_carModel.timeToUlti < 200)
                 {
                     _carModel.timeToUlti += _carModel.DeleyToUlti;
                 }
                 else
                 {
-                    _carModel.timeToUlti = 100;
+                    _carModel.timeToUlti = 200;
                     _carModel.Ulti = true;
                 }
             }
@@ -210,7 +210,13 @@ public class CarController : MonoBehaviourPun, IObservable
             {
                 _carModel.currentTimeStuned += Time.deltaTime;
                 _carModel.StunedRotationSpeed -= Time.deltaTime*2;
-                if(_carModel.stunedTime - _carModel.currentTimeStuned >= 0)
+                _carModel.Drift = false;
+                _carModel.DriftValue = 0;
+                _carModel.MultiplerVelue = 1;
+                _carModel.TimeDriftBoost = 0;
+                driftImg.material.SetFloat("_driftBar", _carModel.DriftValue);
+
+                if (_carModel.stunedTime - _carModel.currentTimeStuned >= 0)
                 {
                     _carModel.model.transform.rotation = Quaternion.Euler(_carModel.model.transform.transform.rotation.eulerAngles + new Vector3(0, _carModel.StunedRotationSpeed * Time.deltaTime, 0));
                     
@@ -393,7 +399,7 @@ public class CarController : MonoBehaviourPun, IObservable
             }
         }
 
-        if (Input.GetKey(KeyCode.Space) && !_carModel.Stuned)
+        if (Input.GetKey(KeyCode.Space))
         {
             _carModel.Drift = true;
             _carModel.MultiplerVelue += _carModel.multipler * Time.deltaTime; 
@@ -451,22 +457,18 @@ public class CarController : MonoBehaviourPun, IObservable
 
         if(Input.GetKeyUp(KeyCode.Space))
         {
-
             _carModel.Drift = false;
             _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
             if (_carModel.DriftValue < .70f)
             {
-                _carModel.photonView.RPC("StunedRPC", RpcTarget.All, true);
-                Debug.Log("FAIL DRIFT !!  " + _carModel.DriftValue);
-                _carModel.CalificacionDriftTxt.text = $"fail";
+                _carModel.CalificacionDriftTxt.text = $"good";
                 driftBoost = false;
                 _carModel.TimeDriftBoost = 0;
       
             }
             else if(_carModel.DriftValue > .70f && _carModel.DriftValue < .9f)
             {
-                Debug.Log("GOOD DRIF !!  " + _carModel.DriftValue);
-                _carModel.CalificacionDriftTxt.text = $"good";
+                _carModel.CalificacionDriftTxt.text = $"perfect";
                 driftBoost = true;
                 _carModel.Bosting = true;
                 _carModel.TimeDriftBoost = .2f;
@@ -474,8 +476,7 @@ public class CarController : MonoBehaviourPun, IObservable
             }
             else if(_carModel.DriftValue > .9f && _carModel.DriftValue < 1)
             {
-                Debug.Log("PERFECT DRIF !!   " + _carModel.DriftValue);
-                _carModel.CalificacionDriftTxt.text = $"perfect";
+                _carModel.CalificacionDriftTxt.text = $"exelent";
                 driftBoost = true;
                 _carModel.Bosting = true;
                 _carModel.TimeDriftBoost = .5f;
