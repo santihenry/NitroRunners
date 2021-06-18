@@ -16,7 +16,16 @@ public class SecuencialLandMines : MonoBehaviourPun
     public float fireRate;
     public GameObject bomb;
 
+    CarModel _car;
 
+
+    private void Start()
+    {
+        _car = GetComponentInParent<CarModel>();
+    }
+
+
+    bool shoot;
 
     void Update()
     {
@@ -26,9 +35,11 @@ public class SecuencialLandMines : MonoBehaviourPun
 
         if (Input.GetKeyDown(KeyCode.G) && bulletSatck.Any())
         {
+            
             StartCoroutine(Sequence(bulletSatck));
             canDropGranade = false;
         }
+
     }
 
     IEnumerator Sequence(Queue<Item> l)
@@ -40,7 +51,9 @@ public class SecuencialLandMines : MonoBehaviourPun
             yield return new WaitForSeconds(.2f);
         }
         canDropGranade = true;
+        shoot = false;
     }
+
     [PunRPC]
     public void SetActiveRPC(bool b )
     {
@@ -61,8 +74,14 @@ public class SecuencialLandMines : MonoBehaviourPun
             var bullet = PhotonNetwork.Instantiate("BombaSecuencia",bomb.transform.position, Quaternion.identity).GetComponent<Item>();
             listBullets.Add(bullet);
             bulletSatck.Enqueue(bullet);
-
             currentTime = 0;
+
+            if (!shoot)
+            {
+                _car.DeleyToUlti = 0;
+                _car.timeToUlti = 0;
+                shoot = true;
+            }
         }
     }
 }
