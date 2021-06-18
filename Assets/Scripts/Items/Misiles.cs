@@ -23,6 +23,8 @@ public class Misiles : MonoBehaviourPun
     int _id;
 
 
+    
+
     public Misiles SetId(int id)
     {
         _id = id;
@@ -45,13 +47,12 @@ public class Misiles : MonoBehaviourPun
     void Start()
     {
         size = 1;
-      //  transform.localScale = new Vector3(size, size, size);
         _renderer = Preview.GetComponent<Renderer>();
-        _renderer.material.shader = Shader.Find("preview");
-        //transform.position = _initPos;
-        //Preview.transform.localScale = new Vector3(maxSize/6, maxSize/6, maxSize/6);
+        transform.position = _initPos;
+        Preview.transform.localScale = new Vector3(maxSize/6, maxSize/6, maxSize/6);
         photonView.RPC("SetInitPosRPC", RpcTarget.All,_initPos);
         photonView.RPC("SetIdRPC", RpcTarget.All, _id);
+
     }
 
     [PunRPC]
@@ -70,39 +71,38 @@ public class Misiles : MonoBehaviourPun
    
     void Update()
     {
-        //var backWl = Physics.Raycast(_initPos, Vector3.down, out hitMedio, Mathf.Infinity, floorLayer);
-        //if (crashFloor)
-        //{
-        //    Preview.SetActive(false);
+        var backWl = Physics.Raycast(_initPos, Vector3.down, out hitMedio, Mathf.Infinity, floorLayer);
+        if (crashFloor)
+        {
+            Preview.SetActive(false);
 
-        //    if (size < maxSize)
-        //    {
-        //        size += speedIncreaceSize * Time.deltaTime;
-        //    }
-        //    else
-        //    {
-        //        _time += Time.deltaTime;
-        //        foreach (var car in Physics.OverlapSphere(transform.position, maxSize/2, carLayer))
-        //        {
-        //            if(car.GetComponent<CarModel>().ID != _id)
-        //                car.GetComponent<CarModel>().photonView.RPC("StunedRPC", RpcTarget.All, true);
-        //        }
-        //        if(_time>2)
-        //            PhotonNetwork.Destroy(gameObject);
-        //    }
+            if (size < maxSize)
+            {
+                size += speedIncreaceSize * Time.deltaTime;
+            }
+            else
+            {
+                _time += Time.deltaTime;
+                foreach (var car in Physics.OverlapSphere(transform.position, maxSize/2, carLayer))
+                {
+                    if(car.GetComponent<CarModel>().ID != _id)
+                        car.GetComponent<CarModel>().photonView.RPC("StunedRPC", RpcTarget.All, true);
+                }
+                if(_time>2)
+                    PhotonNetwork.Destroy(gameObject);
+            }
 
-        //    transform.localScale = new Vector3(size, size, size);
-        //    transform.position = hitMedio.point;
-        //}
-        //else
-        //{
-        //    Preview.transform.position = hitMedio.point + transform.up * 0.3f;
-        //    Preview.transform.up = hitMedio.normal;
-        //}
-            _renderer.material.SetVector("_previewPosition", Preview.transform.position);
-            _renderer.material.SetVector("_position", transform.position);
-
-
+            transform.localScale = new Vector3(size, size, size);
+            transform.position = hitMedio.point;
+        }
+        else
+        {
+            Preview.transform.position = hitMedio.point + transform.up * 0.3f;
+            Preview.transform.up = hitMedio.normal;
+            var x = Mathf.InverseLerp(1,0, Vector3.Distance(Preview.transform.position, transform.position) / 200);
+            _renderer.sharedMaterial.SetFloat("_distFloor", x);
+            Debug.Log($"{_renderer} |  {_renderer.material} | {Vector3.Distance(Preview.transform.position, transform.position) / 200}  |  {Vector3.Distance(Preview.transform.position, transform.position)} | x :  {x}");
+        }
 
         if (Vector3.Distance(hitMedio.point, transform.position) < 1) crashFloor = true;
 
@@ -112,8 +112,8 @@ public class Misiles : MonoBehaviourPun
 
     private void FixedUpdate()
     {
-        //if (!crashFloor)
-        //    _rb.AddForce(Vector3.down);
+        if (!crashFloor)
+            _rb.AddForce(Vector3.down);
 
     }
 

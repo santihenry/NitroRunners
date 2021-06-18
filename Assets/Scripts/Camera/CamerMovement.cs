@@ -123,8 +123,19 @@ public class CamerMovement : MonoBehaviour
     private void Update()
     {
 
+        
+
         if (!offline && !RaceManager.Instance.startSemaforo)
         {
+
+            if (Input.GetKey(KeyCode.UpArrow)) 
+            {
+                currWay = 0;
+                RaceManager.Instance.StartSemafoto();
+                GameManager.Instance.miniMap.SetActive(true);
+            }
+            
+
             var dir = waypoints[currWay].position - transform.position;
             transform.position += dir.normalized * speedPrecentacion * Time.deltaTime;
 
