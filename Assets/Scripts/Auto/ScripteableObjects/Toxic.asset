@@ -21,3 +21,4 @@ MonoBehaviour:
   _name: toxic
   Desctiption: ...?
   clip: {fileID: 32900000, guid: 67ddeb9d176f64241b770a60c14801e9, type: 3}
+  UltiTex: {fileID: 2800000, guid: 7b1dce8acb5330841a30470d748031f5, type: 3}

@@ -21,3 +21,4 @@ MonoBehaviour:
   _name: nova
   Desctiption: ... ?
   clip: {fileID: 32900000, guid: 67ddeb9d176f64241b770a60c14801e9, type: 3}
+  UltiTex: {fileID: 2800000, guid: c6548e9da42a723498d51cd3322becec, type: 3}

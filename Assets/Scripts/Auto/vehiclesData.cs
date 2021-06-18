@@ -16,4 +16,5 @@ public class vehiclesData : ScriptableObject
     public string _name;
     public string Desctiption;
     public VideoClip clip;
+    public Texture2D UltiTex;
 }

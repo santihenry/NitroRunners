@@ -46,7 +46,7 @@ public class CarController : MonoBehaviourPun, IObservable
         _carModel.keysCommands[KeyCode.DownArrow].Init(_carModel.gameObject);
         _carModel.keysCommands[KeyCode.LeftArrow].Init(_carModel.gameObject);
         _carModel.keysCommands[KeyCode.RightArrow].Init(_carModel.gameObject);
-
+        
 
     }
 

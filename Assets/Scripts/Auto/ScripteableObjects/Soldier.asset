@@ -21,3 +21,4 @@ MonoBehaviour:
   _name: canine
   Desctiption: ... ?
   clip: {fileID: 32900000, guid: 1183b4a0b8013e64bb7e265a91fef1c2, type: 3}
+  UltiTex: {fileID: 2800000, guid: 8c7a49d2ae67a5943865419ffbfa81aa, type: 3}
