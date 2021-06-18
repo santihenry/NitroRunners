@@ -14,7 +14,7 @@ public class SecuencialBoom : Item
     public LayerMask floorLayer;
     RaycastHit hitMedio;
 
-    Rigidbody _rb;
+    
     public LayerMask targetLayerMask;
     public float radius;
 
@@ -23,10 +23,10 @@ public class SecuencialBoom : Item
     public override void Start()
     {
         base.Start();
-        _rb = GetComponent<Rigidbody>();
+        
         if(photonView.IsMine)
             viewMinimap.SetActive(true);
-        _rb.AddForce(transform.forward * -10);
+       
     }
 
 

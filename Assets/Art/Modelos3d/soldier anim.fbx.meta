@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 964f8280aec818047b68bdd6854b003c
 ModelImporter:
-  serializedVersion: 19300
+  serializedVersion: 20200
   internalIDToNameTable:
   - first:
       74: 1827226128182048838
@@ -322,15 +322,15 @@ ModelImporter:
         floatParameter: 0
         intParameter: 1
         messageOptions: 0
-      - time: 0.5529788
-        functionName: SetActive
+      - time: 0.57984334
+        functionName: Shoot
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.57984334
-        functionName: Shoot
+      - time: 0.5966681
+        functionName: SetActive
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -352,11 +352,13 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
     skinWeightsMode: 0
     maxBonesPerVertex: 4
@@ -366,6 +368,9 @@ ModelImporter:
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
@@ -685,8 +690,7 @@ ModelImporter:
     - name: chibi characterLLeg2
       parentName: chibi characterLLeg1
       position: {x: -0.49755728, y: -0.0000000968933, z: 0}
-      rotation: {x: -0.00000005657784, y: -0.0000001490116, z: 0.000000108033404,
-        w: 1}
+      rotation: {x: -0.00000005657784, y: -0.0000001490116, z: 0.000000108033404, w: 1}
       scale: {x: 1.0000001, y: 0.9999998, z: 1.0000001}
     - name: chibi characterLLegAnkle
       parentName: chibi characterLLeg2
@@ -720,6 +724,7 @@ ModelImporter:
   animationType: 2
   humanoidOversampling: 1
   avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

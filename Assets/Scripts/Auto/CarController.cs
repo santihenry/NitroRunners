@@ -253,8 +253,8 @@ public class CarController : MonoBehaviourPun, IObservable
 
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                if(GetComponentInChildren<SecuencialLandMines>() != null)
-                    GetComponentInChildren<SecuencialLandMines>().Shoot();
+                //if(GetComponentInChildren<SecuencialLandMines>() != null)
+                //    GetComponentInChildren<SecuencialLandMines>().Shoot();
                 if (GetComponent<MultiMisiles>() != null)
                     GetComponent<MultiMisiles>().Shoot();
                 Notify("Special");
