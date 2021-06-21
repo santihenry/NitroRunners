@@ -205,6 +205,8 @@ public class CarModel : MonoBehaviourPun
     float timeDriftBoost;
     TMP_Text calificacionDriftTxt;
     TMP_Text multipliDriftTxt;
+    public Image driftImg;
+    public Image marcoDriftImg;
 
 
     [Header("ULTI")]
@@ -571,8 +573,14 @@ public class CarModel : MonoBehaviourPun
 
     private void Awake()
     {
-        //positionTxt = GameObject.Find("PositionTxt").gameObject.GetComponent<TMP_Text>();
         positionTxt = RaceManager.Instance.positionTxt;
+        calificacionDriftTxt = RaceManager.Instance.calificacionDriftTxt;
+        multipliDriftTxt = RaceManager.Instance.multipliDriftTxt;
+        driftImg = RaceManager.Instance.driftImg;
+        marcoDriftImg = RaceManager.Instance.marcoDriftImg;
+
+
+
         if (!photonView.IsMine) return;
         cam = GameObject.Find("CameraFront").GetComponent<CamerMovement>();
         ui = FindObjectOfType<UImanager>();

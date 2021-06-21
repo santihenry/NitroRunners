@@ -5,6 +5,7 @@ using TMPro;
 using Photon.Pun;
 using Photon.Realtime;
 using System.Linq;
+using UnityEngine.UI;
 
 public class RaceManager : MonoBehaviourPun
 {
@@ -13,31 +14,34 @@ public class RaceManager : MonoBehaviourPun
     float currentTime;
     public TMP_Text timerTxt;
     public int timeToStartRace;
-
     private bool _calentamiento;
-
-
     public Material ligthOff, ligthGreen, ligthYellow, ligthRed;
     public GameObject droneSemaforo;
     public GameObject droneSemaforoV;
     public GameObject droneSemaforoR;
     public GameObject droneSemaforoA;
     float delay;
-
-    public static RaceManager Instance { get; set; }
-
     public Vector3 pos;
     public Vector3 offset;
     Vector3 posOffset;
     bool fin;
-
     DroneSemaforo drone;
     bool r, a, v;
-
-
     public bool startSemaforo;
 
     public TMP_Text positionTxt;
+    public TMP_Text calificacionDriftTxt;
+    public TMP_Text multipliDriftTxt;
+    public Image driftImg;
+    public Image marcoDriftImg;
+
+    public GameObject canvas;
+    public GameObject canvasPresenacion;
+    public GameObject canvasFinishRace;
+
+
+
+    public static RaceManager Instance { get; set; }
 
 
     private void Awake()
@@ -62,6 +66,9 @@ public class RaceManager : MonoBehaviourPun
         droneSemaforoV.SetActive(false);
 
         drone = droneSemaforo.GetComponent<DroneSemaforo>();
+
+        canvasFinishRace.SetActive(false);
+        canvas.SetActive(false);
     }
 
     [PunRPC]
@@ -69,13 +76,13 @@ public class RaceManager : MonoBehaviourPun
     {
         startSemaforo = true;
         GameManager.Instance.miniMap.SetActive(true);
+        canvas.SetActive(true);
     }
 
 
     public void StartSemafoto()
     {
         photonView.RPC("StartSemaforoRPC", RpcTarget.All);
-        //GameManager.Instance.miniMap.SetActive(true);
     }
 
     private void Update()
@@ -111,8 +118,7 @@ public class RaceManager : MonoBehaviourPun
         }
 
         if (timeToStartRace - currentTime < 0)
-        {
-            //StartRace = true;          
+        {        
             photonView.RPC("StartRaceRPC", RpcTarget.All);
             timerTxt.text = "";
             timerTxt.gameObject.SetActive(false);
@@ -182,7 +188,7 @@ public class RaceManager : MonoBehaviourPun
     [PunRPC]
     public void StartRaceRPC()
     {
-        StartRace = true;
+        StartRace = true;      
     }
 
 

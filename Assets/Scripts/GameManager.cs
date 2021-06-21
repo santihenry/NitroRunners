@@ -24,52 +24,28 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject finishRaceMenu;
     public GameObject miniMap;
     bool online;
-    public GameObject MenuButton;
-    
-    public static GameManager Instance { get; set; }
-
-
     public List<string> ganadores = new List<string>();
     public List<string> ganadoresTime = new List<string>();
     public Dictionary<int, string> winers = new Dictionary<int, string>();
-
     public GameObject cameraWin;
     int currentCam = 0;
-
-
-    int _pjPick;
-
-
     public GameObject created, join;
-
-
     public Image btnCreated, btnJoin;
     int currMenu;
-
-
     public Color onColor, offColor;
-
-
     public TMP_Text playerList;
-
     public List<GameObject> viewPlayerInLobby = new List<GameObject>();
-
-
-
     public GameObject LastLap;
-
-
-
     public GameObject selectPjMenuBtn;
     public Sprite on;
     public Sprite off;
-
     public TMP_Text waitHostTxt;
-
-
     Toggle _privateToggle;
     public GameObject privatePublicObj;
+    int _pjPick;
 
+
+    public static GameManager Instance { get; set; }
 
     public bool Online
     {
@@ -101,12 +77,11 @@ public class GameManager : MonoBehaviourPunCallbacks
             camOne.SetActive(true);
             cameraWin.SetActive(false);
         }
+
         if(waitPlayerTxt != null) 
             waitPlayerTxt.gameObject.SetActive(false);
         if (finishRaceMenu != null)
             finishRaceMenu.SetActive(false);
-        if (MenuButton != null)
-            MenuButton.SetActive(false);
         if (miniMap != null)
             miniMap.SetActive(false);
         
@@ -255,13 +230,15 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (finishRace)
         {
             winMsj.text = $"qualifying";
-            if(finishRaceMenu != null)
-                finishRaceMenu.SetActive(true);
-            if(MenuButton != null)
-                MenuButton.SetActive(true);
-            if(miniMap != null)
-                miniMap.SetActive(false);
 
+            if (RaceManager.Instance.canvas != null)
+                RaceManager.Instance.canvas.SetActive(false);
+
+            if (RaceManager.Instance.canvasFinishRace != null)
+            {
+                RaceManager.Instance.canvasFinishRace.SetActive(true);
+                finishRaceMenu.SetActive(true);
+            }
 
 
             SpectMode();
