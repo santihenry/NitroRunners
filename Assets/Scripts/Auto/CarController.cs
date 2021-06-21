@@ -50,12 +50,6 @@ public class CarController : MonoBehaviourPun, IObservable
     }
 
 
-
-    public Image driftImg;
-    public Image marcoDriftImg;
-
-
-
     private void Start()
     {
         //_carModel.nick.gameObject.SetActive(false);
@@ -76,22 +70,13 @@ public class CarController : MonoBehaviourPun, IObservable
         _carModel.pathDic.Add(4, _carModel.zapPath);
         _carModel.pathDic.Add(5, _carModel.scanPath);
         _carModel.pathDic.Add(6, _carModel.dronePath);
-
         _carModel.StartAccel = _carModel.ForwardAccel;
-
-
-        driftImg = GameObject.Find("FuegoNitro").GetComponent<Image>();
-        marcoDriftImg = GameObject.Find("Nitro").GetComponent<Image>();
-        _carModel.CalificacionDriftTxt = GameObject.Find("CalificacionDrift").GetComponent<TMP_Text>();
-        _carModel.MultipliDriftTxt = GameObject.Find("MultipliDriftTxt").GetComponent<TMP_Text>();
-
     }
 
 
     [PunRPC]
     public void Win()
     {
-        //GameManager.Instance.nameWin = _carModel.nick.text;
         GameManager.Instance.nameWin = _carModel.nickName;
         GameManager.Instance.finishRace = true;
     }
@@ -163,6 +148,8 @@ public class CarController : MonoBehaviourPun, IObservable
             {
                 GameManager.Instance.finishRace = true;
                 _carModel.photonView.RPC("Finish", RpcTarget.AllBuffered);
+                _carModel.Drift = false;
+                _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
             }
 
             if (!RaceManager.Instance.StartRace)
@@ -214,7 +201,7 @@ public class CarController : MonoBehaviourPun, IObservable
                 _carModel.DriftValue = 0;
                 _carModel.MultiplerVelue = 1;
                 _carModel.TimeDriftBoost = 0;
-                driftImg.material.SetFloat("_driftBar", _carModel.DriftValue);
+                _carModel.driftImg.material.SetFloat("_driftBar", _carModel.DriftValue);
 
                 if (_carModel.stunedTime - _carModel.currentTimeStuned >= 0)
                 {
@@ -406,7 +393,7 @@ public class CarController : MonoBehaviourPun, IObservable
             if(_carModel.DriftValue < 1)
             {
                 _carModel.DriftValue += Time.deltaTime * _carModel.MultiplerVelue;
-                driftImg.material.SetFloat("_driftBar", _carModel.DriftValue);
+                _carModel.driftImg.material.SetFloat("_driftBar", _carModel.DriftValue);
             }
             else
             {
@@ -417,12 +404,13 @@ public class CarController : MonoBehaviourPun, IObservable
                 _carModel.DriftValue = 0;
                 _carModel.MultiplerVelue = 1;
                 _carModel.TimeDriftBoost = 0;
-                driftImg.material.SetFloat("_driftBar", _carModel.DriftValue);
+                _carModel.driftImg.material.SetFloat("_driftBar", _carModel.DriftValue);
 
             }
 
             if (_carModel.Drift)
             {
+                /*
                 if (!_carModel.isMotorcycle)
                 {
                     if (_carModel.Horizontal == -1 && _carModel.Vertical != 0)
@@ -451,6 +439,20 @@ public class CarController : MonoBehaviourPun, IObservable
                         if (!_carModel._4wheelsVehicle) _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -25));
                     }
                 }
+                */
+
+                if (_carModel.Horizontal == -1 && _carModel.Vertical != 0)
+                {
+                    _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, -25, 0));
+                    if (!_carModel._4wheelsVehicle) _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -25));
+                }
+                if (_carModel.Horizontal == 1 && _carModel.Vertical != 0)
+                {
+                    _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, 25, 0));
+
+                    if (!_carModel._4wheelsVehicle) _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 25));
+                }
+
                 Notify("HandBrake");
             }
         }
@@ -484,7 +486,7 @@ public class CarController : MonoBehaviourPun, IObservable
             }
             _carModel.DriftValue = 0;
             _carModel.MultiplerVelue = 1;
-            driftImg.material.SetFloat("_driftBar", _carModel.DriftValue);
+            _carModel.driftImg.material.SetFloat("_driftBar", _carModel.DriftValue);
 
         }
     }

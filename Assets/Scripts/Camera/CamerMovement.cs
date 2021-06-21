@@ -12,31 +12,17 @@ public class CamerMovement : MonoBehaviour
     private Transform _cameralookAt, _cameraPos, _viewPoint, _backCamPos, _cameraPosZoom;
     private float speed;
     [Range(0, 100)] public float smothTime;
-
-
     bool backCamera;
     bool zoom;
-
     public List<Sprite> sprites = new List<Sprite>();
     public Image img;
-
     Camera _cam;
-
-
     float delay = .02f;
     float currentTimeDelay;
     int randSprite;
-
     public bool offline;
     private CarControllerV2 _carOffline;
-
-
     public List<Transform> waypoints = new List<Transform>();
-
-
-    public GameObject firtThreePositions;
-    public GameObject laps;
-    public GameObject drift;
 
     public CarModel Car
     {
@@ -100,24 +86,15 @@ public class CamerMovement : MonoBehaviour
     }
 
 
-    Vector3 startPosfirtThreePositions;
-    Vector3 startPosLaps;
-    Vector3 startPosDrift;
+
     public int currWay;
     public float speedPrecentacion;
-
-
+    Vector3 startCanvasPos;
 
     private void Start()
     {
         _cam = GetComponent<Camera>();
-        img.gameObject.SetActive(false);
-        startPosfirtThreePositions = firtThreePositions.transform.position;
-        startPosLaps = laps.transform.position;
-        startPosDrift = drift.transform.position;
-        firtThreePositions.transform.position -= new Vector3(1000, 0, 0);
-        laps.transform.position += new Vector3(0, 200, 0);
-        drift.transform.position += new Vector3(800, 0, 0);
+        img.gameObject.SetActive(false);   
     }
 
     private void Update()
@@ -132,6 +109,7 @@ public class CamerMovement : MonoBehaviour
 
             var dir = waypoints[currWay].position - transform.position;
             transform.position += dir.normalized * speedPrecentacion * Time.deltaTime;
+            //transform.LookAt(waypoints[currWay + 1],Vector3.up);
 
             if (currWay < waypoints.Count - 2)
             {
@@ -148,13 +126,7 @@ public class CamerMovement : MonoBehaviour
         }
         else
         {
-
-            firtThreePositions.transform.position = startPosfirtThreePositions;
-            laps.transform.position = startPosLaps;
-            if(!GameManager.Instance.finishRace)
-                drift.transform.position = startPosDrift;
-            else
-                drift.transform.position = new Vector3(800,0,0);
+            RaceManager.Instance.canvasPresenacion.SetActive(false);
 
 
             if (!offline)
