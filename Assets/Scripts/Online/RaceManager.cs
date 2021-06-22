@@ -88,6 +88,11 @@ public class RaceManager : MonoBehaviourPun
     private void Update()
     {
 
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            canvas.SetActive(!canvas.activeSelf);
+        }
+
         if(pos == Vector3.zero)
         {
             pos = FindObjectOfType<CamerMovement>().Car.transform.position;

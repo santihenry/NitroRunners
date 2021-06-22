@@ -6,8 +6,8 @@ using Photon.Realtime;
 
 public class Grap : MonoBehaviourPun
 {
-    [SerializeField] float pullSpeed = 5;//0.5f;
-    [SerializeField] float stopDistance = 4f;
+    float pullSpeed = 20000;
+    float stopDistance = 1f;
     [SerializeField] Transform shootTransform;
     public Animator animGears;
 
@@ -22,13 +22,11 @@ public class Grap : MonoBehaviourPun
     public float timeCountdown;
     float currentTime;
 
-    CarModel _car;
+    public CarModel _car;
 
     private void Start()
-    {
-       
+    {       
         pulling = false;
-        _car = GetComponentInParent<CarModel>();
     }
 
     private void Update()
@@ -41,20 +39,21 @@ public class Grap : MonoBehaviourPun
        
         if (!pulling || hook == null) return;
 
-        if (Vector3.Distance(transform.position, hook.transform.position) <= stopDistance)
+        if (Vector3.Distance(_car.transform.position, hook.transform.position) <= stopDistance)
         {
             DestroyHook();
         }
         else
         {
-            _rb.AddForce((hook.transform.position - transform.position).normalized * pullSpeed, ForceMode.VelocityChange);
+            Debug.Log("PULLLING");
+            _rb.AddForce(_car.transform.forward * pullSpeed);
         }
     }
 
 
     public void Shoot()
     {
-        if (!canShoot) return;
+        //if (!canShoot) return;
         currentTime = 0;
         canShoot = false;
         StopAllCoroutines();
@@ -67,6 +66,7 @@ public class Grap : MonoBehaviourPun
 
     public void StartPull()
     {
+        Debug.Log("PULLL");
         pulling = true;
         if (_car != null)
         {
@@ -99,47 +99,3 @@ public class Grap : MonoBehaviourPun
     }
    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-       if (hook == null && Input.GetMouseButtonDown(0))
-       {
-           StopAllCoroutines();
-           pulling = false;
-           hook = PhotonNetwork.Instantiate(hookPath, shootTransform.position, Quaternion.identity).GetComponent<Hook>();
-           hook.Initialized(this, shootTransform);
-           StartCoroutine(DestroyHookAfterLifeTime());
-       }
-       else if (hook !=null && Input.GetMouseButtonDown(1))
-       {
-           DestroyHook();
-       }
-       */
