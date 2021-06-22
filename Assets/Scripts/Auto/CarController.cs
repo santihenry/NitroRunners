@@ -71,6 +71,9 @@ public class CarController : MonoBehaviourPun, IObservable
         _carModel.pathDic.Add(5, _carModel.scanPath);
         _carModel.pathDic.Add(6, _carModel.dronePath);
         _carModel.StartAccel = _carModel.ForwardAccel;
+
+        startTimeBost = _carModel.timeBoost;
+
     }
 
 
@@ -277,13 +280,14 @@ public class CarController : MonoBehaviourPun, IObservable
         }
     }
 
-    
+
+    float startTimeBost;
 
     public void Boosting()
     {
         if (_carModel.Bosting)
         {
-            var timeBost = _carModel.timeBoost;
+            var timeBost = startTimeBost;
             _carModel.timeBoost = driftBoost ? _carModel.TimeDriftBoost : timeBost;
 
             _carModel.currentTimeBoost += Time.deltaTime;
@@ -475,6 +479,7 @@ public class CarController : MonoBehaviourPun, IObservable
                 _carModel.Bosting = true;
                 _carModel.TimeDriftBoost = .2f;
                 _carModel.timeToUlti += 2;
+                _carModel.currentTimeBoost = 0;
             }
             else if(_carModel.DriftValue > .9f && _carModel.DriftValue < 1)
             {
@@ -483,6 +488,7 @@ public class CarController : MonoBehaviourPun, IObservable
                 _carModel.Bosting = true;
                 _carModel.TimeDriftBoost = .5f;
                 _carModel.timeToUlti += 8;
+                _carModel.currentTimeBoost = 0;
             }
             _carModel.DriftValue = 0;
             _carModel.MultiplerVelue = 1;

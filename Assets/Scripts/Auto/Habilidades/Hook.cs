@@ -6,7 +6,7 @@ using Photon.Realtime;
 
 public class Hook : MonoBehaviourPun
 {
-    [SerializeField] float hookForce = 50f;
+    [SerializeField] float hookForce = 100f;
 
     Grap _grap;
     Rigidbody rb;
@@ -23,10 +23,7 @@ public class Hook : MonoBehaviourPun
         lr = GetComponent<LineRenderer>();
         rb.AddForce(transform.forward * hookForce, ForceMode.Impulse);
     }
-    private void Start()
-    {
-        
-    }
+
     private void Update()
     {
 
@@ -37,14 +34,15 @@ public class Hook : MonoBehaviourPun
             _grap.myPosition
         };
         lr.SetPositions(positions);
-      
+
+        
     }
 
     private void FixedUpdate()
     {
-        var backWl = Physics.Raycast(transform.position, Vector3.down, out hitMedio, 100, floorLayer);
-        transform.position = new Vector3(transform.position.x, hitMedio.point.y + 1, transform.position.z);
         rb.AddForce(transform.forward * hookForce, ForceMode.Impulse);
+        var backWl = Physics.Raycast(transform.position, Vector3.down, out hitMedio, 100, floorLayer);
+        transform.position = new Vector3(transform.position.x, hitMedio.point.y + 2, transform.position.z);
     }
 
     public void Destroy()
@@ -54,6 +52,7 @@ public class Hook : MonoBehaviourPun
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.gameObject.GetComponent<CarModel>())
         {
             rb.useGravity = false;
@@ -61,5 +60,14 @@ public class Hook : MonoBehaviourPun
 
             _grap.StartPull();
         }
+
+        if (other.gameObject.layer == 10)
+        {
+            rb.useGravity = false;
+            rb.isKinematic = true;
+
+            _grap.StartPull();
+        }
     }
+
 }

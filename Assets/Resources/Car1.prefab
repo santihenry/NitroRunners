@@ -26838,13 +26838,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a55ca66b50b50f44d92e1b5ead6e5029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pullSpeed: 5
-  stopDistance: 4
   shootTransform: {fileID: 4133206549492657695}
   animGears: {fileID: 726316682478628063}
   hookPath: Hook
-  _rb: {fileID: 5462895996393088678}
+  _rb: {fileID: 5250780491286877004}
   timeCountdown: 0
+  _car: {fileID: 1366628110596015019}
 --- !u!1 &4853093461939508133
 GameObject:
   m_ObjectHideFlags: 0
