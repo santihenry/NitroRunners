@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: 627d90d4a4dc0d1428a2250197e14e2d
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _spiral: {fileID: 2800000, guid: 0cf48b97d2a5e174db03f700462d372f, type: 3}
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

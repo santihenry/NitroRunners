@@ -14,6 +14,9 @@ public class UltiUI : MonoBehaviour
 
 
     CarModel _car;
+    float _timeMax=200;
+    float _fire;
+    bool _activated;
 
     private void Awake()
     {
@@ -47,8 +50,33 @@ public class UltiUI : MonoBehaviour
                 Shader.SetGlobalTexture("_specialTex", img);
         }
 
-        if (_car.statsData._name != "rayer")
-            imagen.material.SetFloat("_specialAmount", _car.timeToUlti/200);
+        if (_car.statsData._name != "rayer") 
+        {
+
+
+
+            if (_car.timeToUlti == _timeMax &&_fire<=1)
+            {
+                _activated = true;
+            }
+            else if(_fire>1)
+            {
+                _activated = false;
+            }
+            if(_car.timeToUlti != _timeMax)
+            {
+                _fire = 0;
+            }
+            if (_activated && _fire <=1)
+            {
+                _fire += Time.deltaTime*1.5f;
+
+            }
+           
+
+            Shader.SetGlobalFloat("Size", _fire);
+            imagen.material.SetFloat("_specialAmount", _car.timeToUlti/_timeMax);
+        } 
 
     }
 
