@@ -53,12 +53,13 @@ Material:
     - _Float6: 3.5
     - __dirty: 0
     m_Colors:
-    - _Color0: {r: 0.0842068, g: 0.3207547, b: 0.037824843, a: 0}
+    - _Color0: {r: 5.278032, g: 0.16558532, b: 0, a: 0}
     - _Color1: {r: 1, g: 0, b: 0, a: 0}
     - _Vector0: {r: 0.5, g: 0.5, b: 0, a: 0}
     - _Vector1: {r: 0, g: 0, b: 0, a: 0}
     - _Vector2: {r: 1, g: 1, b: 0, a: 0}
     - _Vector3: {r: 1.59, g: 1, b: 0, a: 0}
+    - _distance: {r: 5.278032, g: 0.16558532, b: 0, a: 0}
     - _position: {r: 0, g: 0, b: 0, a: 0}
     - _previewPosition: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
