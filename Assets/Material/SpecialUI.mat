@@ -62,7 +62,7 @@ Material:
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
     - _UseUIAlphaClip: 0
-    - _specialAmount: 0.2551246
+    - _specialAmount: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color0: {r: 4.594794, g: 1.2432972, b: 0, a: 1}

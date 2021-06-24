@@ -46,15 +46,16 @@ Material:
     m_Floats:
     - _ColorMask: 15
     - _Float0: 8.73
-    - _Float1: 0.4112757
+    - _Float1: 1.6
     - _Float2: 0
-    - _Float3: 0.5039795
+    - _Float3: 0.24
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
     - _UseUIAlphaClip: 0
+    - _driftBar: 0.92015094
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color0: {r: 2.7954397, g: 0.64908695, b: 0, a: 1}
