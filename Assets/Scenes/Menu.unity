@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.017290678, g: 0.037205502, b: 0.09936909, a: 1}
+  m_IndirectSpecularColor: {r: 0.023843428, g: 0.051798657, b: 0.13695705, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -32574,7 +32574,6 @@ MonoBehaviour:
   nameWin: 
   finishRaceMenu: {fileID: 0}
   miniMap: {fileID: 0}
-  MenuButton: {fileID: 0}
   ganadores: []
   ganadoresTime: []
   cameraWin: {fileID: 0}
@@ -37494,6 +37493,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 0}
+  isGlobal: 0
+  blendDistance: 0
+  weight: 1
+  priority: 0
 --- !u!4 &1997527313
 Transform:
   m_ObjectHideFlags: 0
