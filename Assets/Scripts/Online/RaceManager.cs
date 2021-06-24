@@ -38,6 +38,7 @@ public class RaceManager : MonoBehaviourPun
     public GameObject canvas;
     public GameObject canvasPresenacion;
     public GameObject canvasFinishRace;
+    public GameObject controlesImg;
 
 
 
@@ -69,6 +70,7 @@ public class RaceManager : MonoBehaviourPun
 
         canvasFinishRace.SetActive(false);
         canvas.SetActive(false);
+        controlesImg.SetActive(true);
     }
 
     [PunRPC]

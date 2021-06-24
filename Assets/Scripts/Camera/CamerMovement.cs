@@ -101,6 +101,9 @@ public class CamerMovement : MonoBehaviour
     {
         if (!offline && !RaceManager.Instance.startSemaforo)
         {
+            if (Input.GetKeyDown(KeyCode.Space))           
+                RaceManager.Instance.controlesImg.SetActive(!RaceManager.Instance.controlesImg.activeSelf);
+
             if (Input.GetKeyDown(KeyCode.DownArrow))
             {
                 currWay = 0;

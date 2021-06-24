@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.2407079, g: 0.26091787, b: 0.28799564, a: 1}
+  m_IndirectSpecularColor: {r: 0.24233371, g: 0.26314697, b: 0.28777233, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2774,7 +2774,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.01335376, y: 0.049902536}
   m_AnchorMax: {x: 0.14050001, y: 0.2902917}
-  m_AnchoredPosition: {x: 2.3999634, y: 1}
+  m_AnchoredPosition: {x: 2.4000244, y: 1}
   m_SizeDelta: {x: -1, y: -5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &519190983
@@ -3216,6 +3216,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 0}
+  isGlobal: 0
+  blendDistance: 0
+  weight: 1
+  priority: 0
 --- !u!4 &561407894
 Transform:
   m_ObjectHideFlags: 0
@@ -3264,7 +3269,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.12689319, y: -0.034357667}
   m_AnchorMax: {x: 0.7930979, y: 0.95298964}
-  m_AnchoredPosition: {x: -1.1999531, y: 6.1000977}
+  m_AnchoredPosition: {x: -1.1999512, y: 6.1000977}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &634678331
@@ -5249,7 +5254,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.00085376203, y: 0.7314591}
   m_AnchorMax: {x: 0.25250003, y: 0.8467383}
-  m_AnchoredPosition: {x: -0.85998535, y: 5.1399994}
+  m_AnchoredPosition: {x: -0.85998535, y: 5.139984}
   m_SizeDelta: {x: -5.91, y: 41.59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1190600789
@@ -6404,7 +6409,6 @@ MonoBehaviour:
   nameWin: 
   finishRaceMenu: {fileID: 0}
   miniMap: {fileID: 0}
-  MenuButton: {fileID: 0}
   ganadores: []
   ganadoresTime: []
   cameraWin: {fileID: 0}
@@ -8879,10 +8883,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b29af43d683cab64281c92bef808702f, type: 3}
   - {fileID: 8300000, guid: fa9127494f6697343a223d98bffbcb36, type: 3}
   - {fileID: 8300000, guid: 8869b02a1c1cbdf4c9bd9dd9af832cf4, type: 3}
-  - {fileID: 8300000, guid: 709da743ff3d68147bcd80e7a31a38f1, type: 3}
-  - {fileID: 8300000, guid: 102378b9c591159489ca067378b79d9e, type: 3}
-  - {fileID: 8300000, guid: 129ce07bf31da774b8214619016b3ec1, type: 3}
-  - {fileID: 8300000, guid: eb13d20c66a8ff24c88cefcfc57a7479, type: 3}
 --- !u!82 &2023888658
 AudioSource:
   m_ObjectHideFlags: 0
