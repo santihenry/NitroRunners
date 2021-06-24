@@ -20,5 +20,5 @@ MonoBehaviour:
   pjImg: {fileID: 21300000, guid: f2f109c5f3a1aa542bc665d2fefba5f0, type: 3}
   _name: toxic
   Desctiption: ...?
-  clip: {fileID: 32900000, guid: 67ddeb9d176f64241b770a60c14801e9, type: 3}
+  clip: {fileID: 32900000, guid: 484bcef6346a4ab4fa1a6bcf6c191720, type: 3}
   UltiTex: {fileID: 2800000, guid: 7b1dce8acb5330841a30470d748031f5, type: 3}
