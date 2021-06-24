@@ -293,7 +293,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.20742603, y: 0.2465609}
   m_AnchorMax: {x: 0.82500005, y: 0.7378923}
-  m_AnchoredPosition: {x: -1.800003, y: 2.0999756}
+  m_AnchoredPosition: {x: -1.7999878, y: 2.0999756}
   m_SizeDelta: {x: -2.3529053, y: 1.9510956}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &15947708
@@ -16559,13 +16559,14 @@ MonoBehaviour:
   waitPlayerTxt: {fileID: 1562693084}
   winMsj: {fileID: 448106265}
   debugTxt: {fileID: 7677871}
-  positionFinales: {fileID: 15947708}
+  positionFinalesNames: {fileID: 0}
+  positionFinalesTimes: {fileID: 0}
   ViewPlayer: {fileID: 0}
   camOne: {fileID: 1743749743}
   finishRace: 0
   nameWin: 
   finishRaceMenu: {fileID: 241653948}
-  MenuButton: {fileID: 1017758799}
+  miniMap: {fileID: 0}
   ganadores: []
   ganadoresTime: []
   cameraWin: {fileID: 531733443}
@@ -16622,6 +16623,15 @@ MonoBehaviour:
   pos: {x: 0, y: 0, z: 0}
   offset: {x: -7, y: 2, z: -5}
   startSemaforo: 0
+  positionTxt: {fileID: 0}
+  calificacionDriftTxt: {fileID: 0}
+  multipliDriftTxt: {fileID: 0}
+  driftImg: {fileID: 0}
+  marcoDriftImg: {fileID: 0}
+  canvas: {fileID: 0}
+  canvasPresenacion: {fileID: 0}
+  canvasFinishRace: {fileID: 0}
+  controlesImg: {fileID: 0}
 --- !u!1001 &1406756979
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20415,7 +20425,6 @@ MonoBehaviour:
   - {fileID: 1150785472}
   - {fileID: 1798054769}
   - {fileID: 1510419234}
-  canvas: {fileID: 460679888}
   currWay: 0
   speedPrecentacion: 60
 --- !u!81 &1743749745
@@ -23012,10 +23021,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b29af43d683cab64281c92bef808702f, type: 3}
   - {fileID: 8300000, guid: fa9127494f6697343a223d98bffbcb36, type: 3}
   - {fileID: 8300000, guid: 8869b02a1c1cbdf4c9bd9dd9af832cf4, type: 3}
-  - {fileID: 8300000, guid: 709da743ff3d68147bcd80e7a31a38f1, type: 3}
-  - {fileID: 8300000, guid: 102378b9c591159489ca067378b79d9e, type: 3}
-  - {fileID: 8300000, guid: 129ce07bf31da774b8214619016b3ec1, type: 3}
-  - {fileID: 8300000, guid: eb13d20c66a8ff24c88cefcfc57a7479, type: 3}
 --- !u!82 &2023888658
 AudioSource:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Music : MonoBehaviour
 {
     public List<AudioClip> sounds;
@@ -15,12 +16,29 @@ public class Music : MonoBehaviour
 
     private void Start()
     {
-        track = Random.Range(0, sounds.Count);
+        track = 0;//track = Random.Range(0, sounds.Count);
         source.clip = sounds[track];
         source.Play();
     }
 
     void Update()
+    {
+        Fijo();
+    }
+
+
+    public void Fijo()
+    {
+        if (!source.isPlaying || Input.GetKeyDown(KeyCode.Space))
+        {
+            track++;
+            if (track >= sounds.Count) track = 0;
+            source.clip = sounds[track];
+            source.Play();
+        }
+    }
+
+    public void Aleatorio()
     {
         if (!source.isPlaying)
         {
@@ -34,5 +52,6 @@ public class Music : MonoBehaviour
             source.Play();
         }
     }
+
 
 }
