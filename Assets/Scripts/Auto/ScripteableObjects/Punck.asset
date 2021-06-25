@@ -19,5 +19,6 @@ MonoBehaviour:
   driftStrength: 210
   pjImg: {fileID: 21300000, guid: e829b39d9af0e1c41aec921c2a3fb8ee, type: 3}
   _name: rayer
-  Desctiption: ... ?
+  Desctiption: No tiene nada
   clip: {fileID: 32900000, guid: b1fdd1effde81374da4c5ccbebb65aab, type: 3}
+  UltiTex: {fileID: 0}
