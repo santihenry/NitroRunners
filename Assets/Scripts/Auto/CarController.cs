@@ -233,6 +233,8 @@ public class CarController : MonoBehaviourPun, IObservable
             Boosting();
 
 
+            _carModel.ultimo = _carModel.Pos == PhotonNetwork.CurrentRoom.PlayerCount ? true : false;
+
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 var item = PhotonNetwork.Instantiate(_carModel.zapPath, _carModel.sapwnPointZap.position, _carModel.sapwnPointZap.rotation);

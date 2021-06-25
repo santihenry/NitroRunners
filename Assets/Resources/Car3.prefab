@@ -33001,6 +33001,7 @@ MonoBehaviour:
   isMotorcycle: 0
   _4wheelsVehicle: 1
   positionTxt: {fileID: 0}
+  ultimo: 0
   nickName: 
   currentTimeInvert: 0
   timeRespawn: 0.5
