@@ -21,18 +21,18 @@ public class Field : Item
 
     public override void Update()
     {
-
+        /*
         if (car == null)
         {
             foreach (var item in FindObjectsOfType<CarModel>())
             {
                 if (item.photonView.ViewID == _id)
                 {
-                    car = item;
+                    car = item;                   
                 }
             }
         }
-
+        */
         currentTime += Time.deltaTime;
 
         if (lifeTime - currentTime <= 0)
@@ -40,8 +40,11 @@ public class Field : Item
             car.Inmortality = false;
             PhotonNetwork.Destroy(gameObject);
         }
+        else
+        {
+            car.Inmortality = true;
+        }
 
-        car.Inmortality = true;
 
         transform.position = car.gameObject.transform.position;
     }
@@ -49,9 +52,10 @@ public class Field : Item
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<CarModel>() && other.GetComponent<CarModel>().photonView.ViewID != ID)
+        if (other.GetComponent<CarModel>().photonView.ViewID != ID)
         {
-            other.GetComponent<CarModel>().Stuned = !other.GetComponent<CarModel>().Stuned;
+            //other.GetComponent<CarModel>().Stuned = !other.GetComponent<CarModel>().Stuned;
+            other.GetComponent<CarModel>().photonView.RPC("StunedRPC", RpcTarget.All, true);
         }
     }
 

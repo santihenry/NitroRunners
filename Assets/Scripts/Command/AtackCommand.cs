@@ -27,7 +27,8 @@ public class AtackCommand : ICommand
     public void Stop(GameObject obj)
     {
         var car = obj.GetComponent<CarModel>();
-        if (!ruleta.CanDrop && car.HaveItem || !car.HaveItem || !ruleta.CanDrop || car.weapon == "") return;
+        if (car.HaveItem || car.weapon == "") return;
+        //if (!ruleta.CanDrop && car.HaveItem || !car.HaveItem || !ruleta.CanDrop || car.weapon == "") return;
         car.HaveItem = false;
         car.cantItem = 0;
         car.weapon = "";

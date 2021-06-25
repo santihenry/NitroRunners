@@ -39,6 +39,17 @@ public class Rocket : Item
 
     }
 
+    public override void Start()
+    {
+        base.Start();
+
+        particle.SetActive(true);
+        _iddle = false;
+        photonView.RPC("ChangeIddleValueRPC", RpcTarget.All, false);
+        _dir = car.transform.forward;
+    }
+
+
     public override void Update()
     {
         if (!_iddle)
@@ -50,7 +61,7 @@ public class Rocket : Item
             PhotonNetwork.Destroy(gameObject);
         }
 
-        
+        /*
         if (car == null)
         {
             foreach (var item in FindObjectsOfType<CarModel>())
@@ -61,7 +72,7 @@ public class Rocket : Item
                 }
             }
         }
-
+        */
 
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && photonView.IsMine)
