@@ -19,6 +19,6 @@ MonoBehaviour:
   driftStrength: 200
   pjImg: {fileID: 21300000, guid: fea464e02ef3781408dab65b9f0b22fb, type: 3}
   _name: nova
-  Desctiption: ... ?
+  Desctiption: 'Lanza un gancho que te impulsa '
   clip: {fileID: 32900000, guid: dc3008c01a2a2e14ea9b672907ed3be5, type: 3}
   UltiTex: {fileID: 2800000, guid: c6548e9da42a723498d51cd3322becec, type: 3}

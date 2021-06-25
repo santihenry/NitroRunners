@@ -80,7 +80,12 @@ public class Drone : Item
 
     public override void Update()
     {
-        base.Update();
+        //base.Update();
+
+        currentTime += Time.deltaTime;
+        if (currentTime > lifeTime)
+            PhotonNetwork.Destroy(gameObject);
+
         if (!photonView.IsMine) return;
         if (GameManager.Instance.finishRace) return;
 
@@ -121,22 +126,13 @@ public class Drone : Item
             //transform.position = car.sapwnPointZap.transform.position + new Vector3(0, 2, 0);
             var backWl = Physics.Raycast(transform.position, Vector3.down, out hitMedio, 100, floorLayer);
             transform.position = new Vector3(transform.position.x, hitMedio.point.y + 2, transform.position.z);
-            transform.position += _dir * 150 * Time.deltaTime;
+            transform.position += _dir * 120 * Time.deltaTime;
             impactFX.SetActive(false);
             spawnFX.SetActive(false);
 
 
             if(Physics.Raycast(transform.position, transform.forward, out hitMedio, 20, wallLayer))
             {
-                /*
-                if(Vector3.Angle(transform.forward, transform.position - car._currentWaypoint.position) < 75)
-                {
-                    transform.Rotate(Vector3.up, 10);
-                    _dir = transform.forward;
-                }
-                */
-
-
                 if(Physics.Raycast(transform.position, transform.right, out hitMedio, 20, wallLayer))
                 {
                     transform.Rotate(Vector3.up, -10);
@@ -195,14 +191,6 @@ public class Drone : Item
         return possibleTargets.OrderBy(n => Vector3.Distance(transform.position, n.position));
     }
 
-
-    private void OnDrawGizmos()
-    {
-        if (!photonView.IsMine) return;
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, radius);
-    }
 
 
     private void OnTriggerEnter(Collider other)
