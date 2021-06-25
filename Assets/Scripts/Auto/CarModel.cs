@@ -26,7 +26,7 @@ public class CarModel : MonoBehaviourPun
 
 
 
-
+    public bool ultimo;
 
 
     public int ID
