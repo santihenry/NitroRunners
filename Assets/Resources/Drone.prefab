@@ -14637,6 +14637,12 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 4096
+  floorLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!114 &7083794102681543583
 MonoBehaviour:
   m_ObjectHideFlags: 0

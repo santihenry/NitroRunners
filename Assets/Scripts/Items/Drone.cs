@@ -33,6 +33,9 @@ public class Drone : Item
     float timeBeforeImpact;
     public LayerMask layerMask;
 
+    public LayerMask floorLayer;
+    public LayerMask wallLayer;
+    RaycastHit hitMedio;
 
     public override void Start()
     {
@@ -69,6 +72,9 @@ public class Drone : Item
             //PhotonNetwork.Destroy(gameObject);
             
         }
+
+        _dir = car.transform.forward;
+
     }
 
 
@@ -111,10 +117,39 @@ public class Drone : Item
                     SpawnPulse();  
                 }
             }
-            transform.Rotate(Vector3.up, 3f);
-            transform.position = car.sapwnPointZap.transform.position + new Vector3(0, 2, 0);
+            //transform.Rotate(Vector3.up, 3f);
+            //transform.position = car.sapwnPointZap.transform.position + new Vector3(0, 2, 0);
+            var backWl = Physics.Raycast(transform.position, Vector3.down, out hitMedio, 100, floorLayer);
+            transform.position = new Vector3(transform.position.x, hitMedio.point.y + 2, transform.position.z);
+            transform.position += _dir * 150 * Time.deltaTime;
             impactFX.SetActive(false);
             spawnFX.SetActive(false);
+
+
+            if(Physics.Raycast(transform.position, transform.forward, out hitMedio, 20, wallLayer))
+            {
+                /*
+                if(Vector3.Angle(transform.forward, transform.position - car._currentWaypoint.position) < 75)
+                {
+                    transform.Rotate(Vector3.up, 10);
+                    _dir = transform.forward;
+                }
+                */
+
+
+                if(Physics.Raycast(transform.position, transform.right, out hitMedio, 20, wallLayer))
+                {
+                    transform.Rotate(Vector3.up, -10);
+                }
+                else if (Physics.Raycast(transform.position, -transform.right, out hitMedio, 20, wallLayer))
+                {
+                    transform.Rotate(Vector3.up, 10);
+                }
+
+                _dir = transform.forward;
+            }
+
+
         }
     }
 

@@ -110,7 +110,7 @@ public class Roulete : MonoBehaviour
             itemsPesosDic[3] = 5; //shield
             itemsPesosDic[4] = 20; //zap
             itemsPesosDic[5] = 30; //scan
-            itemsPesosDic[6] = 30; //drone
+            itemsPesosDic[6] = 200; //drone
         }
         else if(_car.Pos <= 2)
         {
@@ -120,7 +120,7 @@ public class Roulete : MonoBehaviour
             itemsPesosDic[3] = 20; //shield
             itemsPesosDic[4] = 30; //zap
             itemsPesosDic[5] = 30; //scan
-            itemsPesosDic[6] = 5; //drone
+            itemsPesosDic[6] = 1; //drone
         }
         else if(_car.Pos <= 4)
         {
@@ -140,7 +140,7 @@ public class Roulete : MonoBehaviour
             itemsPesosDic[3] = 25; //shield
             itemsPesosDic[4] = 50; //zap
             itemsPesosDic[5] = 30; //scan
-            itemsPesosDic[6] = 50; //drone
+            itemsPesosDic[6] = 180; //drone
         }
 
         for (int i = 0; i < itemsPesosDic.Count; i++)
