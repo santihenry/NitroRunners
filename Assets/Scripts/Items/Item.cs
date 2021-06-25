@@ -54,6 +54,7 @@ public class Item : MonoBehaviourPun
     
     public virtual void Start()
     {
+        
         foreach (var item in FindObjectsOfType<CarModel>())
         {
             if (item.photonView.ViewID == ID)
@@ -61,6 +62,7 @@ public class Item : MonoBehaviourPun
                 car = item;
             }
         }
+        
     }
    
 

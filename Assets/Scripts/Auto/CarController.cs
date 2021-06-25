@@ -403,7 +403,8 @@ public class CarController : MonoBehaviourPun, IObservable
             {
                 Debug.Log("FAIL DRIFT !!");
                 _carModel.CalificacionDriftTxt.text = $"fail";
-                _carModel.photonView.RPC("StunedRPC", RpcTarget.All, true);
+                if(!_carModel.Inmortality)
+                    _carModel.photonView.RPC("StunedRPC", RpcTarget.All, true);
                 _carModel.Drift = false;
                 _carModel.DriftValue = 0;
                 _carModel.MultiplerVelue = 1;

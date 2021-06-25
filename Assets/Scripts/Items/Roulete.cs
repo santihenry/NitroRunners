@@ -61,6 +61,22 @@ public class Roulete : MonoBehaviour
         currentTimeRoulete += Time.deltaTime;
 
 
+        RouleteWheel();
+
+
+        if (!finish && currentTimeRoulete >= rouleteTime || Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            source.Stop();
+            currentTimeDelay = 0;
+            currentTimeChangeDelay = 0;
+            currentTimeRoulete = 0;
+            starRoulete = false;
+            finish = true;
+        }
+    }
+
+    public void RouleteWheel()
+    {
         if (starRoulete)
         {
             delay = rouleteTime - currentTimeChangeDelay < rouleteTime / 2.2f ? startDelay + .2f : startDelay;
@@ -76,22 +92,34 @@ public class Roulete : MonoBehaviour
             {
                 itemWin = Random.Range(0, sprites.Count);
                 rouleteImg.sprite = itemsDic[itemWin];
-                currentTimeDelay = 0;               
+                currentTimeDelay = 0;
             }
-        }
-
-
-        if (currentTimeRoulete >= rouleteTime || Input.GetKeyDown(KeyCode.E))
-        {
-            source.Stop();
-            currentTimeDelay = 0;
-            currentTimeChangeDelay = 0;
-            currentTimeRoulete = 0;
-            starRoulete = false;
-            finish = true;
         }
     }
 
+
+
+    public void RouleteNormal()
+    {
+        if (starRoulete)
+        {
+            delay = rouleteTime - currentTimeChangeDelay < rouleteTime / 2.2f ? startDelay + .2f : startDelay;
+
+
+            if (!source.isPlaying && source.clip != sounds[Sounds.rouletteSpin])
+            {
+                source.clip = sounds[Sounds.rouletteSpin];
+                source.Play();
+            }
+
+            if (delay - currentTimeDelay <= 0)
+            {
+                itemWin = Random.Range(0, sprites.Count);
+                rouleteImg.sprite = itemsDic[itemWin];
+                currentTimeDelay = 0;
+            }
+        }
+    }
 
 
     public void TakeItem()
