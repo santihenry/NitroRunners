@@ -14,7 +14,7 @@ public class UltiUI : MonoBehaviour
 
 
     CarModel _car;
-    float _timeMax=200;
+    float _timeMax=45;
     float _fire;
     bool _activated;
 
