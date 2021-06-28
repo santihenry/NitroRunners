@@ -102,18 +102,16 @@ public class RaceManager : MonoBehaviourPun
             droneSemaforo.transform.position = pos + offset;
         }
 
- 
-
-        if(PhotonNetwork.CurrentRoom.PlayerCount == FindObjectsOfType<CarModel>().Length && startSemaforo)
+        if (PhotonNetwork.CurrentRoom.PlayerCount == FindObjectsOfType<CarModel>().Length && startSemaforo)
         {
             currentTime += Time.deltaTime;
             Calentamiento = false;
-            if(droneSemaforo != null)
+            if (droneSemaforo != null)
             {
                 droneSemaforo.SetActive(true);
                 var tempPos = posOffset;
                 tempPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * 1) * .4f;
-                if(!fin)
+                if (!fin)
                     droneSemaforo.transform.position = tempPos;
             }
         }
@@ -123,6 +121,7 @@ public class RaceManager : MonoBehaviourPun
             if (droneSemaforo != null)
                 droneSemaforo.SetActive(false);
         }
+
 
         if (timeToStartRace - currentTime < 0)
         {        

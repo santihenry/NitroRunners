@@ -310,7 +310,7 @@ public class CarController : MonoBehaviourPun, IObservable
 
         _carModel.OnGround = Physics.Raycast(_carModel.rayPos.transform.position, Vector3.down, out _carModel.hitMedio, 1.3f, _carModel.TrackLayer) ? true : false;
 
-        if (Mathf.Abs(_carModel.SpeedInput) > 0 /*&& _carModel.OnGround*/)
+        if (Mathf.Abs(_carModel.SpeedInput) > 0 && _carModel.OnGround || _carModel.flyArea)
         {
             _carModel.Rigidbody.AddForce(transform.forward * _carModel.SpeedInput);
         }
@@ -360,7 +360,7 @@ public class CarController : MonoBehaviourPun, IObservable
     public void Engine()
     {
         _carModel.ForwardAccel = _carModel.Bosting ? _carModel.ForwardAccel = _carModel.StartAccel + _carModel.StartAccel / 2 : _carModel.StartAccel;
-        _carModel.SpeedInput = _carModel.Bosting ? _carModel.ForwardAccel * 1000 : _carModel.Vertical * _carModel.ForwardAccel * 1000;
+        _carModel.SpeedInput = _carModel.Bosting ? _carModel.ForwardAccel * _carModel.PowerValue : _carModel.Vertical * _carModel.ForwardAccel * _carModel.PowerValue;
         Notify("AcelerateAnim");
     }
 
@@ -382,7 +382,9 @@ public class CarController : MonoBehaviourPun, IObservable
 
     public void Drift()
     {
-        if(_carModel.CalificacionDriftTxt.text != "")
+        _carModel.PowerValue = _carModel.Drift ? _carModel.driftPower : _carModel.maxPower;
+
+        if (_carModel.CalificacionDriftTxt.text != "")
         {
             clearCalificationTxt += Time.deltaTime;
             if (clearCalificationTxt >= .5f)
@@ -393,7 +395,7 @@ public class CarController : MonoBehaviourPun, IObservable
         }
 
         if (Input.GetKey(KeyCode.Space))
-        {
+        {          
             _carModel.Drift = true;
             _carModel.MultiplerVelue += _carModel.multipler * Time.deltaTime; 
             if(_carModel.DriftValue < 1)
@@ -417,37 +419,6 @@ public class CarController : MonoBehaviourPun, IObservable
 
             if (_carModel.Drift)
             {
-                /*
-                if (!_carModel.isMotorcycle)
-                {
-                    if (_carModel.Horizontal == -1 && _carModel.Vertical != 0)
-                    {
-                        _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, -25, 0));
-                        if(!_carModel._4wheelsVehicle ) _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -25));
-                    }
-                    if (_carModel.Horizontal == 1 && _carModel.Vertical != 0)
-                    {
-                        _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, 25, 0));
-
-                        if (!_carModel._4wheelsVehicle ) _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 25));
-                    }
-                }
-                else
-                {
-                    if (_carModel.Horizontal == -1 && _carModel.Vertical != 0)
-                    {
-                        _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, 25, 0));
-                        if (!_carModel._4wheelsVehicle) _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 25));
-                    }
-                    if (_carModel.Horizontal == 1 && _carModel.Vertical != 0)
-                    {
-                        _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, -25, 0));
-
-                        if (!_carModel._4wheelsVehicle) _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -25));
-                    }
-                }
-                */
-
                 if (_carModel.Horizontal == -1 && _carModel.Vertical != 0)
                 {
                     _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, -25, 0));

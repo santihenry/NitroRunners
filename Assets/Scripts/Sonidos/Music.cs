@@ -29,7 +29,7 @@ public class Music : MonoBehaviour
 
     public void Fijo()
     {
-        if (!source.isPlaying || Input.GetKeyDown(KeyCode.Space))
+        if (!source.isPlaying)
         {
             track++;
             if (track >= sounds.Count) track = 0;

@@ -45,7 +45,7 @@ public class Wall : Item
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponent<CarModel>().photonView.ViewID != ID || collision.gameObject.GetComponent<Field>())
+        if (collision.gameObject.GetComponent<CarModel>() || collision.gameObject.GetComponent<Field>())
         {
             photonView.RPC("Destroy", RpcTarget.All);
         }
@@ -65,7 +65,7 @@ public class Wall : Item
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<Rocket>() || other.gameObject.GetComponent<CarModel>().photonView.ViewID != ID)
+        if (other.gameObject.GetComponent<Rocket>() || other.gameObject.GetComponent<CarModel>())
         {
             photonView.RPC("Destroy", RpcTarget.All);
         }
