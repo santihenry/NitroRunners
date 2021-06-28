@@ -74,6 +74,8 @@ public class CarController : MonoBehaviourPun, IObservable
 
         startTimeBost = _carModel.timeBoost;
 
+        _carModel.CurentPowerValue = _carModel.statsData.starPower;
+
     }
 
 
@@ -167,15 +169,15 @@ public class CarController : MonoBehaviourPun, IObservable
                 _carModel.Lap = GetComponent<Laps>().lap;
                 _carModel.ui.SetCarTgt(_carModel);
                 _carModel.photonView.RPC("UpdateLape", RpcTarget.All, _carModel.Lap);
-                _carModel.DeleyToUlti += .01f * Time.deltaTime;
+                _carModel.DeleyToUlti += Time.deltaTime;
 
-                if (_carModel.timeToUlti < 200)
+                if (_carModel.timeToUlti < 45)
                 {
-                    _carModel.timeToUlti += _carModel.DeleyToUlti;
+                    _carModel.timeToUlti = _carModel.DeleyToUlti;
                 }
                 else
                 {
-                    _carModel.timeToUlti = 200;
+                    _carModel.timeToUlti = 45;
                     _carModel.Ulti = true;
                 }
             }
@@ -234,41 +236,44 @@ public class CarController : MonoBehaviourPun, IObservable
 
 
             _carModel.ultimo = _carModel.Pos == PhotonNetwork.CurrentRoom.PlayerCount ? true : false;
-
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+                
+            if (Input.GetKey(KeyCode.LeftShift))
             {
-                var item = PhotonNetwork.Instantiate(_carModel.zapPath, _carModel.sapwnPointZap.position, _carModel.sapwnPointZap.rotation);
-                item.GetPhotonView().RPC("ChangeId", RpcTarget.AllBuffered,_carModel.photonView.ViewID);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                var item = PhotonNetwork.Instantiate(_carModel.dronePath, _carModel.sapwnPointZap.position, _carModel.sapwnPointZap.rotation);
-                item.GetPhotonView().RPC("ChangeId", RpcTarget.AllBuffered, _carModel.photonView.ViewID);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                var item = PhotonNetwork.Instantiate(_carModel.rocketPath, _carModel.sapwnPoint.position, _carModel.sapwnPoint.rotation);
-                item.GetPhotonView().RPC("ChangeId", RpcTarget.AllBuffered, _carModel.photonView.ViewID);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha4))
-            {
-                var item = PhotonNetwork.Instantiate(_carModel.fieldPath, _carModel.sapwnPoint.position, _carModel.sapwnPoint.rotation);
-                item.GetPhotonView().RPC("ChangeId", RpcTarget.AllBuffered, _carModel.photonView.ViewID);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha5))
-            {
-                var item = PhotonNetwork.Instantiate(_carModel.wallPath, _carModel.sapwnPoint.position, _carModel.sapwnPoint.rotation);
-                item.GetPhotonView().RPC("ChangeId", RpcTarget.AllBuffered, _carModel.photonView.ViewID);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha6))
-            {
-                var item = PhotonNetwork.Instantiate(_carModel.scanPath, _carModel.sapwnPoint.position, _carModel.sapwnPoint.rotation);
-                item.GetPhotonView().RPC("ChangeId", RpcTarget.AllBuffered, _carModel.photonView.ViewID);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha7))
-            {
-                var item = PhotonNetwork.Instantiate(_carModel.bombPath, _carModel.sapwnPoint.position, _carModel.sapwnPoint.rotation);
-                item.GetPhotonView().RPC("ChangeId", RpcTarget.AllBuffered, _carModel.photonView.ViewID);
+                if (Input.GetKeyDown(KeyCode.Alpha1))
+                {
+                    var item = PhotonNetwork.Instantiate(_carModel.zapPath, _carModel.sapwnPointZap.position, _carModel.sapwnPointZap.rotation);
+                    item.GetPhotonView().RPC("ChangeId", RpcTarget.AllBuffered,_carModel.photonView.ViewID);
+                }
+                if (Input.GetKeyDown(KeyCode.Alpha2))
+                {
+                    var item = PhotonNetwork.Instantiate(_carModel.dronePath, _carModel.sapwnPointZap.position, _carModel.sapwnPointZap.rotation);
+                    item.GetPhotonView().RPC("ChangeId", RpcTarget.AllBuffered, _carModel.photonView.ViewID);
+                }
+                if (Input.GetKeyDown(KeyCode.Alpha3))
+                {
+                    var item = PhotonNetwork.Instantiate(_carModel.rocketPath, _carModel.sapwnPoint.position, _carModel.sapwnPoint.rotation);
+                    item.GetPhotonView().RPC("ChangeId", RpcTarget.AllBuffered, _carModel.photonView.ViewID);
+                }
+                if (Input.GetKeyDown(KeyCode.Alpha4))
+                {
+                    var item = PhotonNetwork.Instantiate(_carModel.fieldPath, _carModel.sapwnPoint.position, _carModel.sapwnPoint.rotation);
+                    item.GetPhotonView().RPC("ChangeId", RpcTarget.AllBuffered, _carModel.photonView.ViewID);
+                }
+                if (Input.GetKeyDown(KeyCode.Alpha5))
+                {
+                    var item = PhotonNetwork.Instantiate(_carModel.wallPath, _carModel.sapwnPoint.position, _carModel.sapwnPoint.rotation);
+                    item.GetPhotonView().RPC("ChangeId", RpcTarget.AllBuffered, _carModel.photonView.ViewID);
+                }
+                if (Input.GetKeyDown(KeyCode.Alpha6))
+                {
+                    var item = PhotonNetwork.Instantiate(_carModel.scanPath, _carModel.sapwnPoint.position, _carModel.sapwnPoint.rotation);
+                    item.GetPhotonView().RPC("ChangeId", RpcTarget.AllBuffered, _carModel.photonView.ViewID);
+                }
+                if (Input.GetKeyDown(KeyCode.Alpha7))
+                {
+                    var item = PhotonNetwork.Instantiate(_carModel.bombPath, _carModel.sapwnPoint.position, _carModel.sapwnPoint.rotation);
+                    item.GetPhotonView().RPC("ChangeId", RpcTarget.AllBuffered, _carModel.photonView.ViewID);
+                }
             }
 
             if (Input.GetKeyDown(KeyCode.Q) && _carModel.Ulti)
@@ -353,12 +358,38 @@ public class CarController : MonoBehaviourPun, IObservable
                 _carModel.backLefthhWheel.transform.position = _carModel.hitBackLeftWheel.point + new Vector3(0, _carModel.offsettSup, 0);
         }
       
+
+
+        if(_carModel.Vertical != 0)
+        {
+            currentTimeEngineOff = 0;
+            currentTimeEngine += Time.fixedDeltaTime;
+            if (_carModel.CurentPowerValue < _carModel.statsData.maxPower)
+            {
+                _carModel.CurentPowerValue += _carModel.statsData.increacePower  * Time.fixedDeltaTime;
+            }
+        }
+        else
+        {
+            currentTimeEngine = 0;
+            currentTimeEngineOff += Time.fixedDeltaTime;
+            if (_carModel.CurentPowerValue > _carModel.statsData.starPower)
+            {
+                _carModel.CurentPowerValue -= _carModel.statsData.increacePower * 2  * Time.fixedDeltaTime;
+            }
+            else
+            {
+                _carModel.CurentPowerValue = _carModel.statsData.starPower;
+            }
+        }
+
     }
 
-    float vel;
+    float currentTimeEngine;
+    float currentTimeEngineOff;
 
     public void Engine()
-    {
+    {       
         _carModel.ForwardAccel = _carModel.Bosting ? _carModel.ForwardAccel = _carModel.StartAccel + _carModel.StartAccel / 2 : _carModel.StartAccel;
         _carModel.SpeedInput = _carModel.Bosting ? _carModel.ForwardAccel * _carModel.PowerValue : _carModel.Vertical * _carModel.ForwardAccel * _carModel.PowerValue;
         Notify("AcelerateAnim");
@@ -382,7 +413,7 @@ public class CarController : MonoBehaviourPun, IObservable
 
     public void Drift()
     {
-        _carModel.PowerValue = _carModel.Drift ? _carModel.driftPower : _carModel.maxPower;
+        _carModel.PowerValue = _carModel.Drift ? _carModel.statsData.driftPower : _carModel.CurentPowerValue;
 
         if (_carModel.CalificacionDriftTxt.text != "")
         {
@@ -451,8 +482,8 @@ public class CarController : MonoBehaviourPun, IObservable
                 _carModel.CalificacionDriftTxt.text = $"perfect";
                 driftBoost = true;
                 _carModel.Bosting = true;
-                _carModel.TimeDriftBoost = .2f;
-                _carModel.timeToUlti += 2;
+                _carModel.TimeDriftBoost = .5f;
+                _carModel.timeToUlti += 3;
                 _carModel.currentTimeBoost = 0;
             }
             else if(_carModel.DriftValue > .9f && _carModel.DriftValue < 1)
@@ -460,8 +491,8 @@ public class CarController : MonoBehaviourPun, IObservable
                 _carModel.CalificacionDriftTxt.text = $"exelent";
                 driftBoost = true;
                 _carModel.Bosting = true;
-                _carModel.TimeDriftBoost = .5f;
-                _carModel.timeToUlti += 8;
+                _carModel.TimeDriftBoost = 1f;
+                _carModel.timeToUlti += 10;
                 _carModel.currentTimeBoost = 0;
             }
             _carModel.DriftValue = 0;

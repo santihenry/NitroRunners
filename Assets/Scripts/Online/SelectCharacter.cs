@@ -170,7 +170,7 @@ public class SelectCharacter : MonoBehaviourPun
             DownPj();
 
 
-        //speedScroolBar.fillAmount = carsDic[curr].GetComponent<StatsView>().statsData.maxSpeed / 200;
+        speedScroolBar.fillAmount = carsDic[curr].GetComponent<StatsView>().statsData.maxPower / 1800;
         accelScroolBar.fillAmount = carsDic[curr].GetComponent<StatsView>().statsData.accelFactor / .3f;
         turnScroolBar.fillAmount = carsDic[curr].GetComponent<StatsView>().statsData.trurnFactor / .3f;
         videoPlayer.clip = carsDic[curr].GetComponent<StatsView>().statsData.clip;

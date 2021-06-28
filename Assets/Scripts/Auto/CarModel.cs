@@ -213,12 +213,10 @@ public class CarModel : MonoBehaviourPun
     float deleyToUlti;
 
     [Header("Engine")]
-    public float maxPower;
-    public float startPower;
-    public float curentPowerValue;
-    public float increacePower;
-    public float driftPower;
+    float curentPowerValue;
     float powerValue;
+
+
     public bool flyArea;
 
     public float PowerValue
@@ -230,6 +228,18 @@ public class CarModel : MonoBehaviourPun
         set
         {
             powerValue = value;
+        }
+    }
+
+    public float CurentPowerValue
+    {
+        get
+        {
+            return curentPowerValue;
+        }
+        set
+        {
+            curentPowerValue = value;
         }
     }
 
