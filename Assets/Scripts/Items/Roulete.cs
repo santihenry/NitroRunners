@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
-
+using TMPro;
 
 public class Roulete : MonoBehaviour
 {
@@ -36,6 +36,8 @@ public class Roulete : MonoBehaviour
 
     public List<int> pesos = new List<int>();
 
+    public TMP_Text debugTxt;
+
     public bool CanDrop
     {
         get
@@ -63,8 +65,8 @@ public class Roulete : MonoBehaviour
 
         source = rouleteImg.GetComponent<AudioSource>();
 
+        debugTxt.gameObject.SetActive(false);
 
-        
     }
 
     int c = 0;
@@ -75,13 +77,19 @@ public class Roulete : MonoBehaviour
         {
             foreach (var item in FindObjectsOfType<CarModel>())
             {
-                if (item.nickName == PhotonNetwork.NickName)
+                if (item.nickName == PhotonNetwork.LocalPlayer.NickName)
                 {
                     _car = item;
                     c++;
                 }
             }
         }
+
+        if(_car != null)
+            debugTxt.text = $"Auto :  {_car.name} \n " + $"{_car.nickName} \n { PhotonNetwork.NickName }";
+
+        if (Input.GetKeyDown(KeyCode.P)) 
+            debugTxt.gameObject.SetActive(!debugTxt.gameObject.activeSelf);
 
 
         currentTimeDelay += Time.deltaTime;
@@ -105,27 +113,56 @@ public class Roulete : MonoBehaviour
 
     void Pesos()
     {
-        if (_car.ultimo)
+
+        if(_car != null)
         {
-            itemsPesosDic[0] = 50; //rocket
-            itemsPesosDic[1] = 150; //wall
-            itemsPesosDic[2] = 100; //landeMine
-            itemsPesosDic[3] = 5; //shield
-            itemsPesosDic[4] = 20; //zap
-            itemsPesosDic[5] = 30; //scan
-            itemsPesosDic[6] = 250; //drone
+            if (_car.ultimo)
+            {
+                itemsPesosDic[0] = 50; //rocket
+                itemsPesosDic[1] = 150; //wall
+                itemsPesosDic[2] = 100; //landeMine
+                itemsPesosDic[3] = 5; //shield
+                itemsPesosDic[4] = 20; //zap
+                itemsPesosDic[5] = 30; //scan
+                itemsPesosDic[6] = 250; //drone
+            }
+            else if(_car.Pos <= 2)
+            {
+                itemsPesosDic[0] = 100; //rocket
+                itemsPesosDic[1] = 1; //wall
+                itemsPesosDic[2] = 1; //landeMine
+                itemsPesosDic[3] = 20; //shield
+                itemsPesosDic[4] = 30; //zap
+                itemsPesosDic[5] = 30; //scan
+                itemsPesosDic[6] = 1; //drone
+            }
+            else if(_car.Pos <= 4)
+            {
+                itemsPesosDic[0] = 100; //rocket
+                itemsPesosDic[1] = 1; //wall
+                itemsPesosDic[2] = 1; //landeMine
+                itemsPesosDic[3] = 10; //shield
+                itemsPesosDic[4] = 80; //zap
+                itemsPesosDic[5] = 30; //scan
+                itemsPesosDic[6] = 5; //drone
+            }
+            else if (_car.Pos > 4)
+            {
+                itemsPesosDic[0] = 70; //rocket
+                itemsPesosDic[1] = 100; //wall
+                itemsPesosDic[2] = 80; //landeMine
+                itemsPesosDic[3] = 25; //shield
+                itemsPesosDic[4] = 50; //zap
+                itemsPesosDic[5] = 30; //scan
+                itemsPesosDic[6] = 200; //drone
+            }
+
+            for (int i = 0; i < itemsPesosDic.Count; i++)
+            {
+                pesos[i] = itemsPesosDic[i];
+            }
         }
-        else if(_car.Pos <= 2)
-        {
-            itemsPesosDic[0] = 100; //rocket
-            itemsPesosDic[1] = 1; //wall
-            itemsPesosDic[2] = 1; //landeMine
-            itemsPesosDic[3] = 20; //shield
-            itemsPesosDic[4] = 30; //zap
-            itemsPesosDic[5] = 30; //scan
-            itemsPesosDic[6] = 1; //drone
-        }
-        else if(_car.Pos <= 4)
+        else
         {
             itemsPesosDic[0] = 100; //rocket
             itemsPesosDic[1] = 1; //wall
@@ -135,22 +172,6 @@ public class Roulete : MonoBehaviour
             itemsPesosDic[5] = 30; //scan
             itemsPesosDic[6] = 5; //drone
         }
-        else if (_car.Pos > 4)
-        {
-            itemsPesosDic[0] = 70; //rocket
-            itemsPesosDic[1] = 100; //wall
-            itemsPesosDic[2] = 80; //landeMine
-            itemsPesosDic[3] = 25; //shield
-            itemsPesosDic[4] = 50; //zap
-            itemsPesosDic[5] = 30; //scan
-            itemsPesosDic[6] = 200; //drone
-        }
-
-        for (int i = 0; i < itemsPesosDic.Count; i++)
-        {
-            pesos[i] = itemsPesosDic[i];
-        }
-
     }
 
     public void RouleteWheel()
@@ -231,7 +252,7 @@ public class Roulete : MonoBehaviour
                 return currAction.Key;
             }
         }
-        return default(int);
+        return 0;
     }
 
 

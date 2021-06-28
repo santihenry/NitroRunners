@@ -55,7 +55,7 @@ Material:
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
     - _UseUIAlphaClip: 0
-    - _driftBar: 0
+    - _driftBar: 0.7581726
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color0: {r: 2.7954397, g: 0.64908695, b: 0, a: 1}

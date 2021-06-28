@@ -170,10 +170,11 @@ public class CarController : MonoBehaviourPun, IObservable
                 _carModel.ui.SetCarTgt(_carModel);
                 _carModel.photonView.RPC("UpdateLape", RpcTarget.All, _carModel.Lap);
                 _carModel.DeleyToUlti += Time.deltaTime;
+                _carModel.timeToUlti += Time.deltaTime;
 
                 if (_carModel.timeToUlti < 45)
                 {
-                    _carModel.timeToUlti = _carModel.DeleyToUlti;
+                    //_carModel.timeToUlti = _carModel.DeleyToUlti;
                 }
                 else
                 {
