@@ -31270,11 +31270,6 @@ MonoBehaviour:
   driftImg: {fileID: 0}
   marcoDriftImg: {fileID: 0}
   timeToUlti: 0
-  maxPower: 1300
-  startPower: 1000
-  curentPowerValue: 0
-  increacePower: 25
-  driftPower: 1150
   flyArea: 0
 --- !u!114 &5069719265753066934
 MonoBehaviour:
