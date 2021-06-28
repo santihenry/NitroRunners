@@ -188,7 +188,6 @@ public class CarModel : MonoBehaviourPun
     [Header("ACTUALIAZAR POSISION RUEDAS")]
     public bool updateWheelPositions;
 
-
     private bool stuned;
     public float stunedTime;
     public float currentTimeStuned;
@@ -208,11 +207,32 @@ public class CarModel : MonoBehaviourPun
     public Image driftImg;
     public Image marcoDriftImg;
 
-
     [Header("ULTI")]
     public float timeToUlti;
     bool canDropUlti;
     float deleyToUlti;
+
+    [Header("Engine")]
+    public float maxPower;
+    public float startPower;
+    public float curentPowerValue;
+    public float increacePower;
+    public float driftPower;
+    float powerValue;
+    public bool flyArea;
+
+    public float PowerValue
+    {
+        get
+        {
+            return powerValue;
+        }
+        set
+        {
+            powerValue = value;
+        }
+    }
+
 
     public bool Ulti
     {

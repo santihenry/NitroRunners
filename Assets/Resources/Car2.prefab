@@ -31257,6 +31257,7 @@ MonoBehaviour:
   isMotorcycle: 0
   _4wheelsVehicle: 1
   positionTxt: {fileID: 0}
+  ultimo: 0
   nickName: 
   currentTimeInvert: 0
   timeRespawn: 0.5
@@ -31318,6 +31319,12 @@ MonoBehaviour:
   driftImg: {fileID: 0}
   marcoDriftImg: {fileID: 0}
   timeToUlti: 0
+  maxPower: 1300
+  startPower: 1000
+  curentPowerValue: 0
+  increacePower: 25
+  driftPower: 1150
+  flyArea: 0
 --- !u!114 &5069719265753066934
 MonoBehaviour:
   m_ObjectHideFlags: 0

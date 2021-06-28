@@ -85,7 +85,8 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (miniMap != null)
             miniMap.SetActive(false);
         
-        if (SceneManager.GetActiveScene().buildIndex != 0  && SceneManager.GetActiveScene().buildIndex != 1  && SceneManager.GetActiveScene().buildIndex != 2 && SceneManager.GetActiveScene().buildIndex != 3)
+        //if (SceneManager.GetActiveScene().buildIndex != 0  && SceneManager.GetActiveScene().buildIndex != 1  && SceneManager.GetActiveScene().buildIndex != 2 && SceneManager.GetActiveScene().buildIndex != 3)
+        if (SceneManager.GetActiveScene().name == "TrackOne" || SceneManager.GetActiveScene().name == "TrackTwo")
         {
             NetManager.Instance.SetLaps();
             if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey(PhotonNetwork.NickName))
@@ -196,8 +197,9 @@ public class GameManager : MonoBehaviourPunCallbacks
                     waitPlayerTxt.gameObject.SetActive(true);
                     waitPlayerTxt.text = "Wait  players";
                 }
-                if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey(PhotonNetwork.NickName))
-                    _pjPick = (int)PhotonNetwork.CurrentRoom.CustomProperties[PhotonNetwork.NickName];
+
+                /*if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey(PhotonNetwork.NickName))
+                    _pjPick = (int)PhotonNetwork.CurrentRoom.CustomProperties[PhotonNetwork.NickName];*/
             }
             else
             {
@@ -437,11 +439,13 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (SceneManager.GetActiveScene().name == "TrackOne" || SceneManager.GetActiveScene().name == "TrackTwo" || SceneManager.GetActiveScene().name == "Lobby")
         {
             string list = "<size=0.55>Players in Party</size>\n";
+
             foreach (var item in PhotonNetwork.CurrentRoom.Players.Values)
             {
-                list += $"\n {item.NickName}";        
+                list += $"\n {item.NickName}";
             }
-            if(playerList != null)
+
+            if (playerList != null)
                 playerList.text = list;
 
             if(SceneManager.GetActiveScene().name == "Lobby")
