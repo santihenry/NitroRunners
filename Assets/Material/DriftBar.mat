@@ -88,10 +88,10 @@ Material:
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
     - _UseUIAlphaClip: 0
-    - _driftBar: 1
+    - _driftBar: 0.7176471
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color0: {r: 2.7954397, g: 0.64908695, b: 0, a: 1}
+    - _Color0: {r: 2.79544, g: 0.649087, b: 0, a: 1}
     - _Color1: {r: 0.162, g: 0.162, b: 0.162, a: 1}
     - _Color2: {r: 2.79544, g: 0.649087, b: 0, a: 1}
     - _Vector0: {r: 1.12, g: 1, b: 0, a: 0}
