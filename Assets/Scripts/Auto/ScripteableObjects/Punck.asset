@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Punck
   m_EditorClassIdentifier: 
   accelFactor: 0.15
-  maxPower: 1500
+  maxPower: 1080
   starPower: 450
-  driftPower: 1350
+  driftPower: 1000
   increacePower: 500
   trurnFactor: 0.25
-  turnStrength: 170
+  turnStrength: 150
   driftStrength: 210
   pjImg: {fileID: 21300000, guid: e829b39d9af0e1c41aec921c2a3fb8ee, type: 3}
   clip: {fileID: 32900000, guid: b1fdd1effde81374da4c5ccbebb65aab, type: 3}

@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using Photon.Pun;
-using Photon.Realtime;
 using UnityEngine.UI;
 using System.Linq;
 
@@ -43,6 +42,9 @@ public class GameManager : MonoBehaviourPunCallbacks
     Toggle _privateToggle;
     public GameObject privatePublicObj;
     int _pjPick;
+    CarModel _localCar;
+
+
 
 
     public static GameManager Instance { get; set; }
@@ -52,6 +54,18 @@ public class GameManager : MonoBehaviourPunCallbacks
         get
         {
             return online;
+        }
+    }
+
+    public CarModel MyCar
+    {
+        get
+        {
+            return _localCar;
+        }
+        set
+        {
+            _localCar = value;
         }
     }
 

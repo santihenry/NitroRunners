@@ -27124,7 +27124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isMotorcycle: 1
-  _4wheelsVehicle: 1
+  _4wheelsVehicle: 0
   positionTxt: {fileID: 0}
   ultimo: 0
   nickName: 

@@ -14,8 +14,6 @@ public class FowardCommand : ICommand
         else
             _accelValue = 1;
 
-        Debug.LogWarning($"FACTOR : {_accelFactor}  |  VALUE : {_accelValue}");
-
         obj.GetComponent<CarModel>().Vertical = _accelValue;
     }
 

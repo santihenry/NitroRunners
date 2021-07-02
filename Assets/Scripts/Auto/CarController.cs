@@ -277,7 +277,7 @@ public class CarController : MonoBehaviourPun, IObservable
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.Q) && _carModel.Ulti)
+            if (Input.GetKeyDown(KeyCode.Q) && _carModel.Ulti && _carModel.statsData.name != "rayer")
             {
                 if (GetComponent<MultiMisiles>() != null)
                     GetComponent<MultiMisiles>().Shoot();
@@ -323,42 +323,16 @@ public class CarController : MonoBehaviourPun, IObservable
 
         if (!_carModel.OnGround)
         {
-            /*if(!_carModel.Bosting)
-                _carModel.Rigidbody.AddForce(transform.up * -_carModel.gravity * 1000);
-            else
-                _carModel.Rigidbody.AddForce(transform.up * -_carModel.gravity * 400);*/
-
             _carModel.Rigidbody.AddForce(transform.up * -_carModel.gravity * 1800,ForceMode.Force);
         }
         else
         {
-            //if(!_carModel.Bosting)
-                transform.rotation = Quaternion.FromToRotation(transform.up, _carModel.hitMedio.normal) * transform.rotation;
+            transform.rotation = Quaternion.FromToRotation(transform.up, _carModel.hitMedio.normal) * transform.rotation;
         }
 
         transform.position = _carModel.Rigidbody.transform.position;
         _carModel.Rigidbody.transform.rotation = transform.rotation;
 
-
-
-
-        if (_carModel.updateWheelPositions)
-        {
-            var frontWr = Physics.Raycast(_carModel.frontRigthWheel.transform.position, Vector3.down, out _carModel.hitFrontRigthWheel, 1, _carModel.floorLayer);
-            var frontWl = Physics.Raycast(_carModel.frontLefthhWheel.transform.position, Vector3.down, out _carModel.hitFrontLeftWheel, 1, _carModel.floorLayer);
-            var backWr = Physics.Raycast(_carModel.backRigthWheel.transform.position, Vector3.down, out _carModel.hitBackRigthWheel, 1, _carModel.floorLayer);
-            var backWl = Physics.Raycast(_carModel.backLefthhWheel.transform.position, Vector3.down, out _carModel.hitBackLeftWheel, 1, _carModel.floorLayer);
-
-            if (frontWr)
-                _carModel.frontRigthWheel.transform.position = _carModel.hitFrontRigthWheel.point + new Vector3(0, _carModel.offsettSup, 0);
-            if (frontWl)
-                _carModel.frontLefthhWheel.transform.position = _carModel.hitFrontLeftWheel.point + new Vector3(0, _carModel.offsettSup, 0);
-            if (backWr)
-                _carModel.backRigthWheel.transform.position = _carModel.hitBackRigthWheel.point + new Vector3(0, _carModel.offsettSup, 0);
-            if (backWl)
-                _carModel.backLefthhWheel.transform.position = _carModel.hitBackLeftWheel.point + new Vector3(0, _carModel.offsettSup, 0);
-        }
-      
 
 
         if(_carModel.Vertical != 0)
@@ -400,7 +374,6 @@ public class CarController : MonoBehaviourPun, IObservable
     public void Streting()
     {
         _carModel.TurtnInput = _carModel.Horizontal;
-        Debug.LogWarning("turn input  " + _carModel.Horizontal);
         _carModel.TurnStrength = _carModel.Drift ? _carModel.statsData.driftStrength : _carModel.statsData.turnStrength;
         if(_carModel.Rigidbody.velocity.normalized.magnitude > .2f && _carModel.Vertical != 0 || _carModel.Bosting)
             transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0, _carModel.TurtnInput * _carModel.TurnStrength * Time.deltaTime, 0));
@@ -454,13 +427,12 @@ public class CarController : MonoBehaviourPun, IObservable
                 if (_carModel.Horizontal == -1 && _carModel.Vertical != 0)
                 {
                     _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, -25, 0));
-                    if (!_carModel._4wheelsVehicle) _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -25));
+                    if (!_carModel._4wheelsVehicle) _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 25));
                 }
                 if (_carModel.Horizontal == 1 && _carModel.Vertical != 0)
                 {
                     _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, 25, 0));
-
-                    if (!_carModel._4wheelsVehicle) _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 25));
+                    if (!_carModel._4wheelsVehicle) _carModel.model.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -25));
                 }
 
                 Notify("HandBrake");

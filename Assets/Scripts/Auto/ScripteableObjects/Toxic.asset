@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Toxic
   m_EditorClassIdentifier: 
   accelFactor: 0.2
-  maxPower: 1550
+  maxPower: 1200
   starPower: 500
-  driftPower: 1360
+  driftPower: 1100
   increacePower: 550
   trurnFactor: 0.25
-  turnStrength: 170
+  turnStrength: 160
   driftStrength: 200
   pjImg: {fileID: 21300000, guid: f2f109c5f3a1aa542bc665d2fefba5f0, type: 3}
   clip: {fileID: 32900000, guid: 484bcef6346a4ab4fa1a6bcf6c191720, type: 3}

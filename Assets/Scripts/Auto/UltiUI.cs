@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Realtime;
 using Photon.Pun;
 using UnityEngine.UI;
 
@@ -29,32 +28,50 @@ public class UltiUI : MonoBehaviour
         imagen.material.SetFloat("_specialAmount", 0);
     }
 
-    
-    void Update()
+
+    private void OnDisable()
     {
         if (img == null)
         {
-            foreach (var item in FindObjectsOfType<CarModel>())
-            {
-                if (item.nickName == PhotonNetwork.NickName)
-                {
-                    _car = item;
-                    if (_car.statsData._name != "rayer")
-                        img = item.statsData.UltiTex;
-                    else
-                        imagen.gameObject.SetActive(false);
-                }
-            }
+            Debug.LogWarning(_car);
+            _car = GameManager.Instance.MyCar;
+            Debug.LogWarning(_car);
+            if (_car.statsData.name != "rayer")
+                img = _car.statsData.UltiTex;
+            else
+                gameObject.SetActive(false);
 
             if (_car.statsData._name != "rayer")
                 Shader.SetGlobalTexture("_specialTex", img);
+            else
+                Destroy(gameObject);
         }
+    }
+
+
+    void Update()
+    {
+        /*
+         if (img == null)
+        {
+            Debug.LogWarning(_car);
+            _car = GameManager.Instance.MyCar;
+            Debug.LogWarning(_car);
+            if (_car.statsData.name != "rayer")
+                img = _car.statsData.UltiTex;
+            else
+                gameObject.SetActive(false);
+
+            if (_car.statsData._name != "rayer")
+                Shader.SetGlobalTexture("_specialTex", img);
+            else
+                Destroy(gameObject);
+        }
+        */
+
 
         if (_car.statsData._name != "rayer") 
         {
-
-
-
             if (_car.timeToUlti == _timeMax &&_fire<=1)
             {
                 _activated = true;
