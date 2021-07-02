@@ -14,9 +14,6 @@ public class LeftCommand : ICommand
         else
             _turnValue = 1;
 
-        Debug.LogWarning($"FACTOR : {_turnlFactor}  |  VALUE : {_turnValue}");
-
-
         obj.GetComponent<CarModel>().Horizontal = -_turnValue;
     }
 

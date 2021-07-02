@@ -623,7 +623,10 @@ public class CarModel : MonoBehaviourPun
         cam.SetPosBackCamera(cameraBackPos.transform);
         cam.SetCameraPosZoom(cameraPosZoom.transform);
 
-
+        if (PhotonNetwork.LocalPlayer.IsLocal)
+        {
+            GameManager.Instance.MyCar = this;
+        }
     }
 
 
