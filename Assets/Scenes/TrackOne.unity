@@ -15655,7 +15655,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7092586641162007289, guid: 4462ffe091d727f4e83e54962bd2a6e3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -59.14849
+      value: -59.148476
       objectReference: {fileID: 0}
     - target: {fileID: 7092586641162007289, guid: 4462ffe091d727f4e83e54962bd2a6e3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -16671,7 +16671,7 @@ MonoBehaviour:
   positionTxt: {fileID: 1315482242}
   calificacionDriftTxt: {fileID: 1623240787}
   multipliDriftTxt: {fileID: 1818988502}
-  driftImg: {fileID: 0}
+  driftImg: {fileID: 736861970}
   marcoDriftImg: {fileID: 736861970}
   canvas: {fileID: 1703066683}
   canvasPresenacion: {fileID: 866559790}
