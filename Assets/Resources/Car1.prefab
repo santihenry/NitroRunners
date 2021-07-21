@@ -4755,7 +4755,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - {fileID: 8300000, guid: 75fd84975affeba4a8888145c2f3d357, type: 3}
+  - {fileID: 8300000, guid: 1bcc77b9f4e86d145bbbb42a1d4b9c12, type: 3}
 --- !u!1 &90181404956980324
 GameObject:
   m_ObjectHideFlags: 0
@@ -25915,7 +25915,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - {fileID: 8300000, guid: bbfb75b7c978af44ca6c0c0951865732, type: 3}
+  - {fileID: 8300000, guid: a54bdbeec05547647ad7bf6db1e110d0, type: 3}
 --- !u!1 &3060620431683515498
 GameObject:
   m_ObjectHideFlags: 0
@@ -27451,7 +27451,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - {fileID: 8300000, guid: f1208f7d5dbbb544fadb6965f7013e63, type: 3}
+  - {fileID: 8300000, guid: a6344a72bd180784e9ac271c10ec676b, type: 3}
 --- !u!1 &5250780490169923651
 GameObject:
   m_ObjectHideFlags: 0
