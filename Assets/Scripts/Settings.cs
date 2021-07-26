@@ -28,10 +28,18 @@ public class Settings : MonoBehaviour
     public TMP_Text uiValue;
     public TMP_Text effectValue;
 
+    public List<string> r = new List<string>();
+
 
 
     private void Start()
     {
+        resoluciones.ClearOptions();
+        foreach (var resolution in Screen.resolutions)
+        {
+            r.Add($"{resolution.width}x{resolution.height}");
+        }
+        resoluciones.AddOptions(r);
         LoadSettings();
     }
 
@@ -119,6 +127,9 @@ public class Settings : MonoBehaviour
         _fullScreen = fullScreen.isOn;
         _resolution = resoluciones.value;
         SaveSettings();
+
+        
+
     }
 
 
@@ -127,6 +138,8 @@ public class Settings : MonoBehaviour
         SaveManager.SaveSettings(this);
     }
 
+
+   
     public void LoadSettings()
     {
         SettingsData settingData = SaveManager.LoadSettings();
@@ -142,7 +155,7 @@ public class Settings : MonoBehaviour
         _resolution = settingData.Resolution;
         _resolucion = settingData.Resolucion.ToVector2();
         resoluciones.value = _resolution;
-        Screen.SetResolution((int)_resolucion.x, (int)_resolucion.y, _fullScreen);
+        //Screen.SetResolution((int)_resolucion.x, (int)_resolucion.y, _fullScreen);
         fullScreen.isOn = _fullScreen;
 
     }
