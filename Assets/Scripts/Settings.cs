@@ -96,8 +96,7 @@ public class Settings : MonoBehaviour
     {
         musicValue.text = $"{musicSlider.value + 80}";
         effectValue.text = $"{effectSlider.value + 80}";
-        uiValue.text = $"{uiSlider.value + 80}";
-       
+        uiValue.text = $"{uiSlider.value + 80}";     
     }
 
 
@@ -126,10 +125,8 @@ public class Settings : MonoBehaviour
     {
         _fullScreen = fullScreen.isOn;
         _resolution = resoluciones.value;
+        _resolucion = new Vector2(Screen.resolutions[resoluciones.value].width, Screen.resolutions[resoluciones.value].height);
         SaveSettings();
-
-        
-
     }
 
 
@@ -155,7 +152,7 @@ public class Settings : MonoBehaviour
         _resolution = settingData.Resolution;
         _resolucion = settingData.Resolucion.ToVector2();
         resoluciones.value = _resolution;
-        //Screen.SetResolution((int)_resolucion.x, (int)_resolucion.y, _fullScreen);
+        Screen.SetResolution((int)_resolucion.x, (int)_resolucion.y, _fullScreen);
         fullScreen.isOn = _fullScreen;
 
     }
