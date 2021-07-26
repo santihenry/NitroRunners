@@ -36,4 +36,40 @@ public class SaveManager : MonoBehaviour
     }
 
 
+
+
+    public static void SaveSettings(Settings setting)
+    {
+        BinaryFormatter bf = new BinaryFormatter();
+        string filePath = Application.persistentDataPath + "/Settings.dll";
+        FileStream fs = new FileStream(filePath, FileMode.Create);
+
+        SettingsData settingData = new SettingsData(setting);
+
+        bf.Serialize(fs, settingData);
+        fs.Close();
+    }
+
+
+    public static SettingsData LoadSettings()
+    {
+        string filepath = Application.persistentDataPath + "/Settings.dll";
+        if (File.Exists(filepath))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream fs = new FileStream(filepath, FileMode.Open);
+            SettingsData settingData = bf.Deserialize(fs) as SettingsData;
+            fs.Close();
+            return settingData;
+        }
+        else
+        {
+            return null;
+        }
+
+
+    }
+
+
+
 }
