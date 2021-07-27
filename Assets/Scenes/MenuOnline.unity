@@ -10162,6 +10162,7 @@ MonoBehaviour:
   off: {fileID: 0}
   waitHostTxt: {fileID: 0}
   privatePublicObj: {fileID: 0}
+  mixer: {fileID: 24100000, guid: 4627ccb0362e33a48b1096444c0f77f7, type: 2}
 --- !u!1 &1923903095
 GameObject:
   m_ObjectHideFlags: 0

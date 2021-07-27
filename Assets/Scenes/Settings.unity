@@ -5589,7 +5589,6 @@ MonoBehaviour:
   effectValue: {fileID: 44725427}
   r: []
   resolutionMods: []
-  data: {fileID: 11400000, guid: 542a793fcffef454cb1bcf653385f07b, type: 2}
 --- !u!4 &1670104533
 Transform:
   m_ObjectHideFlags: 0
@@ -7088,6 +7087,7 @@ MonoBehaviour:
   off: {fileID: 0}
   waitHostTxt: {fileID: 0}
   privatePublicObj: {fileID: 0}
+  mixer: {fileID: 24100000, guid: 4627ccb0362e33a48b1096444c0f77f7, type: 2}
 --- !u!4 &2067706461
 Transform:
   m_ObjectHideFlags: 0

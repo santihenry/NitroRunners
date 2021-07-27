@@ -171,7 +171,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     void Update()
     {
 
-        if (SceneManager.GetActiveScene().name != "Settings") return;
+        if (SceneManager.GetActiveScene().name == "Settings") return;
 
 
         if (SceneManager.GetActiveScene().name == "Lobby")
