@@ -5136,6 +5136,8 @@ MonoBehaviour:
   itemWin: 0
   sounds:
   - {fileID: 8300000, guid: 6212782dfdca3404093676f2e20dac13, type: 3}
+  pesos: 
+  debugTxt: {fileID: 0}
 --- !u!1 &467374768
 GameObject:
   m_ObjectHideFlags: 0
@@ -16584,6 +16586,7 @@ MonoBehaviour:
   off: {fileID: 0}
   waitHostTxt: {fileID: 0}
   privatePublicObj: {fileID: 0}
+  mixer: {fileID: 24100000, guid: 4627ccb0362e33a48b1096444c0f77f7, type: 2}
 --- !u!4 &1395336923
 Transform:
   m_ObjectHideFlags: 0

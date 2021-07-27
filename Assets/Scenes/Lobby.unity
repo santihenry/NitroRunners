@@ -1699,6 +1699,7 @@ MonoBehaviour:
   off: {fileID: 21300000, guid: c461b6aeaf4fb9249b4837149b94adbb, type: 3}
   waitHostTxt: {fileID: 1418826013}
   privatePublicObj: {fileID: 1984950530}
+  mixer: {fileID: 24100000, guid: 4627ccb0362e33a48b1096444c0f77f7, type: 2}
 --- !u!4 &370954431
 Transform:
   m_ObjectHideFlags: 0
