@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using TMPro;
-
+using System;
 
 public class Settings : MonoBehaviour
 {
@@ -13,12 +13,14 @@ public class Settings : MonoBehaviour
     int _musicLvl;
     int _effectLvl;
     int _uiLvl;
-    int _resolution;
+    int _resolutionIndex;
+    int _resolutionModeIndex;
     Vector2 _resolucion;
     bool _fullScreen;
 
     public Toggle fullScreen;
-    public TMP_Dropdown resoluciones;
+    public TMP_Dropdown resolucionesDropDown;
+    public TMP_Dropdown resolucionesModeDropDown;
 
     public Slider musicSlider;
     public Slider uiSlider;
@@ -29,17 +31,32 @@ public class Settings : MonoBehaviour
     public TMP_Text effectValue;
 
     public List<string> r = new List<string>();
-
+    public List<string> resolutionMods = new List<string>();
+    public List<Tuple<FullScreenMode, string>> rm = new List<Tuple<FullScreenMode, string>>();
 
 
     private void Start()
     {
-        resoluciones.ClearOptions();
+        resolucionesDropDown.ClearOptions();
         foreach (var resolution in Screen.resolutions)
         {
             r.Add($"{resolution.width}x{resolution.height}");
         }
-        resoluciones.AddOptions(r);
+
+        resolucionesDropDown.AddOptions(r);
+
+        rm.Add(new Tuple<FullScreenMode, string>(FullScreenMode.ExclusiveFullScreen, "ExclusiveFullScreen"));
+        rm.Add(new Tuple<FullScreenMode, string>(FullScreenMode.FullScreenWindow, "FullScreenWindow"));
+        rm.Add(new Tuple<FullScreenMode, string>(FullScreenMode.MaximizedWindow, "MaximizedWindow"));
+        rm.Add(new Tuple<FullScreenMode, string>(FullScreenMode.Windowed, "Windowed"));
+
+        foreach (var item in rm)
+        {
+            resolutionMods.Add($"{item.Item2}");
+        }
+
+        resolucionesModeDropDown.AddOptions(resolutionMods);
+        
         LoadSettings();
     }
 
@@ -72,7 +89,15 @@ public class Settings : MonoBehaviour
     {
         get
         {
-            return _resolution;
+            return _resolutionIndex;
+        }
+    }
+
+    public int ResolutionMode
+    {
+        get
+        {
+            return _resolutionModeIndex;
         }
     }
 
@@ -124,8 +149,11 @@ public class Settings : MonoBehaviour
     public void SetResolution()
     {
         _fullScreen = fullScreen.isOn;
-        _resolution = resoluciones.value;
-        _resolucion = new Vector2(Screen.resolutions[resoluciones.value].width, Screen.resolutions[resoluciones.value].height);
+        _resolutionIndex = resolucionesDropDown.value;
+        _resolucion = new Vector2(Screen.resolutions[resolucionesDropDown.value].width, Screen.resolutions[resolucionesDropDown.value].height);
+        _resolutionModeIndex = resolucionesModeDropDown.value;
+        Screen.fullScreenMode = rm[resolucionesModeDropDown.value].Item1;
+        Screen.SetResolution((int)_resolucion.x, (int)_resolucion.y, _fullScreen);
         SaveSettings();
     }
 
@@ -136,24 +164,38 @@ public class Settings : MonoBehaviour
     }
 
 
-   
+
     public void LoadSettings()
     {
         SettingsData settingData = SaveManager.LoadSettings();
+
         _musicLvl = settingData.MusicValue;
         _effectLvl = settingData.EffectValue;
         _uiLvl = settingData.UiValue;
+        effectSlider.value = _effectLvl;
+        musicSlider.value = _musicLvl;
+        uiSlider.value = _uiLvl;
         mixer.SetFloat("Music", _musicLvl);
         mixer.SetFloat("SoundEffects", _effectLvl);
         mixer.SetFloat("UiEffects", _uiLvl);
-        effectSlider.value = settingData.EffectValue;
-        musicSlider.value = settingData.MusicValue;
-        uiSlider.value = settingData.UiValue;
-        _resolution = settingData.Resolution;
-        _resolucion = settingData.Resolucion.ToVector2();
-        resoluciones.value = _resolution;
-        Screen.SetResolution((int)_resolucion.x, (int)_resolucion.y, _fullScreen);
-        fullScreen.isOn = _fullScreen;
 
+        fullScreen.isOn = settingData.FullScreen;
+        _fullScreen = fullScreen.isOn;
+
+        _resolutionIndex = settingData.Resolution;
+        _resolutionModeIndex = settingData.ResolutionMode;
+        _resolucion = settingData.Resolucion.ToVector2();
+        resolucionesDropDown.value = settingData.Resolution;
+        resolucionesModeDropDown.value = settingData.ResolutionMode;
+
+        if(_resolucion !=Vector2.zero)
+            Screen.SetResolution((int)_resolucion.x, (int)_resolucion.y, _fullScreen);
+        else
+            Screen.SetResolution(1920,1080,true);
+
+        Screen.fullScreenMode = rm[_resolutionModeIndex].Item1;
+
+
+        
     }
 }

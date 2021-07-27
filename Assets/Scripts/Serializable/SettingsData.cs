@@ -1,5 +1,7 @@
 using System;
 using UnityEngine;
+using UnityEngine.Audio;
+
 
 [Serializable]
 public class SettingsData
@@ -8,14 +10,24 @@ public class SettingsData
     int valueEffect;
     int valueUi;
     int resolution;
+    int resolutionMode;
     SerializableVector2 resolucion;
     bool fullScreen;
+
 
     public int Resolution
     {
         get
         {
             return resolution;
+        }
+    }
+
+    public int ResolutionMode
+    {
+        get
+        {
+            return resolutionMode;
         }
     }
 
@@ -68,6 +80,7 @@ public class SettingsData
         resolucion = new SerializableVector2(settingsD.Resolucion);
         fullScreen = settingsD.FullScreen;
         resolution = settingsD.Resolution;
+        resolutionMode = settingsD.ResolutionMode;
     }
 
 }
