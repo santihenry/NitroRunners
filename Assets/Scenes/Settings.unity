@@ -598,7 +598,7 @@ GameObject:
   - component: {fileID: 159519164}
   - component: {fileID: 159519163}
   m_Layer: 5
-  m_Name: 'EffectsTxt '
+  m_Name: EffectsTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1047,7 +1047,7 @@ GameObject:
   - component: {fileID: 395007999}
   - component: {fileID: 395007998}
   m_Layer: 5
-  m_Name: 'MusicValue '
+  m_Name: MusicValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1268,7 +1268,7 @@ GameObject:
   - component: {fileID: 515076299}
   - component: {fileID: 515076298}
   m_Layer: 5
-  m_Name: 'ScreenModeDropdown '
+  m_Name: ScreenModeDropdown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1348,19 +1348,7 @@ MonoBehaviour:
     m_Options: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1670104532}
-        m_TargetAssemblyTypeName: Settings, Assembly-CSharp
-        m_MethodName: SetResolution
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &515076299
 MonoBehaviour:
@@ -1483,19 +1471,7 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1670104532}
-        m_TargetAssemblyTypeName: Settings, Assembly-CSharp
-        m_MethodName: SetResolution
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 1
 --- !u!1 &517623483
 GameObject:
@@ -1881,19 +1857,7 @@ MonoBehaviour:
     m_Options: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1670104532}
-        m_TargetAssemblyTypeName: Settings, Assembly-CSharp
-        m_MethodName: SetResolution
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &658046643
 MonoBehaviour:
@@ -3628,19 +3592,7 @@ MonoBehaviour:
   m_Value: -30
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1670104532}
-        m_TargetAssemblyTypeName: Settings, Assembly-CSharp
-        m_MethodName: SetLvlEffect
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1183247213
 GameObject:
   m_ObjectHideFlags: 0
@@ -3730,19 +3682,7 @@ MonoBehaviour:
   m_Value: -30
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1670104532}
-        m_TargetAssemblyTypeName: Settings, Assembly-CSharp
-        m_MethodName: SetLvlUi
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1253641566
 GameObject:
   m_ObjectHideFlags: 0
@@ -4084,7 +4024,7 @@ GameObject:
   - component: {fileID: 1314077860}
   - component: {fileID: 1314077859}
   m_Layer: 5
-  m_Name: 'MusicTxt '
+  m_Name: MusicTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5548,61 +5488,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1652554902}
   m_CullTransparentMesh: 1
---- !u!1 &1670104531
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1670104533}
-  - component: {fileID: 1670104532}
-  m_Layer: 0
-  m_Name: Settings
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1670104532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1670104531}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1d762b6d50fc91429eaea605b6bb80a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mixer: {fileID: 24100000, guid: 4627ccb0362e33a48b1096444c0f77f7, type: 2}
-  fullScreen: {fileID: 517566789}
-  resolucionesDropDown: {fileID: 658046642}
-  resolucionesModeDropDown: {fileID: 515076298}
-  musicSlider: {fileID: 1967902310}
-  uiSlider: {fileID: 1183247215}
-  effectSlider: {fileID: 1176593721}
-  musicValue: {fileID: 395007998}
-  uiValue: {fileID: 1801027827}
-  effectValue: {fileID: 44725427}
-  r: []
-  resolutionMods: []
---- !u!4 &1670104533
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1670104531}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 912.63855, y: 475.9023, z: -713.9053}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1687503776
 GameObject:
   m_ObjectHideFlags: 0
@@ -6631,7 +6516,7 @@ GameObject:
   - component: {fileID: 1967902309}
   - component: {fileID: 1967902310}
   m_Layer: 5
-  m_Name: 'MusicSlider '
+  m_Name: MusicSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6709,19 +6594,7 @@ MonoBehaviour:
   m_Value: -30
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1670104532}
-        m_TargetAssemblyTypeName: Settings, Assembly-CSharp
-        m_MethodName: SetLvlMusic
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &2008527948
 GameObject:
   m_ObjectHideFlags: 0
