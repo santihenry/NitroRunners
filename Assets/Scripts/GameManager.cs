@@ -45,8 +45,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     int _pjPick;
     CarModel _localCar;
 
-    public AudioMixer mixer;
-
     public static GameManager Instance { get; set; }
 
     public bool Online
@@ -82,7 +80,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
 
-
+    /*
     public void LoadSettings()
     {
         SettingsData settingData = SaveManager.LoadSettings();
@@ -100,11 +98,11 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         Screen.SetResolution((int)_resolucion.x, (int)_resolucion.y, _fullScreen);
     }
-
+    */
 
     private void Start()
     {
-        LoadSettings();
+        //LoadSettings();
 
         if (camOne != null && (SceneManager.GetActiveScene().name=="TrackOne"|| SceneManager.GetActiveScene().name == "TrackTwo"))
         {
