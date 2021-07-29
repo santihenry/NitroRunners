@@ -45,6 +45,15 @@ public class GameManager : MonoBehaviourPunCallbacks
     int _pjPick;
     CarModel _localCar;
 
+
+    public GameObject _pause;
+
+
+    public GameObject _confirmLeaveRoom;
+
+
+
+
     public static GameManager Instance { get; set; }
 
     public bool Online
@@ -80,30 +89,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
 
-    /*
-    public void LoadSettings()
-    {
-        SettingsData settingData = SaveManager.LoadSettings();
-        var _musicLvl = settingData.MusicValue;
-        var _effectLvl = settingData.EffectValue;
-        var _uiLvl = settingData.UiValue;
-        mixer.SetFloat("Music", _musicLvl);
-        mixer.SetFloat("SoundEffects", _effectLvl);
-        mixer.SetFloat("UiEffects", _uiLvl);
-
-        var _fullScreen = settingData.FullScreen;
-
-        var _resolutionModeIndex = settingData.ResolutionMode;
-        var _resolucion = settingData.Resolucion.ToVector2();
-
-        Screen.SetResolution((int)_resolucion.x, (int)_resolucion.y, _fullScreen);
-    }
-    */
-
     private void Start()
     {
-        //LoadSettings();
-
         if (camOne != null && (SceneManager.GetActiveScene().name=="TrackOne"|| SceneManager.GetActiveScene().name == "TrackTwo"))
         {
             camOne.SetActive(true);
@@ -212,12 +199,6 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
             
         }
-
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            SceneManager.LoadScene(0);
-        }
         
         if(roomName != null)
             roomName.text = $"{PhotonNetwork.CurrentRoom.Name}";
@@ -245,15 +226,6 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                 }
             }
-        }
-
-
-
-
-        if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().buildIndex > 2)
-        {
-            PhotonNetwork.LeaveRoom();
-            SceneManager.LoadScene(0);
         }
 
 
@@ -358,7 +330,19 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
 
         PlayerList();
+
+
+        Pause();
+
     }
+
+    public void Pause()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))       
+            _pause.SetActive(!_pause.activeSelf);      
+    }
+
+
 
 
     List<CarModel> carsCam = new List<CarModel>();
@@ -460,6 +444,12 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.LeaveRoom();
         SceneManager.LoadScene("Menu");
+    }
+
+
+    public void ConfirmLeaveGame(bool value)
+    {
+        _confirmLeaveRoom.SetActive(value);
     }
 
 

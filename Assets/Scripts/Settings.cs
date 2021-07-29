@@ -125,65 +125,25 @@ public class Settings : MonoBehaviour
         }
     }
 
+
     private void Update()
     {
-        foreach (var item in FindObjectsOfType<Settings>())
+        foreach (var settings in FindObjectsOfType<Settings>())
         {
-            if (item != this) Destroy(item.gameObject);
+            if (settings != this) Destroy(settings.gameObject);
         }
 
-
-        if (SceneManager.GetActiveScene().name == "Settings")
-        {
-            if (resolucionesDropDown == null)
-            {
-                resolucionesDropDown = GameObject.Find("ResolutionsDropdown").GetComponent<TMP_Dropdown>();
-                resolucionesModeDropDown = GameObject.Find("ScreenModeDropdown").GetComponent<TMP_Dropdown>();
-                musicSlider = GameObject.Find("MusicSlider").GetComponent<Slider>();
-                effectSlider = GameObject.Find("EffectsSlider").GetComponent<Slider>();
-                uiSlider = GameObject.Find("UiSlider").GetComponent<Slider>();
-                musicValue = GameObject.Find("MusicValue").GetComponent<TextMeshProUGUI>();
-                effectValue = GameObject.Find("EffectsValue").GetComponent<TextMeshProUGUI>();
-                uiValue = GameObject.Find("UiValue").GetComponent<TextMeshProUGUI>();
-                fullScreenTogle = GameObject.Find("FullScreenToggle").GetComponent<Toggle>();
-            }
-
-            if (!load)
-            {
-                fullScreenTogle.isOn = FullScreen;
-                musicSlider.value = _musicLvl;
-                effectSlider.value = _effectLvl;
-                uiSlider.value = _uiLvl;
-
-                effectSlider.onValueChanged.AddListener(SetLvlEffect);
-                musicSlider.onValueChanged.AddListener(SetLvlMusic);
-                uiSlider.onValueChanged.AddListener(SetLvlUi);
-                resolucionesDropDown.onValueChanged.AddListener(SetResolution);
-                resolucionesModeDropDown.onValueChanged.AddListener(SetResolutionMode);
-                fullScreenTogle.onValueChanged.AddListener(SetResolution);
-
-                resolucionesDropDown.AddOptions(r);
-                resolucionesModeDropDown.AddOptions(resolutionMods);
-
-
-                resolucionesDropDown.value = _resolutionIndex;
-                resolucionesModeDropDown.value = _resolutionModeIndex;
-
-
-                load = true;
-            }
-
-            musicValue.text = $"{_musicLvl + 80}";
-            effectValue.text = $"{_effectLvl + 80}";
-            uiValue.text = $"{_uiLvl + 80}";
-
-        }
+        UpdateValues();
     }
+
 
     private void OnLevelWasLoaded(int level)
     {
         load = false;
-        LoadSettings();       
+        LoadSettings();
+
+        if (SceneManager.GetActiveScene().name == "TrackOne" || SceneManager.GetActiveScene().name == "TrackTwo")
+            GameManager.Instance._pause.SetActive(true);
     }
 
 
@@ -232,12 +192,66 @@ public class Settings : MonoBehaviour
         SaveSettings();
     }
 
-
     public void SaveSettings()
     {
         SaveManager.SaveSettings(this);
     }
 
+    private void UpdateValues()
+    {
+        if (SceneManager.GetActiveScene().name == "Settings" || SceneManager.GetActiveScene().name == "TrackOne" || SceneManager.GetActiveScene().name == "TrackTwo")
+        {
+            if (resolucionesDropDown == null)
+            {
+                resolucionesDropDown = GameObject.Find("ResolutionsDropdown").GetComponent<TMP_Dropdown>();
+                resolucionesModeDropDown = GameObject.Find("ScreenModeDropdown").GetComponent<TMP_Dropdown>();
+                musicSlider = GameObject.Find("MusicSlider").GetComponent<Slider>();
+                effectSlider = GameObject.Find("EffectsSlider").GetComponent<Slider>();
+                uiSlider = GameObject.Find("UiSlider").GetComponent<Slider>();
+                musicValue = GameObject.Find("MusicValue").GetComponent<TextMeshProUGUI>();
+                effectValue = GameObject.Find("EffectsValue").GetComponent<TextMeshProUGUI>();
+                uiValue = GameObject.Find("UiValue").GetComponent<TextMeshProUGUI>();
+                fullScreenTogle = GameObject.Find("FullScreenToggle").GetComponent<Toggle>();
+
+                if (SceneManager.GetActiveScene().name == "TrackOne" || SceneManager.GetActiveScene().name == "TrackTwo")
+                    GameManager.Instance._pause.SetActive(false);
+            }
+
+            if (!load)
+            {
+                fullScreenTogle.isOn = FullScreen;
+                musicSlider.value = _musicLvl;
+                effectSlider.value = _effectLvl;
+                uiSlider.value = _uiLvl;
+
+                effectSlider.onValueChanged.AddListener(SetLvlEffect);
+                musicSlider.onValueChanged.AddListener(SetLvlMusic);
+                uiSlider.onValueChanged.AddListener(SetLvlUi);
+                resolucionesDropDown.onValueChanged.AddListener(SetResolution);
+                resolucionesModeDropDown.onValueChanged.AddListener(SetResolutionMode);
+                fullScreenTogle.onValueChanged.AddListener(SetResolution);
+
+                resolucionesDropDown.AddOptions(r);
+                resolucionesModeDropDown.AddOptions(resolutionMods);
+
+
+                resolucionesDropDown.value = _resolutionIndex;
+                resolucionesModeDropDown.value = _resolutionModeIndex;
+
+
+                load = true;
+            }
+
+            musicValue.text = $"{Remap((int)musicSlider.value, 0, -80, 100, 0)}";
+            effectValue.text = $"{Remap((int)effectSlider.value, 0, -80, 100, 0)}";
+            uiValue.text = $"{Remap((int)uiSlider.value, 0, -80, 100, 0)}";
+        }
+    }
+
+    int Remap(int value, int min1, int max1, int min2, int max2)
+    {
+        return min2 + (value - min1) * (max2 - min2) / (max1 - min1);
+    }
 
 
     public void LoadSettings()
