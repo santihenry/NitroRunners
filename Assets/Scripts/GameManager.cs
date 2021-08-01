@@ -173,7 +173,8 @@ public class GameManager : MonoBehaviourPunCallbacks
                 {
                     if (!Application.isEditor)
                     {
-                        selectPjMenuBtn.SetActive(false);
+                        //selectPjMenuBtn.SetActive(false);
+                        selectPjMenuBtn.SetActive(true); 
                         waitHostTxt.text = "Wait  Players";
                     }
                 }
