@@ -100,9 +100,9 @@ public class SelectCharacter : MonoBehaviourPun
 
         if (PhotonNetwork.IsMasterClient && ready && countPick == PhotonNetwork.PlayerList.Length && startBtn != null)
         {
-            //startBtn.SetActive(true);
-            //waitPlayerTxt.SetActive(false);
-            
+            startBtn.SetActive(true);
+            waitPlayerTxt.SetActive(false);
+            /*
             if (countPick > 1)
             {
                 startBtn.SetActive(true);
@@ -113,12 +113,13 @@ public class SelectCharacter : MonoBehaviourPun
                 if(Application.isEditor) startBtn.SetActive(true);
                 waitPlayerTxt.SetActive(true);
             }
-            
+            */
         }
         else if(PhotonNetwork.IsMasterClient && ready && countPick != PhotonNetwork.PlayerList.Length)
         {
             waitPlayerTxt.SetActive(true);
-            startBtn.SetActive(false);
+            //startBtn.SetActive(false);
+            startBtn.SetActive(true);
         }
 
 
