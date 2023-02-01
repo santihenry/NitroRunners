@@ -89,6 +89,7 @@ public class CamerMovement : MonoBehaviour
 
     public int currWay;
     public float speedPrecentacion;
+    public float reachDist = 1.0f;
     Vector3 startCanvasPos;
 
     private void Start()
@@ -112,18 +113,22 @@ public class CamerMovement : MonoBehaviour
                 RaceManager.Instance.StartSemafoto();
             }
 
-            var dir = waypoints[currWay].position - transform.position;
-            transform.position += dir.normalized * speedPrecentacion * Time.deltaTime;
-            transform.forward = Vector3.Slerp(transform.forward, dir.normalized,Time.deltaTime * speedSlerp);
+            float dist = Vector3.Distance(waypoints[currWay].position, transform.position);
+            transform.position = Vector3.MoveTowards(transform.position, waypoints[currWay].position, Time.deltaTime * speedPrecentacion);
 
-            if (currWay < waypoints.Count - 6)
+            if (dist <= reachDist)
             {
-                if (Vector3.Distance(waypoints[currWay].position, transform.position) < 1)
-                {
-                    currWay+=5;
-                }
+
+                currWay++;
             }
-            else
+
+   
+            Vector3 direction = (waypoints[currWay].position - transform.position).normalized;
+            Quaternion rotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * speedSlerp);
+
+
+            if (currWay >= waypoints.Count)
             {
                 currWay = 0;
                 RaceManager.Instance.StartSemafoto();
