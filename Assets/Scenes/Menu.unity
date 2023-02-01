@@ -32414,13 +32414,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1047014114}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1d762b6d50fc91429eaea605b6bb80a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mixer: {fileID: 24100000, guid: 4627ccb0362e33a48b1096444c0f77f7, type: 2}
-  fullScreen: {fileID: 0}
+  fullScreenTogle: {fileID: 0}
   resolucionesDropDown: {fileID: 0}
   resolucionesModeDropDown: {fileID: 0}
   musicSlider: {fileID: 0}
@@ -32682,7 +32682,8 @@ MonoBehaviour:
   off: {fileID: 0}
   waitHostTxt: {fileID: 0}
   privatePublicObj: {fileID: 0}
-  mixer: {fileID: 24100000, guid: 4627ccb0362e33a48b1096444c0f77f7, type: 2}
+  _pause: {fileID: 0}
+  _confirmLeaveRoom: {fileID: 0}
 --- !u!4 &1076585865
 Transform:
   m_ObjectHideFlags: 0

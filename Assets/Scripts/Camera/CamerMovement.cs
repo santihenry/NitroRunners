@@ -97,6 +97,8 @@ public class CamerMovement : MonoBehaviour
         img.gameObject.SetActive(false);   
     }
 
+    public float speedSlerp;
+
     private void Update()
     {
         if (!offline && !RaceManager.Instance.startSemaforo)
@@ -112,13 +114,13 @@ public class CamerMovement : MonoBehaviour
 
             var dir = waypoints[currWay].position - transform.position;
             transform.position += dir.normalized * speedPrecentacion * Time.deltaTime;
-            //transform.LookAt(waypoints[currWay + 1],Vector3.up);
+            transform.forward = Vector3.Slerp(transform.forward, dir.normalized,Time.deltaTime * speedSlerp);
 
-            if (currWay < waypoints.Count - 2)
+            if (currWay < waypoints.Count - 6)
             {
                 if (Vector3.Distance(waypoints[currWay].position, transform.position) < 1)
                 {
-                    currWay++;
+                    currWay+=5;
                 }
             }
             else

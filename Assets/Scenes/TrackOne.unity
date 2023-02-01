@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.20610586, g: 0.16180414, b: 0.30399615, a: 1}
+  m_IndirectSpecularColor: {r: 0.17966506, g: 0.12935537, b: 0.28397098, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1409,7 +1409,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.45000002, y: 0.7391594}
   m_AnchorMax: {x: 0.81056917, y: 0.88738644}
-  m_AnchoredPosition: {x: 0.10000229, y: 0.10003662}
+  m_AnchoredPosition: {x: 0.1000061, y: 0.10003662}
   m_SizeDelta: {x: -0.13289642, y: 0.12400055}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &88689953
@@ -3801,7 +3801,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7092586641162007289, guid: 4462ffe091d727f4e83e54962bd2a6e3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.5929065
+      value: -4.5929093
       objectReference: {fileID: 0}
     - target: {fileID: 7092586641162007289, guid: 4462ffe091d727f4e83e54962bd2a6e3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -20222,7 +20222,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7092586641162007289, guid: 4462ffe091d727f4e83e54962bd2a6e3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -59.148476
+      value: -59.148483
       objectReference: {fileID: 0}
     - target: {fileID: 7092586641162007289, guid: 4462ffe091d727f4e83e54962bd2a6e3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -21678,7 +21678,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7092586641162007289, guid: 4462ffe091d727f4e83e54962bd2a6e3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.7020736
+      value: -7.7020707
       objectReference: {fileID: 0}
     - target: {fileID: 7092586641162007289, guid: 4462ffe091d727f4e83e54962bd2a6e3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -27296,6 +27296,7 @@ MonoBehaviour:
   - {fileID: 536809754}
   currWay: 0
   speedPrecentacion: 100
+  speedSlerp: 1
 --- !u!81 &1743749745
 AudioListener:
   m_ObjectHideFlags: 0
