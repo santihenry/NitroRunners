@@ -88,14 +88,19 @@ public class CamerMovement : MonoBehaviour
 
 
     public int currWay;
+    public int currWayFollow;
     public float speedPrecentacion;
     public float reachDist = 1.0f;
     Vector3 startCanvasPos;
-
+    public GameObject follow;
     private void Start()
     {
         _cam = GetComponent<Camera>();
-        img.gameObject.SetActive(false);   
+        img.gameObject.SetActive(false);
+        currWayFollow = 0;
+        follow = new GameObject();
+        follow.transform.position = waypoints[currWayFollow].position;
+
     }
 
     public float speedSlerp;
@@ -118,14 +123,19 @@ public class CamerMovement : MonoBehaviour
 
             if (dist <= reachDist)
             {
-
                 currWay++;
             }
 
-   
-            Vector3 direction = (waypoints[currWay].position - transform.position).normalized;
-            Quaternion rotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * speedSlerp);
+            float distFollow = Vector3.Distance(waypoints[currWayFollow].position, follow.transform.position);
+            follow.transform.position = Vector3.MoveTowards(follow.transform.position, waypoints[currWayFollow].position, Time.deltaTime * speedPrecentacion);
+            if (distFollow <= reachDist)
+            {
+                currWayFollow++;
+            }
+
+
+            var followRot = Quaternion.LookRotation(follow.transform.position - transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, followRot, speedSlerp * Time.deltaTime);
 
 
             if (currWay >= waypoints.Count)
@@ -264,6 +274,10 @@ public class CamerMovement : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, follow.transform.position);
+        Gizmos.DrawSphere(follow.transform.position, 1f);
+
         if (_cameralookAt == null || _viewPoint == null || _cameraPos == null) return;
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, _cameralookAt.transform.position);
