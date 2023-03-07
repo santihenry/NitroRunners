@@ -471,9 +471,9 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             string list = "<size=0.55>Players in Party</size>\n";
 
-            foreach (var item in PhotonNetwork.CurrentRoom.Players.Values)
+            foreach (var player in PhotonNetwork.CurrentRoom.Players.Values)
             {
-                list += $"\n {item.NickName}";
+                list += $"\n {player.NickName}";
             }
 
             if (playerList != null)
