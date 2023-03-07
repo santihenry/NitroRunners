@@ -130,7 +130,7 @@ public class CamerMovement : MonoBehaviour
             follow.transform.position = Vector3.MoveTowards(follow.transform.position, waypoints[currWayFollow].position, Time.deltaTime * speedPrecentacion);
             if (distFollow <= reachDist)
             {
-                if (currWayFollow < 111)
+                if (currWayFollow < waypoints.Count - 1)
                     currWayFollow++;
             }
 
