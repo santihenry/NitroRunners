@@ -88,7 +88,7 @@ Material:
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
     - _UseUIAlphaClip: 0
-    - _driftBar: 0.23825906
+    - _driftBar: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color0: {r: 2.79544, g: 0.649087, b: 0, a: 1}
