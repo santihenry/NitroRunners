@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AppSettings:
     AppIdRealtime: 68208ed9-aa65-4a82-91cc-1c83f06cf104
+    AppIdFusion: 
     AppIdChat: 694dc3ce-24fe-4e52-aadc-b9cfd49675f4
     AppIdVoice: 
     AppVersion: 
@@ -93,6 +94,10 @@ MonoBehaviour:
   - SetActive
   - SetActiveRPC
   - ChangeIddleValueRPC
+  - SaveClock
+  - SetIdRPC
+  - StartRaceRPC
+  - StartSemaforoRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
