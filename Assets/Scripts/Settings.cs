@@ -41,15 +41,13 @@ public class Settings : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(this);       
+        //DontDestroyOnLoad(this);       
     }
 
 
     
     private void Start()
     {
-
-
         foreach (var resolution in Screen.resolutions)
         {
             r.Add($"{resolution.width}x{resolution.height}");

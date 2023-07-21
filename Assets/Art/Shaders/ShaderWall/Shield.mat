@@ -56,7 +56,7 @@ Material:
     - _Til: 2.482353
     - _Tilingazul: 2.482353
     - _Tilingrosa: 2.482353
-    - __dirty: 1
+    - __dirty: 0
     m_Colors:
     - _Color: {r: 0, g: 3.8952875, b: 3.9999995, a: 0}
     - _Color0: {r: 9.089006, g: 1.01643, b: 0, a: 0.2784314}
